@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.CardFragment">
+
+    <TextView
+        android:id="@+id/cardName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/layoutVariants"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layoutVariants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/saveButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardName">
+
+        <TextView
+            android:id="@+id/scoreSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/negative_positive_0"
+            android:textAlignment="center"
+            android:textSize="@dimen/thumb_text_size" />
+
+        <SeekBar
+            android:id="@+id/seekBarVariants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="10"
+            android:progress="5"
+            android:progressDrawable="@drawable/seekbar_drawable_progress"
+            android:splitTrack="false"
+            android:thumb="@drawable/seekbar_drawable_thumb"
+            android:thumbOffset="0dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/saveButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/cancelButton"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutVariants" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancelButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/saveButton"
+        app:layout_constraintTop_toBottomOf="@id/layoutVariants" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

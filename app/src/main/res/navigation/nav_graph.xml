@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/ProblemListFragment">
+
+    <fragment
+        android:id="@+id/ProblemListFragment"
+        android:name="ru.crazypeppers.problemsassistant.fragment.ProblemListFragment"
+        android:label="@string/problem_list_fragment_label">
+
+        <action
+            android:id="@+id/action_ProblemListFragment_to_CardListFragment"
+            app:destination="@id/CardListFragment" />
+        <action
+            android:id="@+id/action_ProblemListFragment_to_ProblemEditFragment"
+            app:destination="@id/ProblemEditFragment" />
+        <action
+            android:id="@+id/action_ProblemListFragment_to_AnalyzeProblemFragment"
+            app:destination="@id/AnalyzeProblemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CardListFragment"
+        android:name="ru.crazypeppers.problemsassistant.fragment.CardListFragment"
+        android:label="@string/card_list_fragment_label">
+        <action
+            android:id="@+id/action_CardListFragment_to_CardEditFragment"
+            app:destination="@id/CardEditFragment" />
+
+        <action
+            android:id="@+id/action_CardListFragment_to_CardFragment"
+            app:destination="@id/CardFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ProblemEditFragment"
+        android:name="ru.crazypeppers.problemsassistant.fragment.ProblemEditFragment"
+        android:label="@string/problem_edit_fragment_label"
+        tools:layout="@layout/fragment_problem_edit" />
+
+    <fragment
+        android:id="@+id/CardEditFragment"
+        android:name="ru.crazypeppers.problemsassistant.fragment.CardEditFragment"
+        android:label="@string/card_edit_fragment_label"
+        tools:layout="@layout/fragment_card_edit" />
+
+    <fragment
+        android:id="@+id/CardFragment"
+        android:name="ru.crazypeppers.problemsassistant.fragment.CardFragment"
+        android:label="@string/card_fragment_label"
+        tools:layout="@layout/fragment_card" />
+    <fragment
+        android:id="@+id/AnalyzeProblemFragment"
+        android:name="ru.crazypeppers.problemsassistant.fragment.AnalyzeProblemFragment"
+        android:label="@string/analyzeProblemFragmentLabel"
+        tools:layout="@layout/fragment_analyze_problem" />
+
+</navigation>
