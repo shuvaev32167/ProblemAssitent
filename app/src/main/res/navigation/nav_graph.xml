@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_CardListFragment_to_CardFragment"
             app:destination="@id/CardFragment" />
+        <action
+            android:id="@+id/action_CardListFragment_to_AnalyseCardFragment"
+            app:destination="@id/AnalyseCardFragment" />
     </fragment>
 
     <fragment
@@ -55,5 +58,10 @@
         android:name="ru.crazypeppers.problemsassistant.fragment.AnalyzeProblemFragment"
         android:label="@string/analyzeProblemFragmentLabel"
         tools:layout="@layout/fragment_analyze_problem" />
+    <fragment
+        android:id="@+id/AnalyseCardFragment"
+        android:name="ru.crazypeppers.problemsassistant.fragment.AnalyseCardFragment"
+        android:label="@string/analyzeCardFragmentLabel"
+        tools:layout="@layout/fragment_analyse_card" />
 
 </navigation>

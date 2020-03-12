@@ -54,6 +54,7 @@ class CardListFragment : ListFragment() {
                 val popupMenu = PopupMenu(activity, viewListItem)
                 popupMenu.menu.add(1, 0, 1, getString(R.string.popupEdit))
                 popupMenu.menu.add(1, 1, 2, getString(R.string.popupDelete))
+                popupMenu.menu.add(1, 2, 3, getString(R.string.analyze))
                 popupMenu.show()
 
                 popupMenu.setOnMenuItemClickListener {
@@ -72,6 +73,15 @@ class CardListFragment : ListFragment() {
                             application.data[problemPosition].removeAt(position)
                             application.saveData()
                             (listAdapter as ArrayAdapter<*>).notifyDataSetChanged()
+                        }
+                        2 -> {
+                            val bundle = Bundle()
+                            bundle.putInt(PROBLEM_POSITION_TEXT, problemPosition)
+                            bundle.putInt(CARD_POSITION_TEXT, position)
+                            findNavController().navigate(
+                                R.id.action_CardListFragment_to_AnalyseCardFragment,
+                                bundle
+                            )
                         }
                     }
 

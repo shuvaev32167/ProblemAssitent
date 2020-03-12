@@ -4,31 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SeekBar
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.fragment_card.*
+import kotlinx.android.synthetic.main.fragment_analyse_card.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.data.CARD_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
-import ru.crazypeppers.problemsassistant.data.dto.Point
-import java.util.*
-
+import ru.crazypeppers.problemsassistant.roundTo
+import java.text.DateFormat
+import java.text.DateFormat.SHORT
 
 /**
- * Фрагмент отвечающий за оценивание карты
+ * A simple [Fragment] subclass.
  */
-class CardFragment : Fragment() {
+class AnalyseCardFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card, container, false)
+        return inflater.inflate(R.layout.fragment_analyse_card, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,7 +38,7 @@ class CardFragment : Fragment() {
 
         val inputAdd = activity.findViewById<FloatingActionButton>(R.id.inputAdd)
         inputAdd.hide()
-        activity.title = getString(R.string.card_fragment_label)
+        activity.title = getString(R.string.analyzeCardFragmentLabel)
 
         var positionProblem = NOT_POSITION
         var positionCard = NOT_POSITION
@@ -49,42 +48,17 @@ class CardFragment : Fragment() {
             positionCard = arg.getInt(CARD_POSITION_TEXT, NOT_POSITION)
         }
 
-        seekBarVariants.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                scoreSeekBar.text = (progress - 5).toString()
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-        })
-
         if (positionProblem != NOT_POSITION && positionCard != NOT_POSITION) {
             val card = application.data[positionProblem][positionCard]
-            cardName.text = card.cardName
-            if (card.points.size > 0) {
-                seekBarVariants.progress = card.points.last().score + 5
-            }
+            val lineSet = linkedMapOf<String, Float>()
+            val dateFormat = DateFormat.getDateInstance(SHORT)
+            card.points.forEach { lineSet[dateFormat.format(it.date)] = it.score.toFloat() }
+            lineChart.animate(lineSet)
+            lineChart.labelsFormatter = { it.roundTo(2).toString() }
+
+            graphLabel.text =
+                String.format(getString(R.string.analyzeCardFragmentLabel), card.cardName)
         }
 
-        cancelButton.setOnClickListener {
-            findNavController().popBackStack()
-        }
-
-        saveButton.setOnClickListener {
-            val score = seekBarVariants.progress - 5
-            application.data[positionProblem][positionCard].add(
-                Point(
-                    score,
-                    Date()
-                )
-            )
-            application.data[positionProblem][positionCard].dischargeAvgPoints()
-            application.saveData()
-            findNavController().popBackStack()
-        }
     }
-
 }
