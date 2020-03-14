@@ -11,7 +11,6 @@ import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
-import java.util.*
 
 /**
  * Реализация [Application] с возможносью оперировать данными
@@ -85,21 +84,5 @@ class DataApplication : Application() {
                 )
             )
         }
-    }
-
-    /**
-     * Отрезание времени от даты.
-     *
-     * @return Дата без времени
-     */
-    private fun Date.withoutTime(): Date {
-        val calendar = Calendar.getInstance()
-        calendar.time = this
-        calendar[Calendar.HOUR_OF_DAY] = 0
-        calendar[Calendar.MINUTE] = 0
-        calendar[Calendar.SECOND] = 0
-        calendar[Calendar.MILLISECOND] = 0
-
-        return calendar.time
     }
 }

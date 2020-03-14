@@ -18,14 +18,10 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.db.williamchart.view.LineChartView
+    <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:chart_axis="xy"
-        app:chart_labelsSize="@dimen/graphLabelSize"
-        app:chart_lineThickness="1dp"
-        app:chart_smoothLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
