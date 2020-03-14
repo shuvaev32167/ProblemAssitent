@@ -5,11 +5,14 @@ import java.util.*
 /**
  * Описания выставленных очков карте
  *
- * @property score Выставленные очки
  * @property date Даты оценки
  */
-data class Point(var date: Date = Date()) {
+class Point(var date: Date = Date()) {
     private var point: Int = 0
+
+    /**
+     * Выставленные очки
+     */
     var score = 0
         get() {
             if (field == 0 && point != 0) {
@@ -18,6 +21,10 @@ data class Point(var date: Date = Date()) {
             return field
         }
 
+    /**
+     * @param score выставленные очки
+     * @param date дата оценки
+     */
     constructor(score: Int, date: Date) : this(date) {
         this.score = score
     }

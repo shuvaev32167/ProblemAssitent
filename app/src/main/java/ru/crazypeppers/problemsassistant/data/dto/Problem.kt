@@ -8,16 +8,22 @@ import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
  *
  * @property problemName Название проблемы
  * @property cards Список карт (мотиваций/якорей)
- * @property type Тип проблемы
- * @property imageBase64 Картинка проблемы
  */
-data class Problem(
+class Problem(
     @SerializedName("name")
     var problemName: String,
-    val cards: MutableList<Card>,
-    var type: ProblemType = ProblemType.LINE,
-    var imageBase64: String? = null
+    val cards: MutableList<Card> = mutableListOf()
 ) {
+    /**
+     * Тип проблемы
+     */
+    var type: ProblemType = ProblemType.LINE
+
+    /**
+     * Картинка проблемы
+     */
+    var imageBase64: String? = null
+
     /**
      * Получение карты по её позиции [positionCard].
      *
