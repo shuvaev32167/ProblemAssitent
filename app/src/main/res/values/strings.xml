@@ -56,5 +56,10 @@
     <string name="analyzeProblemFragmentLabel">Анализ проблемы</string>
     <string name="analyzeCardFragmentLabel">График изменения оценки</string>
     <string name="analyzeCardFragmentGraphLabel">Изменение оценки по %s</string>
+    <string name="removeItemConfirm">Подтверждение удаления</string>
+    <string name="removeItemConfirmMessage">Вы действительно хотите удалить элемент %s?</string>
+    <string name="yesButton">Да</string>
+    <string name="noButton">Нет</string>
+    <string name="graphScoreChanged">График измененения оценки</string>
 
 </resources>

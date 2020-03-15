@@ -1,9 +1,11 @@
 package ru.crazypeppers.problemsassistant.fragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.ListFragment
 import androidx.navigation.fragment.findNavController
@@ -15,6 +17,7 @@ import ru.crazypeppers.problemsassistant.adapter.CardArrayAdapter
 import ru.crazypeppers.problemsassistant.data.CARD_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
+import ru.crazypeppers.problemsassistant.data.dto.Card
 
 /**
  * Фрагмент отвечающий за работу со списком карт
@@ -54,7 +57,7 @@ class CardListFragment : ListFragment() {
                 val popupMenu = PopupMenu(activity, viewListItem)
                 popupMenu.menu.add(1, 0, 1, getString(R.string.popupEdit))
                 popupMenu.menu.add(1, 1, 2, getString(R.string.popupDelete))
-                popupMenu.menu.add(1, 2, 3, getString(R.string.analyze))
+                popupMenu.menu.add(1, 2, 3, getString(R.string.graphScoreChanged))
                 popupMenu.show()
 
                 popupMenu.setOnMenuItemClickListener {
@@ -70,9 +73,27 @@ class CardListFragment : ListFragment() {
                             )
                         }
                         1 -> {
-                            application.data[problemPosition].removeAt(position)
-                            application.saveData()
-                            (listAdapter as ArrayAdapter<*>).notifyDataSetChanged()
+                            val adb: AlertDialog.Builder = AlertDialog.Builder(activity)
+                            adb.setTitle(R.string.removeItemConfirm)
+                            adb.setMessage(
+                                String.format(
+                                    getString(R.string.removeItemConfirmMessage),
+                                    (listAdapter?.getItem(position) as Card).cardName
+                                )
+                            )
+                            adb.setIcon(android.R.drawable.ic_dialog_alert)
+                            adb.setPositiveButton(R.string.yesButton) { dialog, which ->
+                                when (which) {
+                                    // положительная кнопка
+                                    Dialog.BUTTON_POSITIVE -> {
+                                        application.data[problemPosition].removeAt(position)
+                                        application.saveData()
+                                        (listAdapter as ArrayAdapter<*>).notifyDataSetChanged()
+                                    }
+                                }
+                            }
+                            adb.setNegativeButton(R.string.noButton, null)
+                            adb.create().show()
                         }
                         2 -> {
                             val bundle = Bundle()

@@ -1,9 +1,11 @@
 package ru.crazypeppers.problemsassistant.fragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.ListFragment
 import androidx.navigation.fragment.findNavController
@@ -13,6 +15,7 @@ import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.adapter.ProblemArrayAdapter
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
+import ru.crazypeppers.problemsassistant.data.dto.Problem
 
 /**
  * Фрагмент отвечающий за работу со списком проблем
@@ -54,9 +57,27 @@ class ProblemListFragment : ListFragment() {
                             )
                         }
                         1 -> {
-                            application.data.removeAt(position)
-                            application.saveData()
-                            (listAdapter as ArrayAdapter<*>).notifyDataSetChanged()
+                            val adb: AlertDialog.Builder = AlertDialog.Builder(activity)
+                            adb.setTitle(R.string.removeItemConfirm)
+                            adb.setMessage(
+                                String.format(
+                                    getString(R.string.removeItemConfirmMessage),
+                                    (listAdapter?.getItem(position) as Problem).problemName
+                                )
+                            )
+                            adb.setIcon(android.R.drawable.ic_dialog_alert)
+                            adb.setPositiveButton(R.string.yesButton) { dialog, which ->
+                                when (which) {
+                                    // положительная кнопка
+                                    Dialog.BUTTON_POSITIVE -> {
+                                        application.data.removeAt(position)
+                                        application.saveData()
+                                        (listAdapter as ArrayAdapter<*>).notifyDataSetChanged()
+                                    }
+                                }
+                            }
+                            adb.setNegativeButton(R.string.noButton, null)
+                            adb.create().show()
                         }
                         2 -> {
                             val bundle = Bundle()
