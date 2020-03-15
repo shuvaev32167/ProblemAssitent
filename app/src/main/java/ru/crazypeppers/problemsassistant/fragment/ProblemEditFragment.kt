@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -45,8 +46,8 @@ class ProblemEditFragment : Fragment() {
                 if (positionProblem != NOT_POSITION) {
                     val name =
                         (activity.application as DataApplication).data[positionProblem].problemName
-                    cardName.setText(name)
-                    cardName.setSelection(name.length)
+                    problemName.setText(name)
+                    problemName.setSelection(name.length)
                 }
             }
 
@@ -63,16 +64,43 @@ class ProblemEditFragment : Fragment() {
 
         saveButton.setOnClickListener {
             val application = activity?.application as DataApplication
-            if (positionProblem != NOT_POSITION) {
-                application.data[positionProblem].problemName =
-                    cardName.text.toString()
-            } else {
-                application.data.add(
-                    Problem(
-                        cardName.text.toString(),
-                        mutableListOf()
-                    )
+            val newName = problemName.text.toString()
+
+            val adb: AlertDialog.Builder = AlertDialog.Builder(activity)
+            adb.setTitle(R.string.problemNameBusyTitle)
+            adb.setMessage(
+                String.format(
+                    getString(R.string.problemNameBusyMessage),
+                    newName
                 )
+            )
+            adb.setIcon(android.R.drawable.ic_dialog_alert)
+            adb.setNeutralButton(R.string.okButton, null)
+            val alert = adb.create()
+
+            if (positionProblem != NOT_POSITION) {
+                if (application.data.hasProblemWithName(
+                        newName,
+                        application.data[positionProblem]
+                    )
+                ) {
+                    alert.show()
+                    return@setOnClickListener
+                } else {
+                    application.data[positionProblem].problemName = newName
+                }
+            } else {
+                if (application.data.hasProblemWithName(newName)) {
+                    alert.show()
+                    return@setOnClickListener
+                } else {
+                    application.data.add(
+                        Problem(
+                            newName,
+                            mutableListOf()
+                        )
+                    )
+                }
             }
             application.saveData()
             findNavController().popBackStack()

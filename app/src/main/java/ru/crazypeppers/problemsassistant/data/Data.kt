@@ -43,4 +43,19 @@ data class Data(val problems: MutableList<Problem>) {
     fun add(problem: Problem) {
         problems.add(problem)
     }
+
+    /**
+     * Определение наличие проблемы с именем [problemName] в списке проблем [problems]
+     *
+     * @param problemName имя проблемы для поиска
+     * @param currentProblem текущая редактируемая проблема
+     * @return `true`, если проблема с таким именем есть в списке [problems], иначе `false`
+     */
+    fun hasProblemWithName(problemName: String, currentProblem: Problem? = null): Boolean {
+        problems.forEach {
+            if (it.problemName.equals(problemName, true) && it !== currentProblem)
+                return true
+        }
+        return false
+    }
 }

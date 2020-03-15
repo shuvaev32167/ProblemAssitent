@@ -61,5 +61,10 @@
     <string name="yesButton">Да</string>
     <string name="noButton">Нет</string>
     <string name="graphScoreChanged">График измененения оценки</string>
+    <string name="okButton">Исправить</string>
+    <string name="problemNameBusyTitle">Название проблемы занято</string>
+    <string name="problemNameBusyMessage">Проблема с именем %s уже существует. Пожалуйста введите другое название для проблемы.</string>
+    <string name="cardNameBusyTitle">Название мотивации/якоря занято</string>
+    <string name="cardNameBusyMessage">Мотивация/якорь с именем %s уже существует. Пожалуйста введите другое название для мотивации/якоря.</string>
 
 </resources>

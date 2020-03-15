@@ -7,11 +7,11 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.SeekBar
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_card_edit.*
-import kotlinx.android.synthetic.main.fragment_card_edit.cardName
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
@@ -77,23 +77,46 @@ class CardEditFragment : Fragment() {
                 findNavController().popBackStack()
                 return@setOnClickListener
             }
+            val newName = cardName.text.toString()
+
+            val adb: AlertDialog.Builder = AlertDialog.Builder(activity)
+            adb.setTitle(R.string.cardNameBusyTitle)
+            adb.setMessage(
+                String.format(
+                    getString(R.string.cardNameBusyMessage),
+                    newName
+                )
+            )
+            adb.setIcon(android.R.drawable.ic_dialog_alert)
+            adb.setNeutralButton(R.string.okButton, null)
+            val alert = adb.create()
             if (positionCard != NOT_POSITION) {
                 val card = application.data[positionProblem][positionCard]
-                card.cardName = cardName.text.toString()
-                card.cardDescription = cardDescription.text.toString()
+                if (application.data[positionProblem].hasCardWithName(newName, card)) {
+                    alert.show()
+                    return@setOnClickListener
+                } else {
+                    card.cardName = newName
+                    card.cardDescription = cardDescription.text.toString()
+                }
             } else {
-                application.data[positionProblem].add(
-                    Card(
-                        cardName = cardName.text.toString(),
-                        cardDescription = cardDescription.text.toString(),
-                        points = mutableListOf(
-                            Point(
-                                seekBarVariants.progress - 5,
-                                Calendar.getInstance(TimeZone.getTimeZone("UTC")).withoutTime()
+                if (application.data[positionProblem].hasCardWithName(newName)) {
+                    alert.show()
+                    return@setOnClickListener
+                } else {
+                    application.data[positionProblem].add(
+                        Card(
+                            cardName = newName,
+                            cardDescription = cardDescription.text.toString(),
+                            points = mutableListOf(
+                                Point(
+                                    seekBarVariants.progress - 5,
+                                    Calendar.getInstance(TimeZone.getTimeZone("UTC")).withoutTime()
+                                )
                             )
                         )
                     )
-                )
+                }
             }
             application.saveData()
             findNavController().popBackStack()

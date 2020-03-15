@@ -53,4 +53,19 @@ class Problem(
     fun removeAt(positionCard: Int) {
         cards.removeAt(positionCard)
     }
+
+    /**
+     * Определение наличие карты с именем [cardName] в списке карт [cards]
+     *
+     * @param cardName имя карты для поиска
+     * @param currentCard текущая редактируемая карта
+     * @return `true`, если карта с таким именем есть в списке [cards], иначе `false`
+     */
+    fun hasCardWithName(cardName: String, currentCard: Card? = null): Boolean {
+        cards.forEach {
+            if (it.cardName.equals(cardName, true) && it !== currentCard)
+                return true
+        }
+        return false
+    }
 }
