@@ -4,6 +4,7 @@ package ru.crazypeppers.problemsassistant
 
 import java.math.RoundingMode
 import java.util.*
+import java.util.Calendar.DATE
 
 /**
  * Округление до [numFractionDigits] знаков после запятой.
@@ -18,15 +19,13 @@ fun Float.roundTo(numFractionDigits: Int) =
  *
  * @return Дата без времени
  */
-fun Date.withoutTime(): Date {
-    val calendar = Calendar.getInstance()
-    calendar.time = this
-    calendar[Calendar.HOUR_OF_DAY] = 0
-    calendar[Calendar.MINUTE] = 0
-    calendar[Calendar.SECOND] = 0
-    calendar[Calendar.MILLISECOND] = 0
+fun Calendar.withoutTime(): Calendar {
+    this[Calendar.HOUR_OF_DAY] = 0
+    this[Calendar.MINUTE] = 0
+    this[Calendar.SECOND] = 0
+    this[Calendar.MILLISECOND] = 0
 
-    return calendar.time
+    return this
 }
 
 /**
@@ -40,7 +39,8 @@ private const val millisecondPerDay = 24 * 60 * 60 * 1000
  * @param date дата, до которой надо найти разницу
  * @return Число дней, между текущей датой и [date]
  */
-fun Date.diffDay(date: Date): Int = ((this.time - date.time) / millisecondPerDay).toInt()
+fun Calendar.diffDay(date: Calendar): Int =
+    ((this.timeInMillis - date.timeInMillis) / millisecondPerDay).toInt()
 
 /**
  * Создаёт новый обект, на основе текущего со звигом на указанное [day] число дней
@@ -48,4 +48,9 @@ fun Date.diffDay(date: Date): Int = ((this.time - date.time) / millisecondPerDay
  * @param day число дней, которые надо добавить
  * @return Дата, с придавленым числом дней [day]
  */
-fun Date.addDayAsNewInstance(day: Int): Date = Date(day * millisecondPerDay + this.time)
+fun Calendar.addDayAsNewInstance(day: Int): Calendar {
+    val calendar = Calendar.getInstance()
+    calendar.time = this.time
+    calendar.add(DATE, day)
+    return calendar
+}

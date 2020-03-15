@@ -16,6 +16,7 @@ import ru.crazypeppers.problemsassistant.data.CARD_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Point
+import ru.crazypeppers.problemsassistant.withoutTime
 import java.util.*
 
 
@@ -78,7 +79,7 @@ class CardFragment : Fragment() {
             application.data[positionProblem][positionCard].add(
                 Point(
                     score,
-                    Date()
+                    Calendar.getInstance(TimeZone.getTimeZone("UTC")).withoutTime()
                 )
             )
             application.data[positionProblem][positionCard].dischargeAvgPoints()

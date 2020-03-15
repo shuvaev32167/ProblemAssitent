@@ -20,6 +20,7 @@ import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Card
 import ru.crazypeppers.problemsassistant.data.dto.Point
+import ru.crazypeppers.problemsassistant.withoutTime
 import java.util.*
 
 /**
@@ -86,7 +87,10 @@ class CardEditFragment : Fragment() {
                         cardName = cardName.text.toString(),
                         cardDescription = cardDescription.text.toString(),
                         points = mutableListOf(
-                            Point(seekBarVariants.progress - 5, Date())
+                            Point(
+                                seekBarVariants.progress - 5,
+                                Calendar.getInstance(TimeZone.getTimeZone("UTC")).withoutTime()
+                            )
                         )
                     )
                 )

@@ -60,11 +60,11 @@ class AnalyseCardFragment : Fragment() {
             val card = application.data[positionProblem][positionCard]
             val dateFormat = DateFormat.getDateInstance(SHORT)
             val values = ArrayList<Entry>(card.points.size)
-            val firstDay = card.points.first().date
+            val firstDay = card.points.first().cdate
             card.points.forEach {
                 values.add(
                     Entry(
-                        it.date.diffDay(firstDay).toFloat(),
+                        it.cdate.diffDay(firstDay).toFloat(),
                         it.score.toFloat(),
                         it
                     )
@@ -94,11 +94,11 @@ class AnalyseCardFragment : Fragment() {
 
             xAxis.valueFormatter = object : ValueFormatter() {
                 override fun getPointLabel(entry: Entry): String {
-                    return dateFormat.format((entry.data as Point).date)
+                    return dateFormat.format((entry.data as Point).cdate.time)
                 }
 
                 override fun getFormattedValue(value: Float): String {
-                    return dateFormat.format(firstDay.addDayAsNewInstance(value.toInt()))
+                    return dateFormat.format(firstDay.addDayAsNewInstance(value.toInt()).time)
                 }
 
                 override fun getAxisLabel(value: Float, axis: AxisBase?): String {

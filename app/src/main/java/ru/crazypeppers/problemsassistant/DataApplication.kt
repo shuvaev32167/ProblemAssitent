@@ -33,13 +33,13 @@ class DataApplication : Application() {
     private fun save(data: Data) {
         data.problems.forEach { problem ->
             problem.cards.forEach { card ->
-                val pointsSortedByDescDate = card.points.sortedByDescending { it.date }
+                val pointsSortedByDescDate = card.points.sortedByDescending { it.cdate }
                 var prevPoint: Point? = null
                 for (point in pointsSortedByDescDate) {
-                    point.date = point.date.withoutTime()
+                    point.cdate.withoutTime()
                     if (prevPoint == null) {
                         prevPoint = point
-                    } else if (prevPoint.date == point.date) {
+                    } else if (prevPoint.cdate == point.cdate) {
                         card.points.remove(point)
                     }
                 }

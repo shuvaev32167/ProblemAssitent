@@ -4,28 +4,41 @@ import java.util.*
 
 /**
  * Описания выставленных очков карте
- *
- * @property date Даты оценки
  */
-class Point(var date: Date = Date()) {
-    private var point: Int = 0
+class Point() {
+    private var point: Int? = null
+    private var date: Date? = null
 
     /**
      * Выставленные очки
      */
     var score = 0
         get() {
-            if (field == 0 && point != 0) {
-                field = point
+            if (field == 0 && point != null) {
+                field = point ?: 0
+                point = null
+            }
+            return field
+        }
+
+    /**
+     * Дата оценки
+     */
+    var cdate: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+        get() {
+            if (date != null) {
+                field.time = date!!
+                date = null
             }
             return field
         }
 
     /**
      * @param score выставленные очки
-     * @param date дата оценки
+     * @param cdate дата оценки
      */
-    constructor(score: Int, date: Date) : this(date) {
+    constructor(score: Int, cdate: Calendar) : this() {
         this.score = score
+        this.cdate = cdate
     }
 }
