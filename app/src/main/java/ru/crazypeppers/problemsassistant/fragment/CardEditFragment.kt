@@ -20,8 +20,6 @@ import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Card
 import ru.crazypeppers.problemsassistant.data.dto.Point
-import ru.crazypeppers.problemsassistant.withoutTime
-import java.util.*
 
 /**
  * Фрагмент отвечающий за редактирование существующей карты или добавление новой.
@@ -54,9 +52,9 @@ class CardEditFragment : Fragment() {
             positionCard = arg.getInt(CARD_POSITION_TEXT, NOT_POSITION)
             if (positionProblem != NOT_POSITION && positionCard != NOT_POSITION) {
                 val card = application.data[positionProblem][positionCard]
-                cardName.setText(card.cardName)
-                cardName.setSelection(card.cardName.length)
-                cardDescription.setText(card.cardDescription)
+                cardName.setText(card.name)
+                cardName.setSelection(card.name.length)
+                cardDescription.setText(card.description)
             }
         }
 
@@ -96,8 +94,8 @@ class CardEditFragment : Fragment() {
                     alert.show()
                     return@setOnClickListener
                 } else {
-                    card.cardName = newName
-                    card.cardDescription = cardDescription.text.toString()
+                    card.name = newName
+                    card.description = cardDescription.text.toString()
                 }
             } else {
                 if (application.data[positionProblem].hasCardWithName(newName)) {
@@ -110,8 +108,7 @@ class CardEditFragment : Fragment() {
                             cardDescription = cardDescription.text.toString(),
                             points = mutableListOf(
                                 Point(
-                                    seekBarVariants.progress - 5,
-                                    Calendar.getInstance(TimeZone.getTimeZone("UTC")).withoutTime()
+                                    seekBarVariants.progress - 5
                                 )
                             )
                         )

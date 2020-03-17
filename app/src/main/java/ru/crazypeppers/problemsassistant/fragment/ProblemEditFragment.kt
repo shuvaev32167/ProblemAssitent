@@ -45,7 +45,7 @@ class ProblemEditFragment : Fragment() {
                 positionProblem = arg.getInt(PROBLEM_POSITION_TEXT, NOT_POSITION)
                 if (positionProblem != NOT_POSITION) {
                     val name =
-                        (activity.application as DataApplication).data[positionProblem].problemName
+                        (activity.application as DataApplication).data[positionProblem].name
                     problemName.setText(name)
                     problemName.setSelection(name.length)
                 }
@@ -87,7 +87,7 @@ class ProblemEditFragment : Fragment() {
                     alert.show()
                     return@setOnClickListener
                 } else {
-                    application.data[positionProblem].problemName = newName
+                    application.data[positionProblem].name = newName
                 }
             } else {
                 if (application.data.hasProblemWithName(newName)) {

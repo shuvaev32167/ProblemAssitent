@@ -1,17 +1,17 @@
 package ru.crazypeppers.problemsassistant.data.dto
 
-import com.google.gson.annotations.SerializedName
+import ru.crazypeppers.problemsassistant.data.Data
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
+import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
 
 /**
  * Описание решаемой проблемы
  *
- * @property problemName Название проблемы
+ * @property name Название проблемы
  * @property cards Список карт (мотиваций/якорей)
  */
 class Problem(
-    @SerializedName("name")
-    var problemName: String,
+    var name: String,
     val cards: MutableList<Card> = mutableListOf()
 ) {
     /**
@@ -23,6 +23,12 @@ class Problem(
      * Картинка проблемы
      */
     var imageBase64: String? = null
+
+    /**
+     * Данные, в которые входит проблема
+     */
+    @Transient
+    var parent: Data? = null
 
     /**
      * Получение карты по её позиции [positionCard].
@@ -63,9 +69,37 @@ class Problem(
      */
     fun hasCardWithName(cardName: String, currentCard: Card? = null): Boolean {
         cards.forEach {
-            if (it.cardName.equals(cardName, true) && it !== currentCard)
+            if (it.name.equals(cardName, true) && it !== currentCard)
                 return true
         }
         return false
+    }
+
+    /**
+     * Акутуализация полей проблемы с версии [versionFrom] по версия [versionTo].
+     *
+     * @param parent данные, в которые входит проблема
+     * @param versionFrom версия с которой производить актуализацию данных
+     * @param versionTo версия по которую производить актуализацию данных
+     */
+    fun actualize(
+        parent: Data,
+        versionFrom: SupportedVersionData,
+        versionTo: SupportedVersionData
+    ) {
+        if (this.parent == null) {
+            this.parent = parent
+        }
+        if (versionFrom == SupportedVersionData.ONE) {
+            actualizeFromVersionOne()
+        }
+        this.cards.forEach { it.actualize(this, versionFrom, versionTo) }
+    }
+
+    /**
+     * Актуализация данных с первой версии
+     */
+    private fun actualizeFromVersionOne() {
+        type = ProblemType.LINE
     }
 }

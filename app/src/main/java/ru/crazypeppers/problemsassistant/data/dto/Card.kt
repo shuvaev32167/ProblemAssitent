@@ -1,28 +1,29 @@
 package ru.crazypeppers.problemsassistant.data.dto
 
-import com.google.gson.annotations.SerializedName
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
+import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
+import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
 
 /**
  * Описание карты (мотивации/якоря) для решения проблемы
  *
- * @property cardName Название карты
+ * @property name Название карты
  * @property points Список очков
  */
 class Card(
-    @SerializedName("name")
-    var cardName: String,
+    var name: String,
     val points: MutableList<Point>
 ) {
     /**
      * Тип карты
      */
-    var cardType: CardType = CardType.NONE
+    var type: CardType = CardType.NONE
 
     /**
      * Пояснение карты
      */
-    var cardDescription: String = ""
+    var description: String = ""
+    private var cardDescription: String? = null
 
     /**
      * Картинка карты
@@ -38,11 +39,20 @@ class Card(
         cardName,
         points
     ) {
-        this.cardDescription = cardDescription
+        this.description = cardDescription
+        calculateAvgPoints()
     }
 
+    /**
+     * Среднее зачение очков, привязанных к карте
+     */
+    var avgPoints: Float = Float.NaN
+
+    /**
+     * Проблема, к которой относится карты
+     */
     @Transient
-    private var avgPoints: Float = Float.NaN
+    var parent: Problem? = null
 
     /**
      * Расчёт среднего значения очков. Расчитанное значение сохранится.
@@ -50,19 +60,26 @@ class Card(
      *
      * @return Среднее значение очков
      */
-    fun calculateAvgPoints(): Float {
-        if (avgPoints.isNaN() || avgPoints == 0f) {
-            avgPoints = points.sumBy { it.score } / points.size.toFloat()
-            return avgPoints
+    private fun calculateAvgPoints() {
+        avgPoints = points.sumBy { it.score } / points.size.toFloat()
+        if (parent!!.type == ProblemType.LINE) {
+            if (avgPoints > 0) {
+                type = CardType.LINER_MOTIVATIONS
+            } else if (avgPoints < 0) {
+                type = CardType.LINER_ANCHOR
+            } else {
+                type = CardType.NONE
+            }
         }
-        return avgPoints
     }
+
 
     /**
      * Сброс сохранённого значения среднего значения очков
      */
     fun dischargeAvgPoints() {
         avgPoints = Float.NaN
+        calculateAvgPoints()
     }
 
     /**
@@ -71,7 +88,7 @@ class Card(
      * @return Цвет карты, представленный типом `Int`
      */
     fun calculateColor(): Int {
-        val avgPoints = (calculateAvgPoints() * 38).toInt()
+        val avgPoints = (avgPoints * 38).toInt()
         return when {
             avgPoints > 0 -> {
                 (0xFF000000 + avgPoints * 0x100).toInt()
@@ -92,5 +109,37 @@ class Card(
      */
     fun add(point: Point) {
         points.add(point)
+    }
+
+    /**
+     * Акутуализация полей карты с версии [versionFrom] по версия [versionTo].
+     *
+     * @param parent проблема, к которой относятся карта
+     * @param versionFrom версия с которой производить актуализацию данных
+     * @param versionTo версия по которую производить актуализацию данных
+     */
+    fun actualize(
+        parent: Problem,
+        versionFrom: SupportedVersionData,
+        versionTo: SupportedVersionData
+    ) {
+        if (this.parent == null) {
+            this.parent = parent
+        }
+        if (versionFrom == SupportedVersionData.ONE) {
+            actualizeFromVersionOne()
+        }
+        this.points.forEach { it.actualize(this, versionFrom, versionTo) }
+    }
+
+    /**
+     * Актуализация данных с первой версии
+     */
+    private fun actualizeFromVersionOne() {
+        calculateAvgPoints()
+        if (cardDescription != null) {
+            description = cardDescription!!
+            cardDescription = null
+        }
     }
 }

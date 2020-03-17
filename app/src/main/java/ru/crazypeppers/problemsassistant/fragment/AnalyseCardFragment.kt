@@ -109,7 +109,7 @@ class AnalyseCardFragment : Fragment() {
             lineChart.legend.isEnabled = false
 
             graphLabel.text =
-                String.format(getString(R.string.analyzeCardFragmentGraphLabel), card.cardName)
+                String.format(getString(R.string.analyzeCardFragmentGraphLabel), card.name)
         }
     }
 }

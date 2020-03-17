@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.data.LAMBDA_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import java.io.Serializable
 
 /**
@@ -44,8 +45,8 @@ class AnalyzeProblemSectionsPagerAdapter(
                 val bundle = Bundle(arguments)
                 bundle.putSerializable(
                     LAMBDA_TEXT,
-                    if (position == 1) { card: Card -> card.calculateAvgPoints() > 0 }
-                    else { card: Card -> card.calculateAvgPoints() < 0 } as Serializable
+                    if (position == 1) { card: Card -> card.type == CardType.LINER_MOTIVATIONS }
+                    else { card: Card -> card.type == CardType.LINER_ANCHOR } as Serializable
                 )
                 analyzeProblemMotivationList.arguments = bundle
                 return analyzeProblemMotivationList

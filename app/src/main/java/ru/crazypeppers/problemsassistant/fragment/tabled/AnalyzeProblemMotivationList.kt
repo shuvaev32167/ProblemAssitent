@@ -26,12 +26,12 @@ class AnalyzeProblemMotivationList : ListFragment() {
             val lambda = arg.getSerializable(LAMBDA_TEXT) as (Card) -> Boolean
             val problem = (activity.application as DataApplication).data[positionProblem]
             val motivationsList = problem.cards.filter { lambda(it) }
-                .sortedByDescending { it.calculateAvgPoints() }
+                .sortedByDescending { it.avgPoints }
 
             listAdapter = CardArrayAdapter(
                 activity,
                 motivationsList
-            ) { "${it.cardName} (${it.calculateAvgPoints()})" }
+            ) { "${it.name} (${it.avgPoints})" }
         }
     }
 }

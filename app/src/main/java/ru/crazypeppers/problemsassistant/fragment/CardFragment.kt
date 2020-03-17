@@ -16,9 +16,6 @@ import ru.crazypeppers.problemsassistant.data.CARD_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Point
-import ru.crazypeppers.problemsassistant.withoutTime
-import java.util.*
-
 
 /**
  * Фрагмент отвечающий за оценивание карты
@@ -64,7 +61,7 @@ class CardFragment : Fragment() {
 
         if (positionProblem != NOT_POSITION && positionCard != NOT_POSITION) {
             val card = application.data[positionProblem][positionCard]
-            cardName.text = card.cardName
+            cardName.text = card.name
             if (card.points.size > 0) {
                 seekBarVariants.progress = card.points.last().score + 5
             }
@@ -77,10 +74,7 @@ class CardFragment : Fragment() {
         saveButton.setOnClickListener {
             val score = seekBarVariants.progress - 5
             application.data[positionProblem][positionCard].add(
-                Point(
-                    score,
-                    Calendar.getInstance(TimeZone.getTimeZone("UTC")).withoutTime()
-                )
+                Point(score)
             )
             application.data[positionProblem][positionCard].dischargeAvgPoints()
             application.saveData()

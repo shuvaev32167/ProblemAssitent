@@ -6,7 +6,6 @@ import ru.crazypeppers.problemsassistant.data.Data
 import ru.crazypeppers.problemsassistant.data.dto.Card
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.data.dto.Problem
-import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.InputStreamReader
@@ -30,13 +29,17 @@ class DataApplication : Application() {
         save(data)
     }
 
+    /**
+     * Сохранение данных
+     *
+     * @param data данные
+     */
     private fun save(data: Data) {
         data.problems.forEach { problem ->
             problem.cards.forEach { card ->
                 val pointsSortedByDescDate = card.points.sortedByDescending { it.cdate }
                 var prevPoint: Point? = null
                 for (point in pointsSortedByDescDate) {
-                    point.cdate.withoutTime()
                     if (prevPoint == null) {
                         prevPoint = point
                     } else if (prevPoint.cdate == point.cdate) {
@@ -44,9 +47,6 @@ class DataApplication : Application() {
                     }
                 }
             }
-        }
-        if (data.version == null) {
-            data.version = SupportedVersionData.ONE
         }
         val json = gson.toJson(data)
         openFileOutput("data.json", MODE_PRIVATE).use { fileOutputStream ->
@@ -58,13 +58,21 @@ class DataApplication : Application() {
         }
     }
 
+    /**
+     * Загрузка данных
+     *
+     * @return данные
+     */
     private fun load(): Data {
         return try {
             openFileInput("data.json").use { fileInputStream ->
                 InputStreamReader(fileInputStream).use { inputStreamReader ->
                     BufferedReader(inputStreamReader).use { bufferedReader ->
                         val json = bufferedReader.readText()
-                        return gson.fromJson(json, Data::class.java)
+                        val data = gson.fromJson(json, Data::class.java)
+                        data.actualize()
+                        save(data)
+                        return data
                     }
                 }
             }

@@ -49,7 +49,7 @@ class CardListFragment : ListFragment() {
                 val data = (activity.application as DataApplication).data
                 problemPosition = arg.getInt(PROBLEM_POSITION_TEXT)
                 listAdapter =
-                    CardArrayAdapter(activity, data[problemPosition].cards) { it.cardName }
+                    CardArrayAdapter(activity, data[problemPosition].cards) { it.name }
             }
 
 
@@ -78,7 +78,7 @@ class CardListFragment : ListFragment() {
                             adb.setMessage(
                                 String.format(
                                     getString(R.string.removeItemConfirmMessage),
-                                    (listAdapter?.getItem(position) as Card).cardName
+                                    (listAdapter?.getItem(position) as Card).name
                                 )
                             )
                             adb.setIcon(android.R.drawable.ic_dialog_alert)

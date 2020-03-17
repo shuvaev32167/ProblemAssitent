@@ -24,7 +24,7 @@ class ProblemArrayAdapter(context: Context, problemList: List<Problem>) :
             view = LayoutInflater.from(context)
                 .inflate(android.R.layout.simple_list_item_1, null)
         }
-        (view?.findViewById(android.R.id.text1) as TextView).text = problem?.problemName
+        (view?.findViewById(android.R.id.text1) as TextView).text = problem?.name
         return view
     }
 }

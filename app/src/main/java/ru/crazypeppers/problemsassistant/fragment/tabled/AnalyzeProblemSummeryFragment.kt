@@ -34,11 +34,11 @@ class AnalyzeProblemSummeryFragment : Fragment() {
         if (arg != null) {
             val positionProblem = arg.getInt(PROBLEM_POSITION_TEXT, NOT_POSITION)
             val problem = (activity.application as DataApplication).data[positionProblem]
-            val avgPointsList = problem.cards.map { it.calculateAvgPoints() }
+            val avgPointsList = problem.cards.map { it.avgPoints }
             val avgPoint = avgPointsList.sum() / avgPointsList.size
 
             summeryInformation.text = String.format(
-                getString(R.string.avgPointsLabel), problem.problemName,
+                getString(R.string.avgPointsLabel), problem.name,
                 if (avgPoint.isNaN()) "0.00" else avgPoint.roundTo(2)
             )
         }

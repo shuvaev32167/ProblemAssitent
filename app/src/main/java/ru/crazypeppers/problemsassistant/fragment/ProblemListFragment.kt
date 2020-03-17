@@ -62,7 +62,7 @@ class ProblemListFragment : ListFragment() {
                             adb.setMessage(
                                 String.format(
                                     getString(R.string.removeItemConfirmMessage),
-                                    (listAdapter?.getItem(position) as Problem).problemName
+                                    (listAdapter?.getItem(position) as Problem).name
                                 )
                             )
                             adb.setIcon(android.R.drawable.ic_dialog_alert)

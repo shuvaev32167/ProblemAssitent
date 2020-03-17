@@ -2,6 +2,9 @@ package ru.crazypeppers.problemsassistant.data
 
 import ru.crazypeppers.problemsassistant.data.dto.Problem
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
+import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData.Companion.compare
+import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData.Companion.inc
+import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData.Companion.lastVersion
 
 /**
  * Описание данных для сохранения в файл
@@ -53,9 +56,29 @@ data class Data(val problems: MutableList<Problem>) {
      */
     fun hasProblemWithName(problemName: String, currentProblem: Problem? = null): Boolean {
         problems.forEach {
-            if (it.problemName.equals(problemName, true) && it !== currentProblem)
+            if (it.name.equals(problemName, true) && it !== currentProblem)
                 return true
         }
         return false
+    }
+
+    /**
+     * Актуализация данных по последней версии
+     */
+    fun actualize() {
+        val versionTo = lastVersion()
+        do {
+            this.problems.forEach {
+                it.actualize(
+                    this,
+                    version ?: SupportedVersionData.ONE,
+                    versionTo
+                )
+            }
+
+            if (version.compare(versionTo) < 0) {
+                version = version.inc()
+            }
+        } while (version != versionTo)
     }
 }
