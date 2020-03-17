@@ -16,6 +16,7 @@ import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.adapter.ProblemArrayAdapter
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Problem
+import ru.crazypeppers.problemsassistant.listener.ScrollListenerHidingView
 
 /**
  * Фрагмент отвечающий за работу со списком проблем
@@ -94,6 +95,8 @@ class ProblemListFragment : ListFragment() {
                 /**/
                 true
             }
+
+            listView.setOnScrollListener(ScrollListenerHidingView(activity, inputAdd))
         }
     }
 

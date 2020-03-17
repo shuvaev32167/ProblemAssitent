@@ -141,5 +141,8 @@ class Card(
             description = cardDescription!!
             cardDescription = null
         }
+        if (description == null) {
+            description = ""
+        }
     }
 }

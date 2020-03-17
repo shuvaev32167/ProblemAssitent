@@ -18,6 +18,8 @@ import ru.crazypeppers.problemsassistant.data.CARD_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.listener.ScrollListenerHidingView
+
 
 /**
  * Фрагмент отвечающий за работу со списком карт
@@ -110,13 +112,9 @@ class CardListFragment : ListFragment() {
                 }
                 true
             }
+
+            listView.setOnScrollListener(ScrollListenerHidingView(activity, inputAdd))
         }
-
-//        view.findViewById<Button>(R.id.button_second).setOnClickListener {
-//            findNavController().navigate(R.id.action_SecondFragment_to_ProblemListFragment)
-//        }
-
-
     }
 
     override fun onListItemClick(l: ListView, v: View, position: Int, id: Long) {
