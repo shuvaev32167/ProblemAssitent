@@ -44,6 +44,7 @@ data class Data(val problems: MutableList<Problem>) {
      * @param problem проблема
      */
     fun add(problem: Problem) {
+        problem.parent = this
         problems.add(problem)
     }
 

@@ -4,7 +4,6 @@ import android.app.Application
 import com.google.gson.Gson
 import ru.crazypeppers.problemsassistant.data.Data
 import ru.crazypeppers.problemsassistant.data.dto.Card
-import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.data.dto.Problem
 import java.io.BufferedReader
 import java.io.BufferedWriter
@@ -35,19 +34,6 @@ class DataApplication : Application() {
      * @param data данные
      */
     private fun save(data: Data) {
-        data.problems.forEach { problem ->
-            problem.cards.forEach { card ->
-                val pointsSortedByDescDate = card.points.sortedByDescending { it.cdate }
-                var prevPoint: Point? = null
-                for (point in pointsSortedByDescDate) {
-                    if (prevPoint == null) {
-                        prevPoint = point
-                    } else if (prevPoint.cdate == point.cdate) {
-                        card.points.remove(point)
-                    }
-                }
-            }
-        }
         val json = gson.toJson(data)
         openFileOutput("data.json", MODE_PRIVATE).use { fileOutputStream ->
             OutputStreamWriter(fileOutputStream).use { outputStreamWriter ->
@@ -64,7 +50,7 @@ class DataApplication : Application() {
      * @return данные
      */
     private fun load(): Data {
-        return try {
+        try {
             openFileInput("data.json").use { fileInputStream ->
                 InputStreamReader(fileInputStream).use { inputStreamReader ->
                     BufferedReader(inputStreamReader).use { bufferedReader ->
@@ -86,11 +72,13 @@ class DataApplication : Application() {
                 mutableListOf()
             )
             problem.add(card)
-            Data(
+            val data = Data(
                 mutableListOf(
                     problem
                 )
             )
+            data.actualize()
+            return data
         }
     }
 }

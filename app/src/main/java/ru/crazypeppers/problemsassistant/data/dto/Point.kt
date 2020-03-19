@@ -26,7 +26,7 @@ class Point() {
     /**
      * Дата оценки
      */
-    val cdate: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC")).withoutTime()
+    val cdate: Calendar = Calendar.getInstance().withoutTime()
 
     /**
      * Карта, к которой относятся очки

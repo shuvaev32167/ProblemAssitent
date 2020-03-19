@@ -3,6 +3,7 @@ package ru.crazypeppers.problemsassistant.data.dto
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
+import java.util.*
 
 /**
  * Описание карты (мотивации/якоря) для решения проблемы
@@ -12,7 +13,7 @@ import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
  */
 class Card(
     var name: String,
-    val points: MutableList<Point>
+    val points: List<Point>
 ) {
     /**
      * Тип карты
@@ -35,7 +36,7 @@ class Card(
      * @param cardDescription пояснение карты
      * @param points список очков
      */
-    constructor(cardName: String, cardDescription: String, points: MutableList<Point>) : this(
+    constructor(cardName: String, cardDescription: String, points: List<Point>) : this(
         cardName,
         points
     ) {
@@ -108,7 +109,21 @@ class Card(
      * @param point очко
      */
     fun add(point: Point) {
-        points.add(point)
+        val findPointByDate = findPointByDate(point.cdate)
+        if (findPointByDate != null) {
+            findPointByDate.score = point.score
+        } else {
+            point.parent = this
+            if (points is MutableList) {
+                points.add(point)
+            }
+        }
+        dischargeAvgPoints()
+    }
+
+    private fun findPointByDate(data: Calendar): Point? {
+        points.forEach { if (it.cdate == data) return it }
+        return null
     }
 
     /**
@@ -141,7 +156,7 @@ class Card(
             description = cardDescription!!
             cardDescription = null
         }
-        if (description == null) {
+        if (this.description == null) {
             description = ""
         }
     }

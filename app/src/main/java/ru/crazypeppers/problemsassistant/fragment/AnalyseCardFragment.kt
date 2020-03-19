@@ -1,5 +1,7 @@
 package ru.crazypeppers.problemsassistant.fragment
 
+import android.graphics.Color.BLACK
+import android.graphics.Color.GRAY
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +25,7 @@ import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.diffDay
+import ru.crazypeppers.problemsassistant.view.ChartGraphMarkerView
 import java.text.DateFormat
 import java.text.DateFormat.SHORT
 
@@ -72,6 +75,11 @@ class AnalyseCardFragment : Fragment() {
             }
             val dataSet = LineDataSet(values, "points")
             dataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+            dataSet.color = BLACK
+            dataSet.setCircleColor(BLACK)
+            dataSet.lineWidth = 3f
+            dataSet.circleRadius = 6f
+            dataSet.setDrawCircleHole(false)
             val dataSets = ArrayList<ILineDataSet>()
             dataSets.add(dataSet)
 
@@ -81,9 +89,11 @@ class AnalyseCardFragment : Fragment() {
             lineChart.axisRight.isEnabled = false
             val axisLeft = lineChart.axisLeft
             axisLeft.granularity = 1f
+            axisLeft.gridColor = GRAY
             val xAxis = lineChart.xAxis
             xAxis.position = XAxisPosition.BOTTOM
             xAxis.granularity = 1f
+            xAxis.gridColor = GRAY
             if (card.points.size == 1) {
                 xAxis.axisMinimum = -1f
                 xAxis.axisMaximum = 1f
@@ -105,8 +115,14 @@ class AnalyseCardFragment : Fragment() {
                     return getFormattedValue(value)
                 }
             }
+
+            val chartGraphMarker = ChartGraphMarkerView(activity)
+            chartGraphMarker.chartView = lineChart
+            lineChart.marker = chartGraphMarker
+
             lineChart.data = data
             lineChart.legend.isEnabled = false
+            lineChart.setPinchZoom(true)
 
             graphLabel.text =
                 String.format(getString(R.string.analyzeCardFragmentGraphLabel), card.name)

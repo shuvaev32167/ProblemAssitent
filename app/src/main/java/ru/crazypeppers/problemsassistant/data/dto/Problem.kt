@@ -47,6 +47,7 @@ class Problem(
      * @param card карта
      */
     fun add(card: Card) {
+        card.parent = this
         cards.add(card)
     }
 

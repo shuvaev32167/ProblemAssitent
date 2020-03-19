@@ -62,7 +62,7 @@ class CardFragment : Fragment() {
         if (positionProblem != NOT_POSITION && positionCard != NOT_POSITION) {
             val card = application.data[positionProblem][positionCard]
             cardName.text = card.name
-            if (card.points.size > 0) {
+            if (card.points.isNotEmpty()) {
                 seekBarVariants.progress = card.points.last().score + 5
             }
         }
@@ -76,7 +76,6 @@ class CardFragment : Fragment() {
             application.data[positionProblem][positionCard].add(
                 Point(score)
             )
-            application.data[positionProblem][positionCard].dischargeAvgPoints()
             application.saveData()
             findNavController().popBackStack()
         }
