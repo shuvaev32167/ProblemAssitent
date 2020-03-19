@@ -47,7 +47,7 @@ class Card(
     /**
      * Среднее зачение очков, привязанных к карте
      */
-    var avgPoints: Float = Float.NaN
+    var avgPoints: Float = 0f
 
     /**
      * Проблема, к которой относится карты
@@ -63,6 +63,9 @@ class Card(
      */
     private fun calculateAvgPoints() {
         avgPoints = points.sumBy { it.score } / points.size.toFloat()
+        if (avgPoints.isNaN()) {
+            avgPoints = 0f
+        }
         if (parent!!.type == ProblemType.LINE) {
             if (avgPoints > 0) {
                 type = CardType.LINER_MOTIVATIONS
@@ -79,7 +82,7 @@ class Card(
      * Сброс сохранённого значения среднего значения очков
      */
     fun dischargeAvgPoints() {
-        avgPoints = Float.NaN
+        avgPoints = 0f
         calculateAvgPoints()
     }
 
