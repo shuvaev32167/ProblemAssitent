@@ -3,6 +3,8 @@ package ru.crazypeppers.problemsassistant.data.dto
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
+import ru.crazypeppers.problemsassistant.diffDay
+import ru.crazypeppers.problemsassistant.roundTo
 import java.util.*
 
 /**
@@ -55,6 +57,14 @@ class Card(
     @Transient
     var parent: Problem? = null
 
+    private fun calculateWeightElement(maxDay: Int, diffDay: Int, position: Int): Double {
+        val weight = (100 + maxDay - diffDay / position.toDouble()) / position.toDouble()
+        if (weight < 0) {
+            throw IllegalArgumentException()
+        }
+        return weight
+    }
+
     /**
      * Расчёт среднего значения очков. Расчитанное значение сохранится.
      * Для сброса расчитанного значения использовать метод [dischargeAvgPoints].
@@ -62,17 +72,41 @@ class Card(
      * @return Среднее значение очков
      */
     private fun calculateAvgPoints() {
-        avgPoints = points.sumBy { it.score } / points.size.toFloat()
-        if (avgPoints.isNaN()) {
+        if (points.isEmpty()) {
             avgPoints = 0f
+        } else {
+            val lastRatingDate = points.first().cdate
+            val maxDiffDay = points.last().cdate.diffDay(lastRatingDate)
+            var sumValue = .0
+            var sumWeight = .0
+            for ((position, point) in points.withIndex()) {
+                val weight = calculateWeightElement(
+                    maxDiffDay,
+                    point.cdate.diffDay(lastRatingDate),
+                    position + 1
+                )
+                sumValue += point.score * weight
+                sumWeight += weight
+            }
+            avgPoints = (sumValue / sumWeight).toFloat().roundTo(2)
+
+            if (avgPoints.isNaN()) {
+                avgPoints = 0f
+            }
         }
+
+        // Установка типа карты
         if (parent!!.type == ProblemType.LINE) {
-            if (avgPoints > 0) {
-                type = CardType.LINER_MOTIVATIONS
-            } else if (avgPoints < 0) {
-                type = CardType.LINER_ANCHOR
-            } else {
-                type = CardType.NONE
+            type = when {
+                avgPoints > 0 -> {
+                    CardType.LINER_MOTIVATIONS
+                }
+                avgPoints < 0 -> {
+                    CardType.LINER_ANCHOR
+                }
+                else -> {
+                    CardType.NONE
+                }
             }
         }
     }
@@ -81,7 +115,7 @@ class Card(
     /**
      * Сброс сохранённого значения среднего значения очков
      */
-    fun dischargeAvgPoints() {
+    private fun dischargeAvgPoints() {
         avgPoints = 0f
         calculateAvgPoints()
     }

@@ -9,12 +9,7 @@ enum class SupportedVersionData(val code: Int) {
     /**
      * Первая версия формата данных
      */
-    ONE(1),
-
-    /**
-     * Вторая версия формата данных
-     */
-    TWO(2);
+    ONE(1);
 
     companion object {
         /**

@@ -68,6 +68,7 @@ data class Data(val problems: MutableList<Problem>) {
      */
     fun actualize() {
         val versionTo = lastVersion()
+        version = SupportedVersionData.ONE
         do {
             this.problems.forEach {
                 it.actualize(
