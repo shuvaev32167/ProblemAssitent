@@ -86,7 +86,7 @@ class CardEditFragment : Fragment() {
                 )
             )
             adb.setIcon(android.R.drawable.ic_dialog_alert)
-            adb.setNeutralButton(R.string.okButton, null)
+            adb.setNeutralButton(R.string.fixButton, null)
             val alert = adb.create()
             if (positionCard != NOT_POSITION) {
                 val card = application.data[positionProblem][positionCard]

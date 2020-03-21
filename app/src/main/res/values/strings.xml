@@ -61,7 +61,8 @@
     <string name="yesButton">Да</string>
     <string name="noButton">Нет</string>
     <string name="graphScoreChanged">График измененения оценки</string>
-    <string name="okButton">Исправить</string>
+    <string name="fixButton">Исправить</string>
+    <string name="okButton">Хорошо</string>
     <string name="problemNameBusyTitle">Название проблемы занято</string>
     <string name="problemNameBusyMessage">Проблема с именем %s уже существует. Пожалуйста введите другое название для проблемы.</string>
     <string name="cardNameBusyTitle">Название мотивации/якоря занято</string>
@@ -71,5 +72,7 @@
     <string name="summaryCountCardLabel">Общее число ваших карт — %s</string>
     <string name="dateOfFirstProblemAssessmentLabel">Дата первой оценки проблемы — %s</string>
     <string name="dateOfLastProblemAssessmentLabel">Дата последней оценки проблемы — %s</string>
+    <string name="informationTitle">Информация</string>
+    <string name="informationProblemAllertBody">Значение %s является средним арифметическим от суммы средних значений ваших карт (мотиваций и якорей)</string>
 
 </resources>

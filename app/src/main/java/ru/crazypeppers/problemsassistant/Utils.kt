@@ -2,6 +2,10 @@
 
 package ru.crazypeppers.problemsassistant
 
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.URLSpan
+import android.widget.TextView
 import java.math.RoundingMode
 import java.util.*
 import java.util.Calendar.DATE
@@ -53,4 +57,21 @@ fun Calendar.addDayAsNewInstance(day: Int): Calendar {
     calendar.time = this.time
     calendar.add(DATE, day)
     return calendar
+}
+
+/**
+ * Придание тексту в [TextView] стиля гиперссылки
+ */
+fun TextView.hyperlinkStyle() {
+    setText(
+        SpannableString(text).apply {
+            setSpan(
+                URLSpan(""),
+                0,
+                length,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        },
+        TextView.BufferType.SPANNABLE
+    )
 }

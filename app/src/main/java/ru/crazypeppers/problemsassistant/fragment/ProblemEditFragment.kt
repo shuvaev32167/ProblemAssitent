@@ -75,7 +75,7 @@ class ProblemEditFragment : Fragment() {
                 )
             )
             adb.setIcon(android.R.drawable.ic_dialog_alert)
-            adb.setNeutralButton(R.string.okButton, null)
+            adb.setNeutralButton(R.string.fixButton, null)
             val alert = adb.create()
 
             if (positionProblem != NOT_POSITION) {
