@@ -66,5 +66,10 @@
     <string name="problemNameBusyMessage">Проблема с именем %s уже существует. Пожалуйста введите другое название для проблемы.</string>
     <string name="cardNameBusyTitle">Название мотивации/якоря занято</string>
     <string name="cardNameBusyMessage">Мотивация/якорь с именем %s уже существует. Пожалуйста введите другое название для мотивации/якоря.</string>
+    <string name="countMotivationLabel">Число ваших мотиваций — %s</string>
+    <string name="countAnchorLabel">Число ваших якорей — %s</string>
+    <string name="summaryCountCardLabel">Общее число ваших карт — %s</string>
+    <string name="dateOfFirstProblemAssessmentLabel">Дата первой оценки проблемы — %s</string>
+    <string name="dateOfLastProblemAssessmentLabel">Дата последней оценки проблемы — %s</string>
 
 </resources>

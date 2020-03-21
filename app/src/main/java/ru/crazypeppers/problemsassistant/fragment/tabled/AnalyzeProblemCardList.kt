@@ -12,9 +12,9 @@ import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Card
 
 /**
- * Фрагмент, отвечающий за список мотиваций и якорей в анализе проблемы
+ * Фрагмент, отвечающий за список карт в анализе проблемы
  */
-class AnalyzeProblemMotivationList : ListFragment() {
+class AnalyzeProblemCardList : ListFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -25,12 +25,12 @@ class AnalyzeProblemMotivationList : ListFragment() {
             val positionProblem = arg.getInt(PROBLEM_POSITION_TEXT, NOT_POSITION)
             val lambda = arg.getSerializable(LAMBDA_TEXT) as (Card) -> Boolean
             val problem = (activity.application as DataApplication).data[positionProblem]
-            val motivationsList = problem.cards.filter { lambda(it) }
+            val cardList = problem.cards.filter { lambda(it) }
                 .sortedByDescending { it.avgPoints }
 
             listAdapter = CardArrayAdapter(
                 activity,
-                motivationsList
+                cardList
             ) { "${it.name} (${it.avgPoints})" }
         }
     }

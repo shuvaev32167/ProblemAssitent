@@ -1,20 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".fragment.tabled.AnalyzeProblemSummeryFragment">
 
-    <TextView
-        android:id="@+id/summeryInformation"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/avgPointsLabel"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/summeryInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/avgPointsLabel"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@id/countMotivation"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/countMotivation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/countMotivationLabel"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@id/countAnchor"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/summeryInformation" />
+
+        <TextView
+            android:id="@+id/countAnchor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/countAnchorLabel"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@id/summeryCountCard"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/countMotivation" />
+
+        <TextView
+            android:id="@+id/summeryCountCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/summaryCountCardLabel"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@id/dateOfFirstProblemAssessment"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/countAnchor" />
+
+        <TextView
+            android:id="@+id/dateOfFirstProblemAssessment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dateOfFirstProblemAssessmentLabel"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@id/dateOfLastProblemAssessment"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/summeryCountCard" />
+
+        <TextView
+            android:id="@+id/dateOfLastProblemAssessment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dateOfLastProblemAssessmentLabel"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dateOfFirstProblemAssessment" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

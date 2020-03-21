@@ -41,12 +41,16 @@ class AnalyzeProblemSectionsPagerAdapter(
                 return analyzeProblemSummeryFragment
             }
             1, 2 -> {
-                val analyzeProblemMotivationList = AnalyzeProblemMotivationList()
+                val analyzeProblemMotivationList = AnalyzeProblemCardList()
                 val bundle = Bundle(arguments)
                 bundle.putSerializable(
                     LAMBDA_TEXT,
-                    if (position == 1) { card: Card -> card.type == CardType.LINER_MOTIVATIONS }
-                    else { card: Card -> card.type == CardType.LINER_ANCHOR } as Serializable
+                    if (position == 1) { card: Card ->
+                        card.type == CardType.LINER_MOTIVATIONS
+                    }
+                    else { card: Card ->
+                        card.type == CardType.LINER_ANCHOR
+                    } as Serializable
                 )
                 analyzeProblemMotivationList.arguments = bundle
                 return analyzeProblemMotivationList

@@ -1,5 +1,7 @@
 package ru.crazypeppers.problemsassistant.data
 
+import java.text.DateFormat
+
 /**
  * Наименование поля для передачи выбраной позиции проблемы
  */
@@ -19,3 +21,5 @@ const val NOT_POSITION = -1
  * Наименование поля для передачи лямбда-варажений
  */
 const val LAMBDA_TEXT = "lambda"
+
+val DATE_FORMAT: DateFormat = DateFormat.getDateInstance(DateFormat.SHORT)

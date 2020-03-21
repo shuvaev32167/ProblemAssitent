@@ -9,8 +9,10 @@ import kotlinx.android.synthetic.main.fragment_analyze_problem_summery.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
+import ru.crazypeppers.problemsassistant.data.DATE_FORMAT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
+import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.roundTo
 
 /**
@@ -40,6 +42,32 @@ class AnalyzeProblemSummeryFragment : Fragment() {
             summeryInformation.text = String.format(
                 getString(R.string.avgPointsLabel), problem.name,
                 if (avgPoint.isNaN()) "0.00" else avgPoint.roundTo(2)
+            )
+
+            countMotivation.text = String.format(
+                getString(R.string.countMotivationLabel),
+                problem.cards.filter { it.type == CardType.LINER_MOTIVATIONS }.count()
+            )
+
+            countAnchor.text = String.format(
+                getString(R.string.countAnchorLabel),
+                problem.cards.filter { it.type == CardType.LINER_ANCHOR }.count()
+            )
+
+            summeryCountCard.text = String.format(
+                getString(R.string.countAnchorLabel), problem.cards.count()
+            )
+
+            val assessments = problem.cards.flatMap { it.points }.sortedBy { it.cdate }
+
+            dateOfFirstProblemAssessment.text = String.format(
+                getString(R.string.dateOfFirstProblemAssessmentLabel),
+                DATE_FORMAT.format(assessments.first().cdate.time)
+            )
+
+            dateOfLastProblemAssessment.text = String.format(
+                getString(R.string.dateOfLastProblemAssessmentLabel),
+                DATE_FORMAT.format(assessments.last().cdate.time)
             )
         }
     }

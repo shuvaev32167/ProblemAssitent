@@ -21,13 +21,12 @@ import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.addDayAsNewInstance
 import ru.crazypeppers.problemsassistant.data.CARD_POSITION_TEXT
+import ru.crazypeppers.problemsassistant.data.DATE_FORMAT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.diffDay
 import ru.crazypeppers.problemsassistant.view.ChartGraphMarkerView
-import java.text.DateFormat
-import java.text.DateFormat.SHORT
 
 /**
  * Фрагмент, отвечающий за отображение изменение оценки карты
@@ -61,7 +60,6 @@ class AnalyseCardFragment : Fragment() {
 
         if (positionProblem != NOT_POSITION && positionCard != NOT_POSITION) {
             val card = application.data[positionProblem][positionCard]
-            val dateFormat = DateFormat.getDateInstance(SHORT)
             val values = ArrayList<Entry>(card.points.size)
             val firstDay = card.points.first().cdate
             card.points.forEach {
@@ -104,11 +102,11 @@ class AnalyseCardFragment : Fragment() {
 
             xAxis.valueFormatter = object : ValueFormatter() {
                 override fun getPointLabel(entry: Entry): String {
-                    return dateFormat.format((entry.data as Point).cdate.time)
+                    return DATE_FORMAT.format((entry.data as Point).cdate.time)
                 }
 
                 override fun getFormattedValue(value: Float): String {
-                    return dateFormat.format(firstDay.addDayAsNewInstance(value.toInt()).time)
+                    return DATE_FORMAT.format(firstDay.addDayAsNewInstance(value.toInt()).time)
                 }
 
                 override fun getAxisLabel(value: Float, axis: AxisBase?): String {
