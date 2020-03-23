@@ -22,4 +22,12 @@ const val NOT_POSITION = -1
  */
 const val LAMBDA_TEXT = "lambda"
 
+/**
+ * Форматор дат
+ */
 val DATE_FORMAT: DateFormat = DateFormat.getDateInstance(DateFormat.SHORT)
+
+/**
+ * Тэг, для логирования
+ */
+const val TAG = "ProblemAssistant"

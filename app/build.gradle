@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.jetbrains.dokka'
+apply plugin: 'de.mannodermaus.android-junit5'
 
 android {
     compileSdkVersion 29
@@ -9,21 +10,26 @@ android {
 
     defaultConfig {
         applicationId "ru.crazypeppers.problemsassistant"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArgument "runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder"
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    packagingOptions {
+        exclude "META-INF/LICENSE*"
+    }
+
+    testOptions {
+        junitPlatform {
+            instrumentationTests {
+                integrityCheckEnabled true
+            }
         }
     }
-
 // To inline the bytecode built with JVM target 1.8 into
 // bytecode that is being built with JVM target 1.6. (e.g. navArgs)
 
@@ -36,6 +42,12 @@ android {
         jvmTarget = "1.8"
     }
 
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {
@@ -55,8 +67,24 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     testImplementation 'junit:junit:4.13'
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.6.0"
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    androidTestImplementation "androidx.test:runner:1.2.0"
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation "org.junit.jupiter:junit-jupiter-api:5.6.0"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.6.0"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.6.0"
+
+    androidTestImplementation "de.mannodermaus.junit5:android-test-core:1.2.0"
+    androidTestRuntimeOnly "de.mannodermaus.junit5:android-test-runner:1.2.0"
+
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+
+    debugImplementation 'androidx.fragment:fragment-testing:1.2.3'
 }
 
 dokka {

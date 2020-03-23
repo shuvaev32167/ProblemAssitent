@@ -8,20 +8,10 @@ import java.util.*
  * Описания выставленных очков карте
  */
 class Point() {
-    private var point: Int? = null
-    private var date: Date? = null
-
     /**
      * Выставленные очки
      */
     var score = 0
-        get() {
-            if (field == 0 && point != null) {
-                field = point ?: 0
-                point = null
-            }
-            return field
-        }
 
     /**
      * Дата оценки
@@ -65,19 +55,6 @@ class Point() {
      * Актуализация данных с первой версии
      */
     private fun actualizeFromVersionOne() {
-        if (point != null) {
-            if (score == 0) {
-                score = point!!
-            }
-            point = null
-        }
-
-        if (date != null) {
-            cdate.time = date!!
-            cdate.withoutTime()
-            date = null
-        }
-
         cdate.withoutTime()
     }
 }

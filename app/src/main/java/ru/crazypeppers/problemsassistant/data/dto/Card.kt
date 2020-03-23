@@ -1,5 +1,7 @@
 package ru.crazypeppers.problemsassistant.data.dto
 
+import android.util.Log
+import ru.crazypeppers.problemsassistant.data.TAG
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
@@ -26,7 +28,6 @@ class Card(
      * Пояснение карты
      */
     var description: String = ""
-    private var cardDescription: String? = null
 
     /**
      * Картинка карты
@@ -37,12 +38,19 @@ class Card(
      * @param cardName название карты
      * @param cardDescription пояснение карты
      * @param points список очков
+     * @param parent родительская проблема [Problem] для данной карты
      */
-    constructor(cardName: String, cardDescription: String, points: List<Point>) : this(
+    constructor(
+        cardName: String,
+        cardDescription: String,
+        points: List<Point>,
+        parent: Problem
+    ) : this(
         cardName,
         points
     ) {
         this.description = cardDescription
+        this.parent = parent
         calculateAvgPoints()
     }
 
@@ -95,20 +103,24 @@ class Card(
             }
         }
 
+
+        if (parent == null) {
+            Log.e(TAG, "Не определён родитель для карты $name, $description")
+        } else
         // Установка типа карты
-        if (parent!!.type == ProblemType.LINE) {
-            type = when {
-                avgPoints > 0 -> {
-                    CardType.LINER_MOTIVATIONS
-                }
-                avgPoints < 0 -> {
-                    CardType.LINER_ANCHOR
-                }
-                else -> {
-                    CardType.NONE
+            if (parent!!.type == ProblemType.LINE) {
+                type = when {
+                    avgPoints > 0 -> {
+                        CardType.LINER_MOTIVATIONS
+                    }
+                    avgPoints < 0 -> {
+                        CardType.LINER_ANCHOR
+                    }
+                    else -> {
+                        CardType.NONE
+                    }
                 }
             }
-        }
     }
 
 
@@ -189,12 +201,5 @@ class Card(
      */
     private fun actualizeFromVersionOne() {
         calculateAvgPoints()
-        if (cardDescription != null) {
-            description = cardDescription!!
-            cardDescription = null
-        }
-        if (this.description == null) {
-            description = ""
-        }
     }
 }

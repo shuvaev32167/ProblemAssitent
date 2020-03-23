@@ -88,9 +88,10 @@ class CardEditFragment : Fragment() {
             adb.setIcon(android.R.drawable.ic_dialog_alert)
             adb.setNeutralButton(R.string.fixButton, null)
             val alert = adb.create()
+            val problem = application.data[positionProblem]
             if (positionCard != NOT_POSITION) {
-                val card = application.data[positionProblem][positionCard]
-                if (application.data[positionProblem].hasCardWithName(newName, card)) {
+                val card = problem[positionCard]
+                if (problem.hasCardWithName(newName, card)) {
                     alert.show()
                     return@setOnClickListener
                 } else {
@@ -98,14 +99,15 @@ class CardEditFragment : Fragment() {
                     card.description = cardDescription.text.toString()
                 }
             } else {
-                if (application.data[positionProblem].hasCardWithName(newName)) {
+                if (problem.hasCardWithName(newName)) {
                     alert.show()
                     return@setOnClickListener
                 } else {
-                    application.data[positionProblem].add(
+                    problem.add(
                         Card(
                             cardName = newName,
                             cardDescription = cardDescription.text.toString(),
+                            parent = problem,
                             points = mutableListOf(
                                 Point(
                                     seekBarVariants.progress - 5
