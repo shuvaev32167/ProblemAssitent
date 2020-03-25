@@ -10,30 +10,23 @@ import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
-import androidx.test.rule.ActivityTestRule
 import org.hamcrest.Matchers.anything
 import org.hamcrest.Matchers.not
 import org.hamcrest.core.AllOf.allOf
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import ru.crazypeppers.problemsassistant.IntegrationTestParent
+import ru.crazypeppers.problemsassistant.FragmentIntegrationTestParent
 import ru.crazypeppers.problemsassistant.R
-import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.testUtils.Matchers.withListSize
 
 
 @RunWith(AndroidJUnit4::class)
-class ProblemListFragmentInstrumentedTest : IntegrationTestParent() {
-    @get:Rule
-    var activityRule = ActivityTestRule(
-        MainActivity::class.java
-    )
-
+class ProblemListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent() {
     @Test
     fun testListProblem() {
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
+        onView(withId(android.R.id.text1)).check(matches(withText("test")))
         onView(withId(R.id.problemPoint)).check(matches(withText("0.00"))).perform(click())
         onView(withText(R.string.informationTitle))
             .inRoot(isDialog())
@@ -65,6 +58,7 @@ class ProblemListFragmentInstrumentedTest : IntegrationTestParent() {
 
     @Test
     fun testAnimateButtonWithScroll() {
+        createNewProblem()
         onData(anything()).atPosition(0).perform(swipeUp(), swipeUp(), swipeUp(), swipeUp())
         onView(withId(R.id.inputAdd)).check(matches(not(isCompletelyDisplayed())))
     }

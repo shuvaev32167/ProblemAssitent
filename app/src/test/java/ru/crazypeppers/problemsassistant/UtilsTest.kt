@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Assertions.assertNotSame
 import org.junit.jupiter.api.Test
 import java.util.Calendar.*
 
-internal class UtilsTest {
-
+class UtilsTest {
     @Test
     fun roundTo() {
         val sourceFloat = 123.123456789f

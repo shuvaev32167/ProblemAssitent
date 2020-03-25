@@ -11,7 +11,7 @@ import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData.C
  *
  * @property problems Список проблем
  */
-data class Data(val problems: MutableList<Problem>) {
+data class Data(val problems: List<Problem>) {
     /**
      * Версия формата данных
      */
@@ -24,7 +24,8 @@ data class Data(val problems: MutableList<Problem>) {
      * @throws IndexOutOfBoundsException при передачи значения [positionProblem] выходящего за границы списка проблем [problems]
      */
     fun removeAt(positionProblem: Int) {
-        problems.removeAt(positionProblem)
+        if (problems is MutableList)
+            problems.removeAt(positionProblem)
     }
 
     /**
@@ -45,7 +46,8 @@ data class Data(val problems: MutableList<Problem>) {
      */
     fun add(problem: Problem) {
         problem.parent = this
-        problems.add(problem)
+        if (problems is MutableList)
+            problems.add(problem)
     }
 
     /**
@@ -82,5 +84,10 @@ data class Data(val problems: MutableList<Problem>) {
                 version = version.inc()
             }
         } while (version != versionTo)
+    }
+
+    fun clearData() {
+        if (problems is MutableList)
+            problems.clear()
     }
 }
