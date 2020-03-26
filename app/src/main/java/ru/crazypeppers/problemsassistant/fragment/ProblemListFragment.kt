@@ -43,7 +43,7 @@ class ProblemListFragment : ListFragment() {
                 val popupMenu = PopupMenu(activity, viewListItem)
                 popupMenu.menu.add(1, 0, 1, getString(R.string.popupEdit))
                 popupMenu.menu.add(1, 1, 2, getString(R.string.popupDelete))
-                popupMenu.menu.add(1, 2, 3, getString(R.string.analyze))
+                popupMenu.menu.add(1, 2, 3, getString(R.string.popupAnalyze))
                 popupMenu.show()
 
                 popupMenu.setOnMenuItemClickListener {

@@ -10,7 +10,7 @@
     <string name="popupDelete">Удалить</string>
     <string name="avgPointsLabel">Вы хотите решить %s с индексом, равным %s</string>
     <string name="motivationsListLabel">Ваши мотивации/якоря:</string>
-    <string name="analyze">Анализировать</string>
+    <string name="popupAnalyze">Анализировать</string>
     <string name="action_settings">Настройки</string>
     <string name="problem_edit_fragment_label">Изменение проблемы</string>
     <string name="problem_list_fragment_label">Список проблем</string>

@@ -40,7 +40,7 @@
         <item>@string/analyzeProblemTab3</item>
     </string-array>
     <string name="motivationsListLabel">Ваши мотивации/якоря:</string>
-    <string name="analyze">Анализировать</string>
+    <string name="popupAnalyze">Анализировать</string>
     <string name="avgPointsLabel">Вы хотите решить %s с индексом, равным %s</string>
     <string name="problem_list_fragment_label">Список проблем</string>
     <string name="card_list_fragment_label">Список мотиваций/якорей</string>

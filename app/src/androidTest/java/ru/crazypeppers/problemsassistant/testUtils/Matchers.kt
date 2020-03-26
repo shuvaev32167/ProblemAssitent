@@ -1,6 +1,7 @@
 package ru.crazypeppers.problemsassistant.testUtils
 
 import android.view.View
+import android.widget.ListAdapter
 import android.widget.ListView
 import android.widget.SeekBar
 import android.widget.TextView
@@ -33,6 +34,19 @@ object Matchers {
 
             override fun describeTo(description: Description) {
                 description.appendText("with hint text color: $color")
+            }
+        }
+    }
+
+    fun correctNumberOfItems(itemsCount: Int): Matcher<View> {
+        return object : TypeSafeMatcher<View>() {
+            override fun matchesSafely(item: View): Boolean {
+                val adapter: ListAdapter = (item as ListView).adapter
+                return adapter.count == itemsCount
+            }
+
+            override fun describeTo(description: Description) {
+                description.appendText("with number of items: $itemsCount")
             }
         }
     }

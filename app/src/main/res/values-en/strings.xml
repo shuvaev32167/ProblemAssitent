@@ -9,7 +9,7 @@
     <string name="popupEdit">Edit</string>
     <string name="popupDelete">Remove</string>
     <string name="motivationsListLabel">Your motivations/anchors:</string>
-    <string name="analyze">Analyze</string>
+    <string name="popupAnalyze">Analyze</string>
     <string name="avgPointsLabel">You want to solve %s with index equal to %s</string>
     <string name="action_settings">Settings</string>
 </resources>
