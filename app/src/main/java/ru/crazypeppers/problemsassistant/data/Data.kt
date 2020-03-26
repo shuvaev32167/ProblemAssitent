@@ -86,6 +86,9 @@ data class Data(val problems: List<Problem>) {
         } while (version != versionTo)
     }
 
+    /**
+     * Очищение списка проблем [problems]
+     */
     fun clearData() {
         if (problems is MutableList)
             problems.clear()

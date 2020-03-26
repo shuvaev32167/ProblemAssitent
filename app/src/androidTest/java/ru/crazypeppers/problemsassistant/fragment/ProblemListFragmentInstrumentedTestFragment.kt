@@ -9,7 +9,6 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import org.hamcrest.Matchers.anything
 import org.hamcrest.Matchers.not
 import org.hamcrest.core.AllOf.allOf
@@ -58,7 +57,6 @@ class ProblemListFragmentInstrumentedTestFragment : FragmentIntegrationTestParen
 
     @Test
     fun testAnimateButtonWithScroll() {
-        createNewProblem()
         onData(anything()).atPosition(0).perform(swipeUp(), swipeUp(), swipeUp(), swipeUp())
         onView(withId(R.id.inputAdd)).check(matches(not(isCompletelyDisplayed())))
     }
@@ -67,6 +65,12 @@ class ProblemListFragmentInstrumentedTestFragment : FragmentIntegrationTestParen
         onView(withId(R.id.inputAdd)).perform(click()).check(matches(isClickable()))
         onView(withId(R.id.problemName)).check(matches(withHint(R.string.label_edit_problem_name)))
         onView(withId(R.id.problemName)).check(matches(withText("")))
+        onView(
+            allOf(
+                isAssignableFrom(TextView::class.java),
+                withParent(isAssignableFrom(Toolbar::class.java))
+            )
+        ).check(matches(withText(R.string.problem_new_fragment_label)))
 
         onView(withId(R.id.problemName)).perform(replaceText(problemName))
         onView(withId(R.id.saveButton)).perform(click())
@@ -74,17 +78,12 @@ class ProblemListFragmentInstrumentedTestFragment : FragmentIntegrationTestParen
 
     @Test
     fun testActivityTitle() {
-        val toolbarTitle =
-            getInstrumentation().targetContext.getString(R.string.problem_list_fragment_label)
         onView(
             allOf(
-                isAssignableFrom(TextView::class.java), withParent(
-                    isAssignableFrom(
-                        Toolbar::class.java
-                    )
-                )
+                isAssignableFrom(TextView::class.java),
+                withParent(isAssignableFrom(Toolbar::class.java))
             )
-        ).check(matches(withText(toolbarTitle)))
+        ).check(matches(withText(R.string.problem_list_fragment_label)))
     }
 
     @Test

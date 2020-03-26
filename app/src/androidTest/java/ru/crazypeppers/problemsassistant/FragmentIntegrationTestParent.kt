@@ -1,7 +1,5 @@
 package ru.crazypeppers.problemsassistant
 
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import androidx.test.rule.ActivityTestRule
 import org.junit.After
 import org.junit.AfterClass
@@ -31,12 +29,6 @@ abstract class FragmentIntegrationTestParent {
         problem.add(card)
         data.add(problem)
         data.actualize()
-        val listView = activityRule.activity.findViewById<ListView>(android.R.id.list)
-        if (listView != null) {
-            activityRule.activity.runOnUiThread {
-                (listView.adapter as ArrayAdapter<*>).notifyDataSetChanged()
-            }
-        }
     }
 
     companion object {
