@@ -34,6 +34,12 @@ class Card(
      */
     var imageBase64: String? = null
 
+    init {
+        for (point in points) {
+            point.parent = this
+        }
+    }
+
     /**
      * @param cardName название карты
      * @param cardDescription пояснение карты

@@ -30,6 +30,12 @@ class Problem(
     @Transient
     var parent: Data? = null
 
+    init {
+        for (card in cards) {
+            card.parent = this
+        }
+    }
+
     /**
      * Получение карты по её позиции [positionCard].
      *

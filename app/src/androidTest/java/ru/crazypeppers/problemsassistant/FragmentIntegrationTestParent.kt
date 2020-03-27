@@ -6,8 +6,6 @@ import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Rule
 import ru.crazypeppers.problemsassistant.activity.MainActivity
-import ru.crazypeppers.problemsassistant.data.dto.Card
-import ru.crazypeppers.problemsassistant.data.dto.Problem
 import java.io.File
 
 abstract class FragmentIntegrationTestParent {
@@ -18,17 +16,7 @@ abstract class FragmentIntegrationTestParent {
     fun clearData() {
         val data = (activityRule.activity.application as DataApplication).data
         data.clearData()
-        val problem = Problem(
-            "test",
-            mutableListOf()
-        )
-        val card = Card(
-            "ttest",
-            mutableListOf()
-        )
-        problem.add(card)
-        data.add(problem)
-        data.actualize()
+        data.add(createProblemStub())
     }
 
     companion object {

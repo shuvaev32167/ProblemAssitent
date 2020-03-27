@@ -3,8 +3,6 @@ package ru.crazypeppers.problemsassistant
 import android.app.Application
 import com.google.gson.Gson
 import ru.crazypeppers.problemsassistant.data.Data
-import ru.crazypeppers.problemsassistant.data.dto.Card
-import ru.crazypeppers.problemsassistant.data.dto.Problem
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.InputStreamReader
@@ -63,22 +61,11 @@ class DataApplication : Application() {
                 }
             }
         } catch (e: Exception) {
-            val problem = Problem(
-                "test",
-                mutableListOf()
-            )
-            val card = Card(
-                "ttest",
-                mutableListOf()
-            )
-            problem.add(card)
-            val data = Data(
+            return Data(
                 mutableListOf(
-                    problem
+                    createProblemStub()
                 )
             )
-            data.actualize()
-            return data
         }
     }
 }

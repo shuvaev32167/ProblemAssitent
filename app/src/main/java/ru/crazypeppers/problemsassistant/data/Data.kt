@@ -17,6 +17,12 @@ data class Data(val problems: List<Problem>) {
      */
     var version: SupportedVersionData? = null
 
+    init {
+        for (problem in problems) {
+            problem.parent = this
+        }
+    }
+
     /**
      * Удаление проблемы по её позиции.
      *
