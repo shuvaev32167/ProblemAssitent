@@ -1,7 +1,6 @@
 package ru.crazypeppers.problemsassistant
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotSame
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.util.Calendar.*
 
@@ -61,5 +60,26 @@ class UtilsTest {
         val calendar2 = calendar1.addDayAsNewInstance(1)
         assertNotSame(calendar1, calendar2)
         assertEquals(1, calendar2.diffDay(calendar1))
+    }
+
+    @Test
+    fun testCreateProblemStub() {
+        val problem = createProblemStub()
+        assertNotNull(problem)
+        assertNotNull(problem.name)
+        assertNotNull(problem.cards)
+        assertTrue { problem.cards.isNotEmpty() }
+        assertNotNull(problem[0])
+        assertNotNull(problem[0].name)
+        assertNotNull(problem[0].description)
+        assertNotNull(problem[0].parent)
+        assertSame(problem, problem[0].parent)
+        assertNotNull(problem[0].points)
+        assertTrue { problem[0].points.isNotEmpty() }
+        assertNotNull(problem[0][0])
+        assertNotNull(problem[0][0].score)
+        assertNotNull(problem[0][0].cdate)
+        assertNotNull(problem[0][0].parent)
+        assertSame(problem[0], problem[0][0].parent)
     }
 }

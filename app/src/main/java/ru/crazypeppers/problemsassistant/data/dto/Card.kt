@@ -208,4 +208,15 @@ class Card(
     private fun actualizeFromVersionOne() {
         calculateAvgPoints()
     }
+
+    /**
+     * Получение оценки карты по её позиции [positionPoint].
+     *
+     * @param positionPoint позиция оценки карты
+     * @return Оценка карты
+     * @throws IndexOutOfBoundsException при передачи значения [positionPoint] выходящего за границы списка оценок карты [points]
+     */
+    operator fun get(positionPoint: Int): Point {
+        return points[positionPoint]
+    }
 }

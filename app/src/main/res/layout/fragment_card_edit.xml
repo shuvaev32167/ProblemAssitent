@@ -33,7 +33,7 @@
             android:inputType="textMultiLine"
             android:lines="3"
             android:maxLines="10"
-            android:minLines="1"
+            android:minLines="3"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@id/layoutVariants"
             app:layout_constraintLeft_toLeftOf="parent"
