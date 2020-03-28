@@ -21,6 +21,7 @@ class CardArrayAdapter(context: Context, cardList: List<Card>, val gettingTitle:
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var view = convertView
         val card = getItem(position)!!
+        val color = card.calculateColor()
         if (view == null) {
             view = LayoutInflater.from(context).inflate(
                 if (card.description.isNotBlank())
@@ -29,15 +30,18 @@ class CardArrayAdapter(context: Context, cardList: List<Card>, val gettingTitle:
                     android.R.layout.simple_list_item_1, null
             )
         }
-        val color = card.calculateColor()
+        var textView2 = view?.findViewById<TextView>(android.R.id.text2)
+        if (card.description.isNotBlank() && textView2 == null) {
+            view = LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_2, null)
+            textView2 = view.findViewById(android.R.id.text2)
+            textView2.text = card.description
+            textView2.setTextColor(color)
+        } else if (card.description.isBlank() && textView2 != null) {
+            view = LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, null)
+        }
         val textView1 = view?.findViewById(android.R.id.text1) as TextView
         textView1.text = gettingTitle(card)
         textView1.setTextColor(color)
-        if (card.description.isNotBlank()) {
-            val textView2 = view.findViewById(android.R.id.text2) as TextView
-            textView2.text = card.description
-            textView2.setTextColor(color)
-        }
         return view
     }
 }
