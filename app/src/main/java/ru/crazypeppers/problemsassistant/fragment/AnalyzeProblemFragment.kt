@@ -36,7 +36,7 @@ class AnalyzeProblemFragment : Fragment() {
         inputAdd.hide()
 
         viewPager.adapter =
-            AnalyzeProblemSectionsPagerAdapter(activity.supportFragmentManager, activity, arguments)
+            AnalyzeProblemSectionsPagerAdapter(childFragmentManager, activity, arguments)
 
         tabLayout.setupWithViewPager(viewPager)
     }
