@@ -36,8 +36,7 @@ class AnalyzeProblemSummeryFragment : Fragment() {
         if (arg != null) {
             val positionProblem = arg.getInt(PROBLEM_POSITION_TEXT, NOT_POSITION)
             val problem = (activity.application as DataApplication).data[positionProblem]
-            val avgPointsList = problem.cards.map { it.avgPoints }
-            val avgPoint = avgPointsList.sum() / avgPointsList.size
+            val avgPoint = problem.calculateScoreProblem()
 
             summeryInformation.text = String.format(
                 getString(R.string.avgPointsLabel), problem.name,

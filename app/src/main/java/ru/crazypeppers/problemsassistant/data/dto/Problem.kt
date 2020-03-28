@@ -109,4 +109,20 @@ class Problem(
     private fun actualizeFromVersionOne() {
         type = ProblemType.LINE
     }
+
+    /**
+     * Расчёт веса проблемы.
+     *
+     * @return вес проблемы.
+     */
+    fun calculateScoreProblem(): Float {
+        val avgPointsList = cards.filter {
+            if (it.points.isEmpty())
+                return@filter false
+            if (it.points.size == 1 && it[0].score == 0)
+                return@filter false
+            return@filter true
+        }.map { it.avgPoints }
+        return avgPointsList.sum() / avgPointsList.size
+    }
 }

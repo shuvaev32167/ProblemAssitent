@@ -30,8 +30,7 @@ class ProblemArrayAdapter(context: Context, problemList: List<Problem>) :
         }
         if (problem != null) {
             (view?.findViewById(android.R.id.text1) as TextView).text = problem.name
-            val avgPointsList = problem.cards.map { it.avgPoints }
-            val avgPoint = avgPointsList.sum() / avgPointsList.size
+            val avgPoint = problem.calculateScoreProblem()
             val avpPointString = if (avgPoint.isNaN()) "0.00" else avgPoint.toStringRound(2)
             val problemPointLabel = view.findViewById(R.id.problemPoint) as TextView
             problemPointLabel.text = avpPointString
