@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/label_edit_problem_name"
         android:importantForAutofill="no"
-        android:inputType="text"
+        android:inputType="textCapSentences"
         app:layout_constraintBottom_toTopOf="@id/saveButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

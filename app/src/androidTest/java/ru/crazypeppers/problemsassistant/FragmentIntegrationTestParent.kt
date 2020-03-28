@@ -25,7 +25,8 @@ abstract class FragmentIntegrationTestParent {
         fun beforeClass() {
             val file = File("/data/data/ru.crazypeppers.problemsassistant/files/data.json")
             val file2 = File("/data/data/ru.crazypeppers.problemsassistant/files/data1.json")
-            file.renameTo(file2)
+            if (file.exists() && !file2.exists())
+                file.renameTo(file2)
         }
 
         @JvmStatic
@@ -33,7 +34,8 @@ abstract class FragmentIntegrationTestParent {
         fun afterClass() {
             val file = File("/data/data/ru.crazypeppers.problemsassistant/files/data1.json")
             val file2 = File("/data/data/ru.crazypeppers.problemsassistant/files/data.json")
-            file.renameTo(file2)
+            if (file.exists())
+                file.renameTo(file2)
         }
     }
 }

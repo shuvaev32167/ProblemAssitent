@@ -166,7 +166,7 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
         ).check(matches(withTextColor(0xFF00BE00.toInt())))
 
         Espresso.pressBack()
-        onView(withId(R.id.problemPoint)).check(matches(withText("2.50")))
+        onView(withId(R.id.problemPoint)).check(matches(withText("5.00")))
     }
 
     private fun createNewCard(
