@@ -54,7 +54,7 @@ class AnalyzeProblemSummeryFragment : Fragment() {
             )
 
             summeryCountCard.text = String.format(
-                getString(R.string.countAnchorLabel), problem.cards.count()
+                getString(R.string.summaryCountCardLabel), problem.cards.count()
             )
 
             val assessments = problem.cards.flatMap { it.points }.sortedBy { it.cdate }
