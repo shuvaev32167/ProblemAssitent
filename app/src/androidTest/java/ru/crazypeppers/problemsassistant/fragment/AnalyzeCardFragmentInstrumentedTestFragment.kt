@@ -23,7 +23,7 @@ class AnalyzeCardFragmentInstrumentedTestFragment : FragmentIntegrationTestParen
     @Before
     fun comeInFragment() {
         onData(anything()).atPosition(0).perform(click())
-        onView(withId(android.R.id.text1)).perform(longClick())
+        onData(anything()).atPosition(0).perform(longClick())
         onView(withText(R.string.graphScoreChanged)).inRoot(isPlatformPopup()).perform(click())
     }
 

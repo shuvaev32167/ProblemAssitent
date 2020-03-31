@@ -28,10 +28,7 @@ class AnalyzeProblemCardList : ListFragment() {
             val cardList = problem.cards.filter { lambda(it) }
                 .sortedByDescending { it.avgPoints }
 
-            listAdapter = CardArrayAdapter(
-                activity,
-                cardList
-            ) { "${it.name} (${it.avgPoints})" }
+            listAdapter = CardArrayAdapter(activity, cardList)
         }
     }
 }

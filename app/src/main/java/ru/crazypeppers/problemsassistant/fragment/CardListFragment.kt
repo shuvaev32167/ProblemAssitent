@@ -51,7 +51,7 @@ class CardListFragment : ListFragment() {
                 val data = (activity.application as DataApplication).data
                 problemPosition = arg.getInt(PROBLEM_POSITION_TEXT)
                 listAdapter =
-                    CardArrayAdapter(activity, data[problemPosition].cards) { it.name }
+                    CardArrayAdapter(activity, data[problemPosition].cards)
             }
 
 

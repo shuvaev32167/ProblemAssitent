@@ -74,5 +74,6 @@
     <string name="dateOfLastProblemAssessmentLabel">Дата последней оценки проблемы — %s</string>
     <string name="informationTitle">Информация</string>
     <string name="informationProblemAllertBody">Значение %s является средним арифметическим от суммы средних значений ваших карт (мотиваций и якорей)</string>
+    <string name="informationCardAllertBody">Значение %s является средним от оценок вашей карты (мотиваций и якорей)</string>
 
 </resources>
