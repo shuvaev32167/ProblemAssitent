@@ -33,7 +33,7 @@ class CardArrayAdapter(context: Context, cardList: List<Card>) :
         val cardName = view?.findViewById(R.id.cardName) as TextView
         cardName.text = card.name
         cardName.setTextColor(color)
-        val cardDescription = view.findViewById(R.id.cardDescription) as TextView
+        val cardDescription = view.findViewById<TextView>(R.id.cardDescription)
         if (card.description.isNotBlank()) {
             cardDescription.text = card.description
             cardDescription.setTextColor(color)

@@ -144,7 +144,7 @@ class Card(
      * @return Цвет карты, представленный типом `Int`
      */
     fun calculateColor(): Int {
-        val avgPoints = (avgPoints * 38).toInt()
+        val avgPoints = (avgPoints * 50).toInt()
         return when {
             avgPoints > 0 -> {
                 (0xFF000000 + avgPoints * 0x100).toInt()

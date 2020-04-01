@@ -127,7 +127,7 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
         onData(anything()).atPosition(0).onChildView(withId(R.id.cardName))
-            .check(matches(withText("ttest"))).check(matches(withTextColor(0xFF00BE00.toInt())))
+            .check(matches(withText("ttest"))).check(matches(withTextColor(0xFF00FA00.toInt())))
 
         Espresso.pressBack()
         onView(withId(R.id.problemPoint)).check(matches(withText("5.00")))
@@ -159,10 +159,10 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
         onView(withId(android.R.id.list)).check(matches(withListSize(2)))
         onData(anything()).atPosition(1).onChildView(withId(R.id.cardName)).check(
             matches(withText("espressoCard"))
-        ).check(matches(withTextColor(0xFF00BE00.toInt())))
+        ).check(matches(withTextColor(0xFF00FA00.toInt())))
         onData(anything()).atPosition(1).onChildView(withId(R.id.cardDescription)).check(
             matches(withText("espressoCardDescription"))
-        ).check(matches(withTextColor(0xFF00BE00.toInt())))
+        ).check(matches(withTextColor(0xFF00FA00.toInt())))
 
         Espresso.pressBack()
         onView(withId(R.id.problemPoint)).check(matches(withText("5.00")))
