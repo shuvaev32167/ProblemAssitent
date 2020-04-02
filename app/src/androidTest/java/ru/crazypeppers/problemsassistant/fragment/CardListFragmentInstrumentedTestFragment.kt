@@ -134,12 +134,6 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
     }
 
     @Test
-    fun testAnimateButtonWithScroll() {
-        onData(anything()).atPosition(0).perform(swipeUp(), swipeUp(), swipeUp(), swipeUp())
-        onView(withId(R.id.inputAdd)).check(matches(not(isCompletelyDisplayed())))
-    }
-
-    @Test
     fun testListCard() {
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))

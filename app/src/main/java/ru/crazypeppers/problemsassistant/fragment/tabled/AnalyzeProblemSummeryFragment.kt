@@ -14,6 +14,7 @@ import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.roundTo
+import ru.crazypeppers.problemsassistant.toStringRound
 
 /**
  * Фрагмент отвечающий за общую инфвормацию в анализе проблемы
@@ -40,7 +41,7 @@ class AnalyzeProblemSummeryFragment : Fragment() {
 
             summeryInformation.text = String.format(
                 getString(R.string.avgPointsLabel), problem.name,
-                if (avgPoint.isNaN()) "0.00" else avgPoint.roundTo(2)
+                if (avgPoint.isNaN()) "0.00" else avgPoint.toStringRound(2)
             )
 
             countMotivation.text = String.format(

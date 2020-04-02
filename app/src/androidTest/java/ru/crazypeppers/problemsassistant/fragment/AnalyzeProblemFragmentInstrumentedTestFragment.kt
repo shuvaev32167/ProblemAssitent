@@ -9,14 +9,18 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isPlatformPopup
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.hamcrest.Matchers
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.FragmentIntegrationTestParent
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.data.DATE_FORMAT
-import ru.crazypeppers.problemsassistant.testUtils.Matchers
+import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.data.dto.Point
+import ru.crazypeppers.problemsassistant.testUtils.Matchers.withTextColor
 import ru.crazypeppers.problemsassistant.toStringRound
 import java.util.*
 
@@ -24,23 +28,28 @@ import java.util.*
 class AnalyzeProblemFragmentInstrumentedTestFragment : FragmentIntegrationTestParent() {
     @Before
     fun comeInFragment() {
+        val data = (activityRule.activity.application as DataApplication).data
+        data[0][0].add(Point(5))
+        data[0].add(Card("1234", "4321", listOf(Point(-5)), data[0]))
         onView(withId(android.R.id.text1)).perform(longClick())
         onView(withText(R.string.popupAnalyze))
             .inRoot(isPlatformPopup()).perform(click())
     }
 
-//    @Test
-    fun testMotivationList(){
+    @Test
+    fun testMotivationList() {
         onView(withText(R.string.analyzeProblemTab2)).perform(click())
-    // Почему-то 2 листа...
-        onView(withId(android.R.id.list)).check(matches(Matchers.withListSize(0)))
+        onView(withText("ttest")).check(matches(withTextColor(0xFF00FA00.toInt())))
+            .check(matches(isCompletelyDisplayed()))
     }
 
-//    @Test
-    fun testAnchorList(){
+    @Test
+    fun testAnchorList() {
         onView(withText(R.string.analyzeProblemTab3)).perform(click())
-    // Почему-то 2 листа...
-        onView(withId(android.R.id.list)).check(matches(Matchers.withListSize(0)))
+        onView(withText("1234")).check(matches(withTextColor(0xFFFA0000.toInt())))
+            .check(matches(isCompletelyDisplayed()))
+        onView(withText("4321")).check(matches(withTextColor(0xFFFA0000.toInt())))
+            .check(matches(isCompletelyDisplayed()))
     }
 
     @Test
@@ -55,7 +64,7 @@ class AnalyzeProblemFragmentInstrumentedTestFragment : FragmentIntegrationTestPa
                     )
                 )
             )
-        )
+        ).check(matches(isCompletelyDisplayed()))
 
         onView(withId(R.id.countMotivation)).check(
             matches(
@@ -63,11 +72,11 @@ class AnalyzeProblemFragmentInstrumentedTestFragment : FragmentIntegrationTestPa
                     String.format(
                         activityRule.activity.getString(
                             R.string.countMotivationLabel
-                        ), "0"
+                        ), "1"
                     )
                 )
             )
-        )
+        ).check(matches(isCompletelyDisplayed()))
 
         onView(withId(R.id.countAnchor)).check(
             matches(
@@ -75,11 +84,11 @@ class AnalyzeProblemFragmentInstrumentedTestFragment : FragmentIntegrationTestPa
                     String.format(
                         activityRule.activity.getString(
                             R.string.countAnchorLabel
-                        ), "0"
+                        ), "1"
                     )
                 )
             )
-        )
+        ).check(matches(isCompletelyDisplayed()))
 
         onView(withId(R.id.summeryCountCard)).check(
             matches(
@@ -87,11 +96,11 @@ class AnalyzeProblemFragmentInstrumentedTestFragment : FragmentIntegrationTestPa
                     String.format(
                         activityRule.activity.getString(
                             R.string.summaryCountCardLabel
-                        ), "1"
+                        ), "2"
                     )
                 )
             )
-        )
+        ).check(matches(isCompletelyDisplayed()))
 
         onView(withId(R.id.dateOfFirstProblemAssessment)).check(
             matches(
@@ -103,7 +112,7 @@ class AnalyzeProblemFragmentInstrumentedTestFragment : FragmentIntegrationTestPa
                     )
                 )
             )
-        )
+        ).check(matches(isCompletelyDisplayed()))
 
         onView(withId(R.id.dateOfLastProblemAssessment)).check(
             matches(
@@ -115,7 +124,7 @@ class AnalyzeProblemFragmentInstrumentedTestFragment : FragmentIntegrationTestPa
                     )
                 )
             )
-        )
+        ).check(matches(isCompletelyDisplayed()))
     }
 
     @Test

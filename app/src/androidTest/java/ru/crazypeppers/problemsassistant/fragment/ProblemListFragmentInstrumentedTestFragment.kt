@@ -5,6 +5,8 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.ViewAction
+import androidx.test.espresso.action.*
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
@@ -123,12 +125,6 @@ class ProblemListFragmentInstrumentedTestFragment : FragmentIntegrationTestParen
             .check(matches(withText("0.00")))
         onData(anything()).atPosition(1).onChildView(withId(android.R.id.text1))
             .check(matches(withText("espressoProblem")))
-    }
-
-    @Test
-    fun testAnimateButtonWithScroll() {
-        onData(anything()).atPosition(0).perform(swipeUp(), swipeUp(), swipeUp(), swipeUp())
-        onView(withId(R.id.inputAdd)).check(matches(not(isCompletelyDisplayed())))
     }
 
     private fun createNewProblem(problemName: String = "espressoProblem") {
