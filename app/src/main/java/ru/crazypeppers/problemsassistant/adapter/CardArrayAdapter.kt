@@ -51,7 +51,7 @@ class CardArrayAdapter(context: Context, cardList: List<Card>) :
                 adb.setTitle(R.string.informationTitle)
                 adb.setMessage(
                     String.format(
-                        context.getString(R.string.informationCardAllertBody),
+                        context.getString(R.string.informationCardAlertBody),
                         card.avgPoints.toStringRound(2)
                     )
                 )

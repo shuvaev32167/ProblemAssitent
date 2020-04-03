@@ -50,7 +50,7 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
                 isAssignableFrom(TextView::class.java),
                 withParent(isAssignableFrom(Toolbar::class.java))
             )
-        ).check(matches(withText(R.string.card_edit_fragment_label)))
+        ).check(matches(withText(R.string.advantage_disadvantageEditLabel)))
         onView(withId(R.id.cardName)).check(matches(withHint(R.string.label_edit_card_name)))
             .check(matches(withText("ttest"))).perform(replaceText("123"))
         onView(withId(R.id.cardDescription)).check(matches(withHint(R.string.label_edit_card_description)))
@@ -115,12 +115,27 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
                 isAssignableFrom(TextView::class.java),
                 withParent(isAssignableFrom(Toolbar::class.java))
             )
-        ).check(matches(withText(R.string.card_fragment_label)))
+        ).check(matches(withText(R.string.advantage_disadvantageFragmentLabel)))
 
         onView(withId(R.id.seekBarVariants)).perform(setProgress(0))
         onView(withId(R.id.scoreSeekBar)).check(matches(withText("-5")))
+
+        onView(
+            allOf(
+                isAssignableFrom(TextView::class.java),
+                withParent(isAssignableFrom(Toolbar::class.java))
+            )
+        ).check(matches(withText(R.string.disadvantageFragmentLabel)))
+
         onView(withId(R.id.seekBarVariants)).perform(setProgress(10))
         onView(withId(R.id.scoreSeekBar)).check(matches(withText("5")))
+
+        onView(
+            allOf(
+                isAssignableFrom(TextView::class.java),
+                withParent(isAssignableFrom(Toolbar::class.java))
+            )
+        ).check(matches(withText(R.string.advantageFragmentLabel)))
 
         onView(withId(R.id.saveButton)).perform(click())
 
@@ -177,12 +192,27 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
                 isAssignableFrom(TextView::class.java),
                 withParent(isAssignableFrom(Toolbar::class.java))
             )
-        ).check(matches(withText(R.string.card_new_fragment_label)))
+        ).check(matches(withText(R.string.advantage_disadvantageNewLabel)))
 
         onView(withId(R.id.seekBarVariants)).perform(setProgress(0))
         onView(withId(R.id.scoreSeekBar)).check(matches(withText("-5")))
+
+        onView(
+            allOf(
+                isAssignableFrom(TextView::class.java),
+                withParent(isAssignableFrom(Toolbar::class.java))
+            )
+        ).check(matches(withText(R.string.disadvantageNewLabel)))
+
         onView(withId(R.id.seekBarVariants)).perform(setProgress(10))
         onView(withId(R.id.scoreSeekBar)).check(matches(withText("5")))
+
+        onView(
+            allOf(
+                isAssignableFrom(TextView::class.java),
+                withParent(isAssignableFrom(Toolbar::class.java))
+            )
+        ).check(matches(withText(R.string.advantageNewLabel)))
 
         onView(withId(R.id.inputAdd)).check(matches(not(isDisplayed())))
 

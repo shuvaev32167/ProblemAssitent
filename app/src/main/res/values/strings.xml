@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Помощник в решении проблем</string>
-    <string name="label_edit_card_name">Название мотивации/якоря</string>
+    <string name="label_edit_card_name">Название преимущества/недостатка</string>
+    <string name="advantagesName">Название преимущества</string>
+    <string name="disadvantageName">Название недостака</string>
+    <string name="advantages_disadvantageName">Название преимущества/недостатка</string>
     <string name="label_edit_problem_name">Название проблемы</string>
     <string name="saveButton">Сохранить</string>
     <string name="cancelButton">Отмена</string>
@@ -32,25 +35,30 @@
         <item>@string/positive_5</item>
     </string-array>
     <string name="analyzeProblemTab1">Общая информация</string>
-    <string name="analyzeProblemTab2">Мотивации</string>
-    <string name="analyzeProblemTab3">Якоря</string>
+    <string name="analyzeProblemTab2">Пеимущества</string>
+    <string name="analyzeProblemTab3">Недостатки</string>
     <string-array name="analyzeProblemTabs">
         <item>@string/analyzeProblemTab1</item>
         <item>@string/analyzeProblemTab2</item>
         <item>@string/analyzeProblemTab3</item>
     </string-array>
-    <string name="motivationsListLabel">Ваши мотивации/якоря:</string>
     <string name="popupAnalyze">Анализировать</string>
     <string name="avgPointsLabel">Вы хотите решить %s с индексом, равным %s</string>
     <string name="problem_list_fragment_label">Список проблем</string>
-    <string name="card_list_fragment_label">Список мотиваций/якорей</string>
+    <string name="card_list_fragment_label">Список преимуществ/недостатков</string>
     <string name="action_settings">Настройки</string>
     <string name="problem_edit_fragment_label">Изменение проблемы</string>
     <string name="problem_new_fragment_label">Создание проблемы</string>
-    <string name="card_edit_fragment_label">Изменение мотивации/якоря</string>
-    <string name="card_new_fragment_label">Создание мотивации/якоря</string>
-    <string name="card_fragment_label">Мотивация/якорь</string>
-    <string name="label_edit_card_description">Описание мотивации/якоря</string>
+    <string name="advantageEditLabel">Изменение преимущества</string>
+    <string name="disadvantageEditLabel">Изменение недостатка</string>
+    <string name="advantage_disadvantageEditLabel">Изменение преимущества/недостатка</string>
+    <string name="advantageNewLabel">Создание преимущества</string>
+    <string name="disadvantageNewLabel">Создание недостатка</string>
+    <string name="advantage_disadvantageNewLabel">Создание преимущества/недостатка</string>
+    <string name="advantageFragmentLabel">Создание преимущества</string>
+    <string name="disadvantageFragmentLabel">Создание недостатка</string>
+    <string name="advantage_disadvantageFragmentLabel">Создание преимущества/недостатка</string>
+    <string name="label_edit_card_description">Описание преимущества/недостатка</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="analyzeProblemFragmentLabel">Анализ проблемы</string>
@@ -65,15 +73,19 @@
     <string name="okButton">Хорошо</string>
     <string name="problemNameBusyTitle">Название проблемы занято</string>
     <string name="problemNameBusyMessage">Проблема с именем %s уже существует. Пожалуйста введите другое название для проблемы.</string>
-    <string name="cardNameBusyTitle">Название мотивации/якоря занято</string>
-    <string name="cardNameBusyMessage">Мотивация/якорь с именем %s уже существует. Пожалуйста введите другое название для мотивации/якоря.</string>
-    <string name="countMotivationLabel">Число ваших мотиваций — %s</string>
-    <string name="countAnchorLabel">Число ваших якорей — %s</string>
+    <string name="cardAdvantageNameBusyTitle">Название преимущества занято</string>
+    <string name="cardDisadvantageNameBusyTitle">Название недостатка занято</string>
+    <string name="cardAdvantage_DisadvantageNameBusyTitle">Название преимущества/недостатка занято</string>
+    <string name="cardAdvantageNameBusyMessage">Преимущество с именем %s уже существует. Пожалуйста введите другое название.</string>
+    <string name="cardDisadvantageNameBusyMessage">Недостаток с именем %s уже существует. Пожалуйста введите другое название.</string>
+    <string name="cardAdvantage_DisadvantageNameBusyMessage">Преимущество/Недостаток с именем %s уже существует. Пожалуйста введите другое название.</string>
+    <string name="countMotivationLabel">Число ваших преимуществ — %s</string>
+    <string name="countAnchorLabel">Число ваших недостатков — %s</string>
     <string name="summaryCountCardLabel">Общее число ваших карт — %s</string>
     <string name="dateOfFirstProblemAssessmentLabel">Дата первой оценки проблемы — %s</string>
     <string name="dateOfLastProblemAssessmentLabel">Дата последней оценки проблемы — %s</string>
     <string name="informationTitle">Информация</string>
-    <string name="informationProblemAllertBody">Значение %s является средним арифметическим от суммы средних значений ваших карт (мотиваций и якорей)</string>
-    <string name="informationCardAllertBody">Значение %s является средним от оценок вашей карты (мотиваций и якорей)</string>
+    <string name="informationProblemAlertBody">Значение %s является средним арифметическим от суммы средних значений ваших карт (преимуществ и недостатков)</string>
+    <string name="informationCardAlertBody">Значение %s является средним от оценок вашей карты (преимуществ и недостатков)</string>
 
 </resources>

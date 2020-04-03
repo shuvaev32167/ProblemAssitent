@@ -39,7 +39,7 @@ class ProblemArrayAdapter(context: Context, problemList: List<Problem>) :
                 adb.setTitle(R.string.informationTitle)
                 adb.setMessage(
                     String.format(
-                        context.getString(R.string.informationProblemAllertBody),
+                        context.getString(R.string.informationProblemAlertBody),
                         avpPointString
                     )
                 )

@@ -13,7 +13,6 @@ import ru.crazypeppers.problemsassistant.data.DATE_FORMAT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
-import ru.crazypeppers.problemsassistant.roundTo
 import ru.crazypeppers.problemsassistant.toStringRound
 
 /**
@@ -46,12 +45,12 @@ class AnalyzeProblemSummeryFragment : Fragment() {
 
             countMotivation.text = String.format(
                 getString(R.string.countMotivationLabel),
-                problem.cards.filter { it.type == CardType.LINER_MOTIVATIONS }.count()
+                problem.cards.filter { it.type == CardType.LINER_ADVANTAGE }.count()
             )
 
             countAnchor.text = String.format(
                 getString(R.string.countAnchorLabel),
-                problem.cards.filter { it.type == CardType.LINER_ANCHOR }.count()
+                problem.cards.filter { it.type == CardType.LINER_DISADVANTAGE }.count()
             )
 
             summeryCountCard.text = String.format(

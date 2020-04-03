@@ -13,11 +13,11 @@ enum class CardType {
     /**
      * Линейный мотиватор
      */
-    LINER_MOTIVATIONS,
+    LINER_ADVANTAGE,
 
     /**
      * Линейный якорь
      */
-    LINER_ANCHOR
+    LINER_DISADVANTAGE
 
 }

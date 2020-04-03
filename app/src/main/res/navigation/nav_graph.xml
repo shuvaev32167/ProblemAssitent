@@ -45,13 +45,13 @@
     <fragment
         android:id="@+id/CardEditFragment"
         android:name="ru.crazypeppers.problemsassistant.fragment.CardEditFragment"
-        android:label="@string/card_edit_fragment_label"
+        android:label="@string/advantage_disadvantageEditLabel"
         tools:layout="@layout/fragment_card_edit" />
 
     <fragment
         android:id="@+id/CardFragment"
         android:name="ru.crazypeppers.problemsassistant.fragment.CardFragment"
-        android:label="@string/card_fragment_label"
+        android:label="@string/advantage_disadvantageFragmentLabel"
         tools:layout="@layout/fragment_card" />
     <fragment
         android:id="@+id/AnalyzeProblemFragment"
