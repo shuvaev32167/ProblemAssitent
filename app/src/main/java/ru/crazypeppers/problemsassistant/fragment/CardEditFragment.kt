@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_card_edit.*
+import kotlinx.android.synthetic.main.layout_variants.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
@@ -21,11 +22,12 @@ import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Card
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
+import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 
 /**
  * Фрагмент отвечающий за редактирование существующей карты или добавление новой.
  */
-class CardEditFragment : Fragment() {
+class CardEditFragment : Fragment(), OnBackPressedListener {
     private var positionProblem = NOT_POSITION
     private var positionCard = NOT_POSITION
     private var card: Card? = null
@@ -42,6 +44,7 @@ class CardEditFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val activity = activity as MainActivity
+        activity.onBackPressedListener = this
         val application = activity.application as DataApplication
 
 
@@ -63,15 +66,23 @@ class CardEditFragment : Fragment() {
         }
 
         if (card != null) {
-            activity.title = when (card!!.type) {
-                CardType.LINER_ADVANTAGE -> getString(R.string.advantageEditLabel)
-                CardType.LINER_DISADVANTAGE -> getString(R.string.disadvantageEditLabel)
-                else -> getString(R.string.advantage_disadvantageEditLabel)
-            }
+            setActivityTitle(card!!)
             layoutVariants.visibility = GONE
+            checkScoreNow.visibility = GONE
         } else {
             activity.title = getString(R.string.advantage_disadvantageNewLabel)
             layoutVariants.visibility = VISIBLE
+            checkScoreNow.visibility = VISIBLE
+        }
+
+        checkScoreNow.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                layoutVariants.visibility = GONE
+                activity.title = getString(R.string.advantage_disadvantageNewLabel)
+            } else {
+                layoutVariants.visibility = VISIBLE
+                setActivityTitle(seekBarVariants.progress - 5)
+            }
         }
 
         cancelButton.setOnClickListener {
@@ -144,18 +155,22 @@ class CardEditFragment : Fragment() {
                     alert.show()
                     return@setOnClickListener
                 } else {
-                    problem.add(
-                        Card(
-                            cardName = newName,
-                            cardDescription = cardDescription.text.toString(),
-                            parent = problem,
-                            points = mutableListOf(
-                                Point(
-                                    seekBarVariants.progress - 5
+                    if (checkScoreNow.isChecked) {
+                        problem.add(Card(newName, cardDescription.text.toString()))
+                    } else {
+                        problem.add(
+                            Card(
+                                cardName = newName,
+                                cardDescription = cardDescription.text.toString(),
+                                parent = problem,
+                                points = mutableListOf(
+                                    Point(
+                                        seekBarVariants.progress - 5
+                                    )
                                 )
                             )
                         )
-                    )
+                    }
                 }
             }
             application.saveData()
@@ -165,11 +180,7 @@ class CardEditFragment : Fragment() {
         seekBarVariants.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val score = progress - 5
-                activity.title = when {
-                    score < 0 -> getString(R.string.disadvantageNewLabel)
-                    score > 0 -> getString(R.string.advantageNewLabel)
-                    else -> getString(R.string.advantage_disadvantageNewLabel)
-                }
+                setActivityTitle(score)
                 scoreSeekBar.text = score.toString()
             }
 
@@ -179,6 +190,22 @@ class CardEditFragment : Fragment() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
             }
         })
+    }
+
+    private fun setActivityTitle(card: Card) {
+        activity?.title = when (card.type) {
+            CardType.LINER_ADVANTAGE -> getString(R.string.advantageEditLabel)
+            CardType.LINER_DISADVANTAGE -> getString(R.string.disadvantageEditLabel)
+            else -> getString(R.string.advantage_disadvantageEditLabel)
+        }
+    }
+
+    private fun setActivityTitle(score: Int) {
+        activity?.title = when {
+            score < 0 -> getString(R.string.disadvantageNewLabel)
+            score > 0 -> getString(R.string.advantageNewLabel)
+            else -> getString(R.string.advantage_disadvantageNewLabel)
+        }
     }
 
 }

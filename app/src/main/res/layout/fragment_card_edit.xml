@@ -35,40 +35,33 @@
             android:maxLines="10"
             android:minLines="3"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@id/layoutVariants"
+            app:layout_constraintBottom_toTopOf="@id/checkScoreNow"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardName" />
 
-        <LinearLayout
-            android:id="@+id/layoutVariants"
+
+        <CheckBox
+            android:id="@+id/checkScoreNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkScoreNow"
+            app:layout_constraintBottom_toTopOf="@id/frameVariant"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardDescription" />
+
+        <FrameLayout
+            android:id="@+id/frameVariant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/layoutButtons"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardDescription">
+            app:layout_constraintTop_toBottomOf="@id/checkScoreNow">
 
-            <TextView
-                android:id="@+id/scoreSeekBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/negative_positive_0"
-                android:textAlignment="center"
-                android:textSize="@dimen/thumb_text_size" />
-
-            <SeekBar
-                android:id="@+id/seekBarVariants"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="10"
-                android:progress="5"
-                android:progressDrawable="@drawable/seekbar_drawable_progress"
-                android:splitTrack="false"
-                android:thumb="@drawable/seekbar_drawable_thumb"
-                android:thumbOffset="0dp" />
-        </LinearLayout>
+            <include layout="@layout/layout_variants" />
+        </FrameLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutButtons"
@@ -77,7 +70,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutVariants">
+            app:layout_constraintTop_toBottomOf="@id/frameVariant">
 
             <Button
                 android:id="@+id/saveButton"
@@ -99,6 +92,7 @@
                 app:layout_constraintRight_toLeftOf="@id/saveButton"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

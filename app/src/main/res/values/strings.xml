@@ -88,4 +88,15 @@
     <string name="informationProblemAlertBody">Значение %s является средним арифметическим от суммы средних значений ваших карт (преимуществ и недостатков)</string>
     <string name="informationCardAlertBody">Значение %s является средним от оценок вашей карты (преимуществ и недостатков)</string>
 
+    <string name="checkScoreNow">Оценить преимущество/недостаток позже</string>
+
+    <string name="informationText">В последний раз вы оценили %1$s %2$s на %3$s %4$s.\nВы можите подтвердить или переоценить оценку.</string>
+    <string name="informationTextNotScore">Вы ещё не оценивали %s.\nВам необходимо произвести оценку.</string>
+    <string name="advantage">преимущество</string>
+    <string name="disadvantage">недостаток</string>
+    <string name="advantage_disadvantage">преимущество/недостаток</string>
+    <string name="confirmButton">Подтвердить</string>
+    <string name="makeNewScoreButton">Переоценить</string>
+    <string name="makeScoreButton">Оценить</string>
+
 </resources>
