@@ -94,7 +94,7 @@ class CardFragment : Fragment(), OnBackPressedListener {
                 makeNewScoreButton.setText(R.string.makeNewScoreButton)
             }
 
-            informationText.text = getSssText(card)
+            informationText.text = getInformationTextText(card)
         }
 
         cancelButton.setOnClickListener {
@@ -106,13 +106,15 @@ class CardFragment : Fragment(), OnBackPressedListener {
             val card = application.data[positionProblem][positionCard]
             card.add(Point(score))
             application.saveData()
-            informationText.text = getSssText(card)
+            informationText.text = getInformationTextText(card)
             onBackPressed()
         }
 
         confirmButton.setOnClickListener {
             val card = application.data[positionProblem][positionCard]
             card.add(Point(card.points.first().score))
+            application.saveData()
+            informationText.text = getInformationTextText(card)
         }
 
         makeNewScoreButton.setOnClickListener {
@@ -123,7 +125,7 @@ class CardFragment : Fragment(), OnBackPressedListener {
         }
     }
 
-    private fun getSssText(card: Card): String {
+    private fun getInformationTextText(card: Card): String {
         return if (card.points.isNotEmpty()) {
             String.format(
                 getString(R.string.informationText),
