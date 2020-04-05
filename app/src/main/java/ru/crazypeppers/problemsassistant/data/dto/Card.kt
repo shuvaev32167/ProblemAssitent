@@ -61,6 +61,14 @@ class Card(
     }
 
     /**
+     * @param cardName название карты
+     * @param cardDescription пояснение карты
+     */
+    constructor(cardName: String, cardDescription: String) : this(cardName, mutableListOf()) {
+        this.description = cardDescription
+    }
+
+    /**
      * Среднее зачение очков, привязанных к карте
      */
     var avgPoints: Float = 0f
@@ -171,6 +179,7 @@ class Card(
             point.parent = this
             if (points is MutableList) {
                 points.add(point)
+                points.sortByDescending { it.cdate }
             }
         }
         dischargeAvgPoints()

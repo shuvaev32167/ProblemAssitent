@@ -15,11 +15,12 @@ import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Problem
+import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 
 /**
  * Фрагмент отвечающий за редактирование существующей проблемы или добавление новой проблемы.
  */
-class ProblemEditFragment : Fragment() {
+class ProblemEditFragment : Fragment(), OnBackPressedListener {
     private var positionProblem = NOT_POSITION
 
     override fun onCreateView(
@@ -37,6 +38,7 @@ class ProblemEditFragment : Fragment() {
 
 
         if (activity is MainActivity) {
+            activity.onBackPressedListener = this
             val inputAdd = activity.findViewById<FloatingActionButton>(R.id.inputAdd)
             inputAdd.hide()
 

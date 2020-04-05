@@ -16,18 +16,20 @@ import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.adapter.ProblemArrayAdapter
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Problem
+import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 import ru.crazypeppers.problemsassistant.listener.ScrollListenerHidingView
 
 /**
  * Фрагмент отвечающий за работу со списком проблем
  */
-class ProblemListFragment : ListFragment() {
+class ProblemListFragment : ListFragment(), OnBackPressedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val activity = activity
         if (activity is MainActivity) {
+            activity.onBackPressedListener = this
             activity.title = getString(R.string.problem_list_fragment_label)
 
             val inputAdd = activity.findViewById<FloatingActionButton>(R.id.inputAdd)

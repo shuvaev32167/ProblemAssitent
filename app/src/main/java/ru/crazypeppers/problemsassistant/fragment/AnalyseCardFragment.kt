@@ -5,6 +5,8 @@ import android.graphics.Color.GRAY
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.components.AxisBase
@@ -26,12 +28,13 @@ import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.diffDay
+import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 import ru.crazypeppers.problemsassistant.view.ChartGraphMarkerView
 
 /**
  * Фрагмент, отвечающий за отображение изменение оценки карты
  */
-class AnalyseCardFragment : Fragment() {
+class AnalyseCardFragment : Fragment(), OnBackPressedListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +47,7 @@ class AnalyseCardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val activity = activity as MainActivity
+        activity.onBackPressedListener = this
         val application = activity.application as DataApplication
 
         val inputAdd = activity.findViewById<FloatingActionButton>(R.id.inputAdd)
@@ -60,70 +64,74 @@ class AnalyseCardFragment : Fragment() {
 
         if (positionProblem != NOT_POSITION && positionCard != NOT_POSITION) {
             val card = application.data[positionProblem][positionCard]
-            val values = ArrayList<Entry>(card.points.size)
-            val firstDay = card.points.first().cdate
-            card.points.forEach {
-                values.add(
-                    Entry(
-                        it.cdate.diffDay(firstDay).toFloat(),
-                        it.score.toFloat(),
-                        it
-                    )
-                )
-            }
-            val dataSet = LineDataSet(values, "points")
-            dataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
-            dataSet.color = BLACK
-            dataSet.setCircleColor(BLACK)
-            dataSet.lineWidth = 3f
-            dataSet.circleRadius = 6f
-            dataSet.setDrawCircleHole(false)
-            val dataSets = ArrayList<ILineDataSet>()
-            dataSets.add(dataSet)
-
-            val data = LineData(dataSets)
-            data.setDrawValues(false)
-
-            lineChart.axisRight.isEnabled = false
-            val axisLeft = lineChart.axisLeft
-            axisLeft.granularity = 1f
-            axisLeft.gridColor = GRAY
-            val xAxis = lineChart.xAxis
-            xAxis.position = XAxisPosition.BOTTOM
-            xAxis.granularity = 1f
-            xAxis.gridColor = GRAY
-            if (card.points.size == 1) {
-                xAxis.axisMinimum = -1f
-                xAxis.axisMaximum = 1f
-            } else {
-                xAxis.resetAxisMinimum()
-                xAxis.resetAxisMaximum()
-            }
-
-            xAxis.valueFormatter = object : ValueFormatter() {
-                override fun getPointLabel(entry: Entry): String {
-                    return DATE_FORMAT.format((entry.data as Point).cdate.time)
-                }
-
-                override fun getFormattedValue(value: Float): String {
-                    return DATE_FORMAT.format(firstDay.addDayAsNewInstance(value.toInt()).time)
-                }
-
-                override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-                    return getFormattedValue(value)
-                }
-            }
-
-            val chartGraphMarker = ChartGraphMarkerView(activity)
-            chartGraphMarker.chartView = lineChart
-            lineChart.marker = chartGraphMarker
-
-            lineChart.data = data
-            lineChart.legend.isEnabled = false
-            lineChart.setPinchZoom(true)
-
             graphLabel.text =
                 String.format(getString(R.string.analyzeCardFragmentGraphLabel), card.name)
+            if (card.points.isEmpty()) {
+                lineChart.visibility = GONE
+            } else {
+                lineChart.visibility = VISIBLE
+                val values = ArrayList<Entry>(card.points.size)
+                val firstDay = card.points.first().cdate
+                card.points.forEach {
+                    values.add(
+                        Entry(
+                            it.cdate.diffDay(firstDay).toFloat(),
+                            it.score.toFloat(),
+                            it
+                        )
+                    )
+                }
+                val dataSet = LineDataSet(values, "points")
+                dataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+                dataSet.color = BLACK
+                dataSet.setCircleColor(BLACK)
+                dataSet.lineWidth = 3f
+                dataSet.circleRadius = 6f
+                dataSet.setDrawCircleHole(false)
+                val dataSets = ArrayList<ILineDataSet>()
+                dataSets.add(dataSet)
+
+                val data = LineData(dataSets)
+                data.setDrawValues(false)
+
+                lineChart.axisRight.isEnabled = false
+                val axisLeft = lineChart.axisLeft
+                axisLeft.granularity = 1f
+                axisLeft.gridColor = GRAY
+                val xAxis = lineChart.xAxis
+                xAxis.position = XAxisPosition.BOTTOM
+                xAxis.granularity = 1f
+                xAxis.gridColor = GRAY
+                if (card.points.size == 1) {
+                    xAxis.axisMinimum = -1f
+                    xAxis.axisMaximum = 1f
+                } else {
+                    xAxis.resetAxisMinimum()
+                    xAxis.resetAxisMaximum()
+                }
+
+                xAxis.valueFormatter = object : ValueFormatter() {
+                    override fun getPointLabel(entry: Entry): String {
+                        return DATE_FORMAT.format((entry.data as Point).cdate.time)
+                    }
+
+                    override fun getFormattedValue(value: Float): String {
+                        return DATE_FORMAT.format(firstDay.addDayAsNewInstance(value.toInt()).time)
+                    }
+
+                    override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+                        return getFormattedValue(value)
+                    }
+                }
+
+                val chartGraphMarker = ChartGraphMarkerView(activity)
+                chartGraphMarker.chartView = lineChart
+                lineChart.marker = chartGraphMarker
+
+                lineChart.data = data
+                lineChart.legend.isEnabled = false
+                lineChart.setPinchZoom(true)
+            }
         }
     }
 }

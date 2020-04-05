@@ -8,11 +8,14 @@ import com.google.android.material.snackbar.Snackbar
 
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.crazypeppers.problemsassistant.R
+import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 
 /**
  * Оснавная активити приложения
  */
 class MainActivity : AppCompatActivity() {
+
+    var onBackPressedListener: OnBackPressedListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,4 +47,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        if (onBackPressedListener?.onBackPressed() == true)
+            return
+        super.onBackPressed()
+    }
 }

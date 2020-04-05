@@ -18,13 +18,14 @@ import ru.crazypeppers.problemsassistant.data.CARD_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 import ru.crazypeppers.problemsassistant.listener.ScrollListenerHidingView
 
 
 /**
  * Фрагмент отвечающий за работу со списком карт
  */
-class CardListFragment : ListFragment() {
+class CardListFragment : ListFragment(), OnBackPressedListener {
     private var problemPosition = NOT_POSITION
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,6 +34,7 @@ class CardListFragment : ListFragment() {
         val activity = activity
 
         if (activity is MainActivity) {
+            activity.onBackPressedListener = this
             activity.title = getString(R.string.card_list_fragment_label)
 
             val inputAdd = activity.findViewById<FloatingActionButton>(R.id.inputAdd)

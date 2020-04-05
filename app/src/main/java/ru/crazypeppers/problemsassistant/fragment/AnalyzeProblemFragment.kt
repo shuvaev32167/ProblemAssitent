@@ -10,12 +10,13 @@ import kotlinx.android.synthetic.main.fragment_analyze_problem.*
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.fragment.tabled.AnalyzeProblemSectionsPagerAdapter
+import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 
 
 /**
  * Фрагмент, отвечающий за анализ проблемы
  */
-class AnalyzeProblemFragment : Fragment() {
+class AnalyzeProblemFragment : Fragment(), OnBackPressedListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +30,7 @@ class AnalyzeProblemFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val activity = activity as MainActivity
-
+        activity.onBackPressedListener = this
         activity.title = getString(R.string.analyzeProblemFragmentLabel)
 
         val inputAdd = activity.findViewById<FloatingActionButton>(R.id.inputAdd)
