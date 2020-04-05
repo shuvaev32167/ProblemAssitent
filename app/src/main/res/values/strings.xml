@@ -55,9 +55,9 @@
     <string name="advantageNewLabel">Создание преимущества</string>
     <string name="disadvantageNewLabel">Создание недостатка</string>
     <string name="advantage_disadvantageNewLabel">Создание преимущества/недостатка</string>
-    <string name="advantageFragmentLabel">Создание преимущества</string>
-    <string name="disadvantageFragmentLabel">Создание недостатка</string>
-    <string name="advantage_disadvantageFragmentLabel">Создание преимущества/недостатка</string>
+    <string name="advantageFragmentLabel">Преимущество</string>
+    <string name="disadvantageFragmentLabel">Недостаток</string>
+    <string name="advantage_disadvantageFragmentLabel">Преимущество/недостаток</string>
     <string name="label_edit_card_description">Описание преимущества/недостатка</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

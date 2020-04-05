@@ -9,12 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_card.*
-import kotlinx.android.synthetic.main.fragment_card.cancelButton
-import kotlinx.android.synthetic.main.fragment_card.cardName
-import kotlinx.android.synthetic.main.fragment_card.saveButton
-import kotlinx.android.synthetic.main.fragment_card.scoreSeekBar
-import kotlinx.android.synthetic.main.fragment_card.seekBarVariants
-import kotlinx.android.synthetic.main.fragment_card_edit.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
@@ -57,9 +51,9 @@ class CardFragment : Fragment() {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val score = progress - 5
                 activity.title = when {
-                    score < 0 -> getString(R.string.disadvantageNewLabel)
-                    score > 0 -> getString(R.string.advantageNewLabel)
-                    else -> getString(R.string.advantage_disadvantageNewLabel)
+                    score > 0 -> getString(R.string.advantageFragmentLabel)
+                    score < 0 -> getString(R.string.disadvantageFragmentLabel)
+                    else -> getString(R.string.advantage_disadvantageFragmentLabel)
                 }
                 scoreSeekBar.text = score.toString()
             }
