@@ -2,4 +2,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="thumb_text_size">16sp</dimen>
     <dimen name="graphLabelSize">16sp</dimen>
+    <dimen name="primeTextSize">18sp</dimen>
+    <dimen name="secondTextSize">17sp</dimen>
 </resources>

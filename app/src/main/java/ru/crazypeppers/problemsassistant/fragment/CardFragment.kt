@@ -86,7 +86,7 @@ class CardFragment : Fragment(), OnBackPressedListener {
                 cardDescription.text = card.description
             }
             if (card.points.isEmpty()) {
-                seekBarVariants.progress = card.points.last().score + 5
+                seekBarVariants.progress = 5
                 confirmButton.visibility = GONE
                 makeNewScoreButton.setText(R.string.makeScoreButton)
             } else {

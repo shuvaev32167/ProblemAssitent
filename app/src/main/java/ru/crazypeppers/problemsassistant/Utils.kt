@@ -99,7 +99,7 @@ fun createProblemStub(): Problem {
         mutableListOf(
             Card(
                 "ttest",
-                mutableListOf(Point(0))
+                mutableListOf()
             )
         )
     )

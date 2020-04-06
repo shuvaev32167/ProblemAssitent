@@ -117,6 +117,33 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
             )
         ).check(matches(withText(R.string.advantage_disadvantageFragmentLabel)))
 
+        onView(withId(R.id.seekBarVariants)).check(matches(not(isDisplayed())))
+        onView(withId(R.id.scoreSeekBar)).check(matches(not(isDisplayed())))
+        onView(withId(R.id.saveButton)).check(matches(not(isDisplayed())))
+        onView(withId(R.id.cancelButton)).check(matches(not(isDisplayed())))
+
+        onView(withId(R.id.cardName)).check(matches(withText("ttest")))
+            .check(matches(withTextColor(0xFF000000.toInt())))
+        onView(withId(R.id.cardDescription)).check(matches(not(isDisplayed())))
+
+        onView(withId(R.id.informationText)).check(matches(isDisplayed())).check(
+            matches(
+                withText(
+                    String.format(
+                        activityRule.activity.getString(R.string.informationTextNotScore),
+                        "ttest"
+                    )
+                )
+            )
+        )
+
+        onView(withId(R.id.confirmButton)).check(matches(not(isDisplayed())))
+        onView(withId(R.id.makeNewScoreButton)).check(matches(isDisplayed()))
+            .check(matches(withText(R.string.makeScoreButton))).perform(click())
+            .check(matches(not(isDisplayed())))
+
+        onView(withId(R.id.informationText)).check(matches(not(isDisplayed())))
+
         onView(withId(R.id.seekBarVariants)).perform(setProgress(0))
         onView(withId(R.id.scoreSeekBar)).check(matches(withText("-5")))
 
@@ -138,6 +165,8 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
         ).check(matches(withText(R.string.advantageFragmentLabel)))
 
         onView(withId(R.id.saveButton)).perform(click())
+
+        Espresso.pressBack()
 
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
