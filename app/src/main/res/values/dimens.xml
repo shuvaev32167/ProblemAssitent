@@ -4,4 +4,5 @@
     <dimen name="graphLabelSize">16sp</dimen>
     <dimen name="primeTextSize">18sp</dimen>
     <dimen name="secondTextSize">17sp</dimen>
+    <dimen name="padding">20dp</dimen>
 </resources>
