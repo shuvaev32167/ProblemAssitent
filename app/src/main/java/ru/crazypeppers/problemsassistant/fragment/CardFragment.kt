@@ -79,11 +79,31 @@ class CardFragment : Fragment(), OnBackPressedListener {
                 else -> getString(R.string.advantage_disadvantageFragmentLabel)
             }
             cardName.text = card.name
+            cardNameTitle.text = String.format(
+                getString(R.string.cardNameTitle),
+                getString(
+                    when (card.type) {
+                        CardType.LINER_ADVANTAGE -> R.string.advantageR
+                        CardType.LINER_DISADVANTAGE -> R.string.disadvantageR
+                        else -> R.string.advantage_disadvantageR
+                    }
+                )
+            )
             if (card.description.isBlank()) {
-                cardDescription.visibility = GONE
+                cardDescriptionLayout.visibility = GONE
             } else {
-                cardDescription.visibility = VISIBLE
+                cardDescriptionLayout.visibility = VISIBLE
                 cardDescription.text = card.description
+                cardDescriptionTitle.text = String.format(
+                    getString(R.string.cardDescriptionTitle),
+                    getString(
+                        when (card.type) {
+                            CardType.LINER_ADVANTAGE -> R.string.advantageR
+                            CardType.LINER_DISADVANTAGE -> R.string.disadvantageR
+                            else -> R.string.advantage_disadvantageR
+                        }
+                    )
+                )
             }
             if (card.points.isEmpty()) {
                 seekBarVariants.progress = 5

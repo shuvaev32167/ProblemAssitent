@@ -11,29 +11,77 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/cardName"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardNameLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:textColor="@color/design_default_color_on_secondary"
-            android:textSize="@dimen/primeTextSize"
-            app:layout_constraintBottom_toTopOf="@id/cardDescription"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/cardDescriptionLayout"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/cardDescription"
+            <TextView
+                android:id="@+id/cardNameTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/cardNameTitle"
+                android:textSize="@dimen/secondTextSize"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/cardName"/>
+
+            <TextView
+                android:id="@+id/cardName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="@dimen/primeTextSize"
+                app:layout_constraintTop_toBottomOf="@id/cardNameTitle"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardDescriptionLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:textColor="@color/design_default_color_on_secondary"
-            android:textSize="@dimen/secondTextSize"
+            android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/informationText"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardName" />
+            app:layout_constraintTop_toBottomOf="@id/cardNameLayout">
+
+            <TextView
+                android:id="@+id/cardDescriptionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/cardDescriptionTitle"
+                android:textSize="@dimen/thumb_text_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/cardDescription"/>
+
+            <TextView
+                android:id="@+id/cardDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="@dimen/secondTextSize"
+                app:layout_constraintTop_toBottomOf="@id/cardDescriptionTitle"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <TextView
@@ -44,7 +92,7 @@
             app:layout_constraintBottom_toTopOf="@id/newLayoutButtons"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardDescription" />
+            app:layout_constraintTop_toBottomOf="@id/cardDescriptionLayout" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/newLayoutButtons"

@@ -99,4 +99,10 @@
     <string name="makeNewScoreButton">Переоценить</string>
     <string name="makeScoreButton">Оценить</string>
 
+    <string name="cardNameTitle">Название %s:</string>
+    <string name="cardDescriptionTitle">Описание %s:</string>
+    <string name="advantageR">преимущества</string>
+    <string name="disadvantageR">недостатка</string>
+    <string name="advantage_disadvantageR">преимущества/недостатка</string>
+
 </resources>
