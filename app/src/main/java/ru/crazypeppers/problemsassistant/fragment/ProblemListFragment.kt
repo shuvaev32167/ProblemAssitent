@@ -34,7 +34,7 @@ class ProblemListFragment : ListFragment(), OnBackPressedListener {
 
             val inputAdd = activity.findViewById<FloatingActionButton>(R.id.inputAdd)
             inputAdd.setOnClickListener {
-                findNavController().navigate(R.id.action_ProblemListFragment_to_ProblemEditFragment)
+                findNavController().navigate(R.id.action_ProblemListFragment_to_ProblemNewFragment)
             }
 
             inputAdd.show()
