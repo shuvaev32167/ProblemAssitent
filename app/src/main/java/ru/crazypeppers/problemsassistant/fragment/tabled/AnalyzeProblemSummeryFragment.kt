@@ -45,12 +45,12 @@ class AnalyzeProblemSummeryFragment : Fragment() {
 
             countMotivation.text = String.format(
                 getString(R.string.countMotivationLabel),
-                problem.cards.filter { it.type == CardType.LINER_ADVANTAGE }.count()
+                problem.cards.filter { it.type == CardType.LINEAR_ADVANTAGE }.count()
             )
 
             countAnchor.text = String.format(
                 getString(R.string.countAnchorLabel),
-                problem.cards.filter { it.type == CardType.LINER_DISADVANTAGE }.count()
+                problem.cards.filter { it.type == CardType.LINEAR_DISADVANTAGE }.count()
             )
 
             summeryCountCard.text = String.format(

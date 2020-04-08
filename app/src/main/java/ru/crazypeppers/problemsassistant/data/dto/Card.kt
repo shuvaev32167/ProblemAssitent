@@ -125,10 +125,10 @@ class Card(
             if (parent!!.type == ProblemType.LINE) {
                 type = when {
                     avgPoints > 0 -> {
-                        CardType.LINER_ADVANTAGE
+                        CardType.LINEAR_ADVANTAGE
                     }
                     avgPoints < 0 -> {
-                        CardType.LINER_DISADVANTAGE
+                        CardType.LINEAR_DISADVANTAGE
                     }
                     else -> {
                         CardType.NONE

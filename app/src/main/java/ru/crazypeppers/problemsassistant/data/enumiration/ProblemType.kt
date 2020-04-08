@@ -12,5 +12,5 @@ enum class ProblemType {
     /**
      * Квадрат решения (Декарта)
      */
-    SQUARE
+    DESCARTES_SQUARED
 }

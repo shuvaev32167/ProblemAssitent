@@ -46,10 +46,10 @@ class AnalyzeProblemSectionsPagerAdapter(
                 bundle.putSerializable(
                     LAMBDA_TEXT,
                     if (position == 1) { card: Card ->
-                        card.type == CardType.LINER_ADVANTAGE
+                        card.type == CardType.LINEAR_ADVANTAGE
                     }
                     else { card: Card ->
-                        card.type == CardType.LINER_DISADVANTAGE
+                        card.type == CardType.LINEAR_DISADVANTAGE
                     } as Serializable
                 )
                 analyzeProblemMotivationList.arguments = bundle

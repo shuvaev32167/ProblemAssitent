@@ -74,8 +74,8 @@ class CardFragment : Fragment(), OnBackPressedListener {
         if (positionProblem != NOT_POSITION && positionCard != NOT_POSITION) {
             val card = application.data[positionProblem][positionCard]
             activity.title = when (card.type) {
-                CardType.LINER_ADVANTAGE -> getString(R.string.advantageFragmentLabel)
-                CardType.LINER_DISADVANTAGE -> getString(R.string.disadvantageFragmentLabel)
+                CardType.LINEAR_ADVANTAGE -> getString(R.string.advantageFragmentLabel)
+                CardType.LINEAR_DISADVANTAGE -> getString(R.string.disadvantageFragmentLabel)
                 else -> getString(R.string.advantage_disadvantageFragmentLabel)
             }
             cardName.text = card.name
@@ -83,8 +83,8 @@ class CardFragment : Fragment(), OnBackPressedListener {
                 getString(R.string.cardNameTitle),
                 getString(
                     when (card.type) {
-                        CardType.LINER_ADVANTAGE -> R.string.advantageR
-                        CardType.LINER_DISADVANTAGE -> R.string.disadvantageR
+                        CardType.LINEAR_ADVANTAGE -> R.string.advantageR
+                        CardType.LINEAR_DISADVANTAGE -> R.string.disadvantageR
                         else -> R.string.advantage_disadvantageR
                     }
                 )
@@ -98,8 +98,8 @@ class CardFragment : Fragment(), OnBackPressedListener {
                     getString(R.string.cardDescriptionTitle),
                     getString(
                         when (card.type) {
-                            CardType.LINER_ADVANTAGE -> R.string.advantageR
-                            CardType.LINER_DISADVANTAGE -> R.string.disadvantageR
+                            CardType.LINEAR_ADVANTAGE -> R.string.advantageR
+                            CardType.LINEAR_DISADVANTAGE -> R.string.disadvantageR
                             else -> R.string.advantage_disadvantageR
                         }
                     )
@@ -150,8 +150,8 @@ class CardFragment : Fragment(), OnBackPressedListener {
             String.format(
                 getString(R.string.informationText),
                 when (card.type) {
-                    CardType.LINER_ADVANTAGE -> getString(R.string.advantage)
-                    CardType.LINER_DISADVANTAGE -> getString(R.string.disadvantage)
+                    CardType.LINEAR_ADVANTAGE -> getString(R.string.advantage)
+                    CardType.LINEAR_DISADVANTAGE -> getString(R.string.disadvantage)
                     else -> getString(R.string.advantage_disadvantage)
                 },
                 card.name,

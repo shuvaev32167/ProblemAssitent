@@ -101,11 +101,11 @@ class CardEditFragment : Fragment(), OnBackPressedListener {
             val messageId: Int
             if (card != null) {
                 when (card!!.type) {
-                    CardType.LINER_ADVANTAGE -> {
+                    CardType.LINEAR_ADVANTAGE -> {
                         titleId = R.string.cardAdvantageNameBusyTitle
                         messageId = R.string.cardAdvantageNameBusyMessage
                     }
-                    CardType.LINER_DISADVANTAGE -> {
+                    CardType.LINEAR_DISADVANTAGE -> {
                         titleId = R.string.cardDisadvantageNameBusyTitle
                         messageId = R.string.cardDisadvantageNameBusyMessage
                     }
@@ -194,8 +194,8 @@ class CardEditFragment : Fragment(), OnBackPressedListener {
 
     private fun setActivityTitle(card: Card) {
         activity?.title = when (card.type) {
-            CardType.LINER_ADVANTAGE -> getString(R.string.advantageEditLabel)
-            CardType.LINER_DISADVANTAGE -> getString(R.string.disadvantageEditLabel)
+            CardType.LINEAR_ADVANTAGE -> getString(R.string.advantageEditLabel)
+            CardType.LINEAR_DISADVANTAGE -> getString(R.string.disadvantageEditLabel)
             else -> getString(R.string.advantage_disadvantageEditLabel)
         }
     }
