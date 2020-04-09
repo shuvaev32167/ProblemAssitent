@@ -32,37 +32,35 @@ class ProblemArrayAdapter(context: Context, problemList: List<Problem>) :
         if (problem != null) {
             (view?.findViewById(android.R.id.text1) as TextView).text = problem.name
             val problemPointLabel = view.findViewById(R.id.problemPoint) as TextView
+            val adb: AlertDialog.Builder = AlertDialog.Builder(context)
+            adb.setTitle(R.string.informationTitle)
+            adb.setIcon(android.R.drawable.ic_dialog_info)
+            adb.setNeutralButton(R.string.okButton, null)
             if (problem.type == ProblemType.DESCARTES_SQUARED) {
+                adb.setMessage(
+                    String.format(
+                        context.getString(R.string.informationProblemDescartesSquaredAlertBody),
+                        problem.name
+                    )
+                )
                 problemPointLabel.text = context.getString(R.string.descartesSquaredShort)
                 problemPointLabel.hyperlinkStyle()
                 problemPointLabel.setOnClickListener {
-                    val adb: AlertDialog.Builder = AlertDialog.Builder(context)
-                    adb.setTitle(R.string.informationTitle)
-                    adb.setMessage(
-                        String.format(
-                            context.getString(R.string.informationProblemDescartesSquaredAlertBody),
-                            problem.name
-                        )
-                    )
-                    adb.setIcon(android.R.drawable.ic_dialog_info)
-                    adb.setNeutralButton(R.string.okButton, null)
                     adb.create().show()
                 }
             } else {
                 val avgPoint = problem.calculateScoreProblem()
                 val avpPointString = if (avgPoint.isNaN()) "0.00" else avgPoint.toStringRound(2)
                 problemPointLabel.text = avpPointString
-                problemPointLabel.setOnClickListener {
-                    val adb: AlertDialog.Builder = AlertDialog.Builder(context)
-                    adb.setTitle(R.string.informationTitle)
-                    adb.setMessage(
-                        String.format(
-                            context.getString(R.string.informationProblemAlertBody),
-                            avpPointString
-                        )
+
+                adb.setMessage(
+                    String.format(
+                        context.getString(R.string.informationProblemAlertBody),
+                        avpPointString
                     )
-                    adb.setIcon(android.R.drawable.ic_dialog_info)
-                    adb.setNeutralButton(R.string.okButton, null)
+                )
+
+                problemPointLabel.setOnClickListener {
                     adb.create().show()
                 }
                 problemPointLabel.hyperlinkStyle()

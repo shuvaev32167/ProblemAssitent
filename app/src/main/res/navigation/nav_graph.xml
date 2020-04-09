@@ -30,7 +30,9 @@
         <action
             android:id="@+id/action_CardListFragment_to_CardEditFragment"
             app:destination="@id/CardEditFragment" />
-
+        <action
+            android:id="@+id/action_CardListFragment_to_CardNewFragment"
+            app:destination="@id/CardNewFragment" />
         <action
             android:id="@+id/action_CardListFragment_to_CardFragment"
             app:destination="@id/CardFragment" />
@@ -49,6 +51,11 @@
         android:label="@string/problem_edit_fragment_label"
         tools:layout="@layout/fragment_problem_edit" />
 
+    <fragment
+        android:id="@+id/CardNewFragment"
+        android:name="ru.crazypeppers.problemsassistant.fragment.CardNewFragment"
+        android:label="@string/advantage_disadvantageNewLabel"
+        tools:layout="@layout/fragment_card_new" />
     <fragment
         android:id="@+id/CardEditFragment"
         android:name="ru.crazypeppers.problemsassistant.fragment.CardEditFragment"

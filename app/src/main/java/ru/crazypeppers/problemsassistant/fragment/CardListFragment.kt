@@ -39,11 +39,9 @@ class CardListFragment : ListFragment(), OnBackPressedListener {
 
             val inputAdd = activity.findViewById<FloatingActionButton>(R.id.inputAdd)
             inputAdd.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putInt(PROBLEM_POSITION_TEXT, problemPosition)
                 findNavController().navigate(
-                    R.id.action_CardListFragment_to_CardEditFragment,
-                    bundle
+                    R.id.action_CardListFragment_to_CardNewFragment,
+                    arguments
                 )
             }
 
