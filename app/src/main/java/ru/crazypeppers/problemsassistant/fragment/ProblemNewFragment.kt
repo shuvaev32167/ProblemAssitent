@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.fragment_problem_edit.*
+import kotlinx.android.synthetic.main.fragment_problem_new.*
 import ru.crazypeppers.problemsassistant.DataApplication
 
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
-import ru.crazypeppers.problemsassistant.data.NOT_POSITION
-import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Problem
+import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 
 /**
@@ -27,7 +26,7 @@ class ProblemNewFragment : Fragment(), OnBackPressedListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_problem_edit, container, false)
+        return inflater.inflate(R.layout.fragment_problem_new, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -70,7 +69,10 @@ class ProblemNewFragment : Fragment(), OnBackPressedListener {
                 application.data.add(
                     Problem(
                         newName,
-                        mutableListOf()
+                        if (problemTypeSpinner.selectedItemPosition == 0)
+                            ProblemType.LINE
+                        else
+                            ProblemType.DESCARTES_SQUARED
                     )
                 )
             }

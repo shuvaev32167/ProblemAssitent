@@ -18,12 +18,6 @@ class Problem(
      * Тип проблемы
      */
     var type: ProblemType = ProblemType.LINE
-
-    /**
-     * Картинка проблемы
-     */
-    var imageBase64: String? = null
-
     /**
      * Данные, в которые входит проблема
      */
@@ -34,6 +28,14 @@ class Problem(
         for (card in cards) {
             card.parent = this
         }
+    }
+
+    /**
+     * @param name название проблемы
+     * @param type тип проблемы
+     */
+    constructor(name: String, type: ProblemType) : this(name) {
+        this.type = type
     }
 
     /**

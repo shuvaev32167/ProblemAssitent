@@ -21,27 +21,11 @@
     <string name="removeButton">Удалить</string>
     <string name="popupEdit">Редактировать</string>
     <string name="popupDelete">Удалить</string>
-    <string-array name="pointToCard">
-        <item>@string/negative_5</item>
-        <item>@string/negative_4</item>
-        <item>@string/negative_3</item>
-        <item>@string/negative_2</item>
-        <item>@string/negative_1</item>
-        <item>@string/negative_positive_0</item>
-        <item>@string/positive_1</item>
-        <item>@string/positive_2</item>
-        <item>@string/positive_3</item>
-        <item>@string/positive_4</item>
-        <item>@string/positive_5</item>
-    </string-array>
+
     <string name="analyzeProblemTab1">Общая информация</string>
     <string name="analyzeProblemTab2">Пеимущества</string>
     <string name="analyzeProblemTab3">Недостатки</string>
-    <string-array name="analyzeProblemTabs">
-        <item>@string/analyzeProblemTab1</item>
-        <item>@string/analyzeProblemTab2</item>
-        <item>@string/analyzeProblemTab3</item>
-    </string-array>
+
     <string name="popupAnalyze">Анализировать</string>
     <string name="avgPointsLabel">Вы хотите решить %s с индексом, равным %s</string>
     <string name="problem_list_fragment_label">Список проблем</string>
@@ -104,5 +88,9 @@
     <string name="advantageR">преимущества</string>
     <string name="disadvantageR">недостатка</string>
     <string name="advantage_disadvantageR">преимущества/недостатка</string>
+
+    <string name="problemTypeLabel">Тип проблемы:</string>
+    <string name="linearProblem">Линейная проблема</string>
+    <string name="descartesSquaredProblem">Квадрат декарта</string>
 
 </resources>

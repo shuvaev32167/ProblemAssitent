@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pointToCard">
+        <item>@string/negative_5</item>
+        <item>@string/negative_4</item>
+        <item>@string/negative_3</item>
+        <item>@string/negative_2</item>
+        <item>@string/negative_1</item>
+        <item>@string/negative_positive_0</item>
+        <item>@string/positive_1</item>
+        <item>@string/positive_2</item>
+        <item>@string/positive_3</item>
+        <item>@string/positive_4</item>
+        <item>@string/positive_5</item>
+    </string-array>
+
+    <string-array name="analyzeProblemTabs">
+        <item>@string/analyzeProblemTab1</item>
+        <item>@string/analyzeProblemTab2</item>
+        <item>@string/analyzeProblemTab3</item>
+    </string-array>
+
+    <string-array name="problemType">
+        <item>@string/linearProblem</item>
+        <item>@string/descartesSquaredProblem</item>
+    </string-array>
+</resources>
