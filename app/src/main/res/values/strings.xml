@@ -70,6 +70,7 @@
     <string name="dateOfLastProblemAssessmentLabel">Дата последней оценки проблемы — %s</string>
     <string name="informationTitle">Информация</string>
     <string name="informationProblemAlertBody">Значение %s является средним арифметическим от суммы средних значений ваших карт (преимуществ и недостатков)</string>
+    <string name="informationProblemDescartesSquaredAlertBody">Проблема %s решается с применением квадрата Декарта</string>
     <string name="informationCardAlertBody">Значение %s является средним от оценок вашей карты (преимуществ и недостатков)</string>
 
     <string name="checkScoreNow">Оценить преимущество/недостаток позже</string>
@@ -92,5 +93,7 @@
     <string name="problemTypeLabel">Тип проблемы:</string>
     <string name="linearProblem">Линейная проблема</string>
     <string name="descartesSquaredProblem">Квадрат декарта</string>
+
+    <string name="descartesSquaredShort">КД</string>
 
 </resources>

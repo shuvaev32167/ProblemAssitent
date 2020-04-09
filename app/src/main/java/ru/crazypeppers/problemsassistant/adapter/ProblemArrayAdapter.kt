@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.data.dto.Problem
+import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.hyperlinkStyle
 import ru.crazypeppers.problemsassistant.toStringRound
 
@@ -30,25 +31,42 @@ class ProblemArrayAdapter(context: Context, problemList: List<Problem>) :
         }
         if (problem != null) {
             (view?.findViewById(android.R.id.text1) as TextView).text = problem.name
-            val avgPoint = problem.calculateScoreProblem()
-            val avpPointString = if (avgPoint.isNaN()) "0.00" else avgPoint.toStringRound(2)
             val problemPointLabel = view.findViewById(R.id.problemPoint) as TextView
-            problemPointLabel.text = avpPointString
-            problemPointLabel.setOnClickListener {
-                val adb: AlertDialog.Builder = AlertDialog.Builder(context)
-                adb.setTitle(R.string.informationTitle)
-                adb.setMessage(
-                    String.format(
-                        context.getString(R.string.informationProblemAlertBody),
-                        avpPointString
+            if (problem.type == ProblemType.DESCARTES_SQUARED) {
+                problemPointLabel.text = context.getString(R.string.descartesSquaredShort)
+                problemPointLabel.hyperlinkStyle()
+                problemPointLabel.setOnClickListener {
+                    val adb: AlertDialog.Builder = AlertDialog.Builder(context)
+                    adb.setTitle(R.string.informationTitle)
+                    adb.setMessage(
+                        String.format(
+                            context.getString(R.string.informationProblemDescartesSquaredAlertBody),
+                            problem.name
+                        )
                     )
-                )
-                adb.setIcon(android.R.drawable.ic_dialog_info)
-                adb.setNeutralButton(R.string.okButton, null)
-                adb.create().show()
+                    adb.setIcon(android.R.drawable.ic_dialog_info)
+                    adb.setNeutralButton(R.string.okButton, null)
+                    adb.create().show()
+                }
+            } else {
+                val avgPoint = problem.calculateScoreProblem()
+                val avpPointString = if (avgPoint.isNaN()) "0.00" else avgPoint.toStringRound(2)
+                problemPointLabel.text = avpPointString
+                problemPointLabel.setOnClickListener {
+                    val adb: AlertDialog.Builder = AlertDialog.Builder(context)
+                    adb.setTitle(R.string.informationTitle)
+                    adb.setMessage(
+                        String.format(
+                            context.getString(R.string.informationProblemAlertBody),
+                            avpPointString
+                        )
+                    )
+                    adb.setIcon(android.R.drawable.ic_dialog_info)
+                    adb.setNeutralButton(R.string.okButton, null)
+                    adb.create().show()
+                }
+                problemPointLabel.hyperlinkStyle()
             }
-            problemPointLabel.hyperlinkStyle()
-
         }
         return view!!
     }
