@@ -69,6 +69,18 @@ class Card(
     }
 
     /**
+     * @param cardName название карты
+     * @param cardDescription пояснение карты
+     * @param cardType тип карты
+     */
+    constructor(cardName: String, cardDescription: String, cardType: CardType) : this(
+        cardName,
+        cardDescription
+    ) {
+        this.type = cardType
+    }
+
+    /**
      * Среднее зачение очков, привязанных к карте
      */
     var avgPoints: Float = 0f

@@ -18,6 +18,7 @@ import ru.crazypeppers.problemsassistant.data.CARD_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 import ru.crazypeppers.problemsassistant.listener.ScrollListenerHidingView
 
@@ -35,7 +36,6 @@ class CardListFragment : ListFragment(), OnBackPressedListener {
 
         if (activity is MainActivity) {
             activity.onBackPressedListener = this
-            activity.title = getString(R.string.card_list_fragment_label)
 
             val inputAdd = activity.findViewById<FloatingActionButton>(R.id.inputAdd)
             inputAdd.setOnClickListener {
@@ -50,8 +50,15 @@ class CardListFragment : ListFragment(), OnBackPressedListener {
             if (arg != null) {
                 val data = (activity.application as DataApplication).data
                 problemPosition = arg.getInt(PROBLEM_POSITION_TEXT)
+                val problem = data[problemPosition]
                 listAdapter =
-                    CardArrayAdapter(activity, data[problemPosition].cards)
+                    CardArrayAdapter(activity, problem.cards)
+
+                if (problem.type == ProblemType.LINE) {
+                    activity.title = getString(R.string.card_list_fragment_label)
+                } else if (problem.type == ProblemType.DESCARTES_SQUARED) {
+                    activity.title = getString(R.string.cardListLabel)
+                }
             }
 
 

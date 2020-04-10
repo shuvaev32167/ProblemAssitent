@@ -109,7 +109,6 @@ class Problem(
      * Актуализация данных с первой версии
      */
     private fun actualizeFromVersionOne() {
-        type = ProblemType.LINE
     }
 
     /**
@@ -120,8 +119,6 @@ class Problem(
     fun calculateScoreProblem(): Float {
         val avgPointsList = cards.filter {
             if (it.points.isEmpty())
-                return@filter false
-            if (it.points.size == 1 && it[0].score == 0)
                 return@filter false
             return@filter true
         }.map { it.avgPoints }

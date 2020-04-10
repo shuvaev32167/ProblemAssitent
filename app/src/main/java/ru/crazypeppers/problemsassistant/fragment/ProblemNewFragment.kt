@@ -1,16 +1,15 @@
 package ru.crazypeppers.problemsassistant.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_problem_new.*
 import ru.crazypeppers.problemsassistant.DataApplication
-
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.data.dto.Problem

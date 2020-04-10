@@ -24,4 +24,11 @@
         <item>@string/linearProblem</item>
         <item>@string/descartesSquaredProblem</item>
     </string-array>
+
+    <string-array name="descartesSquaredQuarters">
+        <item>@string/descartesSquaredIQuarter</item>
+        <item>@string/descartesSquaredIIQuarter</item>
+        <item>@string/descartesSquaredIIIQuarter</item>
+        <item>@string/descartesSquaredIVQuarter</item>
+    </string-array>
 </resources>

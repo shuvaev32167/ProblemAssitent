@@ -20,6 +20,8 @@ import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Card
 import ru.crazypeppers.problemsassistant.data.dto.Point
+import ru.crazypeppers.problemsassistant.data.enumiration.CardType
+import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 
 /**
@@ -52,10 +54,18 @@ class CardNewFragment : Fragment(), OnBackPressedListener {
             positionProblem = arg.getInt(PROBLEM_POSITION_TEXT, NOT_POSITION)
         }
 
+        val problem = application.data[positionProblem]
 
-        activity.title = getString(R.string.advantage_disadvantageNewLabel)
-        layoutVariants.visibility = VISIBLE
-        checkScoreNow.visibility = VISIBLE
+        if (problem.type == ProblemType.LINE) {
+            activity.title = getString(R.string.advantage_disadvantageNewLabel)
+            layoutVariants.visibility = VISIBLE
+            checkScoreNow.visibility = VISIBLE
+        } else if (problem.type == ProblemType.DESCARTES_SQUARED) {
+            activity.title = getString(R.string.cardNewLabel)
+            layoutVariants.visibility = GONE
+            checkScoreNow.visibility = GONE
+            descartesSquaredLayout.visibility = VISIBLE
+        }
 
 
         checkScoreNow.setOnCheckedChangeListener { _, isChecked ->
@@ -83,19 +93,24 @@ class CardNewFragment : Fragment(), OnBackPressedListener {
             val titleId: Int
             val messageId: Int
 
-            when {
-                seekBarVariants.progress > 5 -> {
-                    titleId = R.string.cardAdvantageNameBusyTitle
-                    messageId = R.string.cardAdvantageNameBusyMessage
+            if (problem.type == ProblemType.LINE) {
+                when {
+                    seekBarVariants.progress > 5 -> {
+                        titleId = R.string.cardAdvantageNameBusyTitle
+                        messageId = R.string.cardAdvantageNameBusyMessage
+                    }
+                    seekBarVariants.progress < 5 -> {
+                        titleId = R.string.cardDisadvantageNameBusyTitle
+                        messageId = R.string.cardDisadvantageNameBusyMessage
+                    }
+                    else -> {
+                        titleId = R.string.cardAdvantage_DisadvantageNameBusyTitle
+                        messageId = R.string.cardAdvantage_DisadvantageNameBusyMessage
+                    }
                 }
-                seekBarVariants.progress < 5 -> {
-                    titleId = R.string.cardDisadvantageNameBusyTitle
-                    messageId = R.string.cardDisadvantageNameBusyMessage
-                }
-                else -> {
-                    titleId = R.string.cardAdvantage_DisadvantageNameBusyTitle
-                    messageId = R.string.cardAdvantage_DisadvantageNameBusyMessage
-                }
+            } else {
+                titleId = R.string.cardDescartesSquaredNameBusyTitle
+                messageId = R.string.cardDescartesSquaredNameBusyMessage
             }
 
             adb.setTitle(titleId)
@@ -108,25 +123,34 @@ class CardNewFragment : Fragment(), OnBackPressedListener {
             adb.setIcon(android.R.drawable.ic_dialog_alert)
             adb.setNeutralButton(R.string.fixButton, null)
             val alert = adb.create()
-            val problem = application.data[positionProblem]
 
             if (problem.hasCardWithName(newName)) {
                 alert.show()
                 return@setOnClickListener
             } else {
-                if (checkScoreNow.isChecked) {
-                    problem.add(Card(newName, cardDescription.text.toString()))
-                } else {
+                if (problem.type == ProblemType.LINE) {
+                    if (checkScoreNow.isChecked) {
+                        problem.add(Card(newName, cardDescription.text.toString()))
+                    } else {
+                        problem.add(
+                            Card(
+                                cardName = newName,
+                                cardDescription = cardDescription.text.toString(),
+                                parent = problem,
+                                points = mutableListOf(
+                                    Point(
+                                        seekBarVariants.progress - 5
+                                    )
+                                )
+                            )
+                        )
+                    }
+                } else if (problem.type == ProblemType.DESCARTES_SQUARED) {
                     problem.add(
                         Card(
                             cardName = newName,
                             cardDescription = cardDescription.text.toString(),
-                            parent = problem,
-                            points = mutableListOf(
-                                Point(
-                                    seekBarVariants.progress - 5
-                                )
-                            )
+                            cardType = getCardTypeFromSpinner()
                         )
                     )
                 }
@@ -156,6 +180,15 @@ class CardNewFragment : Fragment(), OnBackPressedListener {
             score < 0 -> getString(R.string.disadvantageNewLabel)
             score > 0 -> getString(R.string.advantageNewLabel)
             else -> getString(R.string.advantage_disadvantageNewLabel)
+        }
+    }
+
+    private fun getCardTypeFromSpinner(): CardType {
+        return when (descartesSquaredQuarterSpinner.selectedItemPosition) {
+            0 -> CardType.SQUARE_DO_HAPPEN
+            1 -> CardType.SQUARE_NOT_DO_HAPPEN
+            2 -> CardType.SQUARE_DO_NOT_HAPPEN
+            else -> CardType.SQUARE_NOT_DO_NOT_HAPPEN
         }
     }
 

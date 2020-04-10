@@ -14,7 +14,6 @@ import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
-import ru.crazypeppers.problemsassistant.data.dto.Problem
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 
 /**

@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.data.enumiration.CardType
+import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.hyperlinkStyle
 import ru.crazypeppers.problemsassistant.toStringRound
 
@@ -42,24 +44,54 @@ class CardArrayAdapter(context: Context, cardList: List<Card>) :
             cardDescription.visibility = GONE
         }
         val cardAvgPoint = view.findViewById<TextView>(R.id.cardAvgPoint)
-        if (card.points.isEmpty() || (card.points.size == 1 && card[0].score == 0)) {
-            cardAvgPoint.visibility = INVISIBLE
-        } else {
-            cardAvgPoint.text = card.avgPoints.toStringRound(2)
+        val adb: AlertDialog.Builder = AlertDialog.Builder(context)
+        adb.setTitle(R.string.informationTitle)
+        adb.setIcon(android.R.drawable.ic_dialog_info)
+        adb.setNeutralButton(R.string.okButton, null)
+        if (card.parent?.type == ProblemType.LINE) {
+            if (card.points.isEmpty()) {
+                cardAvgPoint.visibility = INVISIBLE
+            } else {
+                cardAvgPoint.visibility = VISIBLE
+                cardAvgPoint.text = card.avgPoints.toStringRound(2)
+                cardAvgPoint.setOnClickListener {
+                    adb.setMessage(
+                        String.format(
+                            context.getString(R.string.informationCardAlertBody),
+                            card.avgPoints.toStringRound(2)
+                        )
+                    )
+                    adb.create().show()
+                }
+                cardAvgPoint.hyperlinkStyle()
+            }
+        } else if (card.parent?.type == ProblemType.DESCARTES_SQUARED) {
+            cardAvgPoint.visibility = VISIBLE
+            cardAvgPoint.text = context.getString(
+                when (card.type) {
+                    CardType.SQUARE_DO_HAPPEN -> R.string.descartesSquaredIQuarterShort
+                    CardType.SQUARE_NOT_DO_HAPPEN -> R.string.descartesSquaredIIQuarterShort
+                    CardType.SQUARE_DO_NOT_HAPPEN -> R.string.descartesSquaredIIIQuarterShort
+                    else -> R.string.descartesSquaredIVQuarterShort
+                }
+            )
+            cardAvgPoint.hyperlinkStyle()
             cardAvgPoint.setOnClickListener {
-                val adb: AlertDialog.Builder = AlertDialog.Builder(context)
-                adb.setTitle(R.string.informationTitle)
                 adb.setMessage(
                     String.format(
-                        context.getString(R.string.informationCardAlertBody),
-                        card.avgPoints.toStringRound(2)
+                        context.getString(R.string.informationCardDescartesSquaredAlertBody),
+                        context.getString(
+                            when (card.type) {
+                                CardType.SQUARE_DO_HAPPEN -> R.string.descartesSquaredIQuarter
+                                CardType.SQUARE_NOT_DO_HAPPEN -> R.string.descartesSquaredIIQuarter
+                                CardType.SQUARE_DO_NOT_HAPPEN -> R.string.descartesSquaredIIIQuarter
+                                else -> R.string.descartesSquaredIVQuarter
+                            }
+                        )
                     )
                 )
-                adb.setIcon(android.R.drawable.ic_dialog_info)
-                adb.setNeutralButton(R.string.okButton, null)
                 adb.create().show()
             }
-            cardAvgPoint.hyperlinkStyle()
         }
         return view
     }

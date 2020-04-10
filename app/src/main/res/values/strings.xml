@@ -96,4 +96,22 @@
 
     <string name="descartesSquaredShort">КД</string>
 
+    <string name="descartesSquaredSpinnerCardLabel">Выберите четверть карты:</string>
+    <string name="descartesSquaredIQuarter">I – <b>Плюс</b> если <b>произойдёт</b></string>
+    <string name="descartesSquaredIIQuarter">II – <b>Минус</b> если <b>произойдёт</b></string>
+    <string name="descartesSquaredIIIQuarter">III – <b>Плюс</b> если <b>не произойдёт</b></string>
+    <string name="descartesSquaredIVQuarter">IV – <b>Минус</b> если <b>не произойдёт</b></string>
+
+    <string name="descartesSquaredIQuarterShort">I</string>
+    <string name="descartesSquaredIIQuarterShort">II</string>
+    <string name="descartesSquaredIIIQuarterShort">III</string>
+    <string name="descartesSquaredIVQuarterShort">IV</string>
+
+    <string name="cardListLabel">Список карт</string>
+    <string name="cardNewLabel">Создание карты</string>
+    <string name="cardEditLabel">Редактирование карты</string>
+    <string name="cardDescartesSquaredNameBusyTitle">Название карты занято</string>
+    <string name="cardDescartesSquaredNameBusyMessage">Карта с именем %s уже существует. Пожалуйста введите другое название.</string>
+    <string name="informationCardDescartesSquaredAlertBody">Карта расположена в черверти: "%s"</string>
+
 </resources>
