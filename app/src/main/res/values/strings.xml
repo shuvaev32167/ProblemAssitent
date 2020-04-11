@@ -112,6 +112,6 @@
     <string name="cardEditLabel">Редактирование карты</string>
     <string name="cardDescartesSquaredNameBusyTitle">Название карты занято</string>
     <string name="cardDescartesSquaredNameBusyMessage">Карта с именем %s уже существует. Пожалуйста введите другое название.</string>
-    <string name="informationCardDescartesSquaredAlertBody">Карта расположена в черверти: "%s"</string>
+    <string name="informationCardDescartesSquaredAlertBody">Карта расположена в черверти: \"%s\"</string>
 
 </resources>
