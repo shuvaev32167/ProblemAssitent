@@ -21,6 +21,8 @@ import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Card
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
+import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
+import ru.crazypeppers.problemsassistant.fromHtml
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 
 /**
@@ -145,23 +147,38 @@ class CardFragment : Fragment(), OnBackPressedListener {
         }
     }
 
-    private fun getInformationTextText(card: Card): String {
-        return if (card.points.isNotEmpty()) {
-            String.format(
-                getString(R.string.informationText),
-                when (card.type) {
-                    CardType.LINEAR_ADVANTAGE -> getString(R.string.advantage)
-                    CardType.LINEAR_DISADVANTAGE -> getString(R.string.disadvantage)
-                    else -> getString(R.string.advantage_disadvantage)
-                },
-                card.name,
-                card.points.first().score,
-                DATE_FORMAT.format(card.points.first().cdate.time)
-            )
-        } else {
-            String.format(
-                getString(R.string.informationTextNotScore),
-                card.name
+    private fun getInformationTextText(card: Card): CharSequence {
+        return if (card.parent!!.type == ProblemType.LINE)
+            if (card.points.isNotEmpty()) {
+                String.format(
+                    getString(R.string.informationText),
+                    when (card.type) {
+                        CardType.LINEAR_ADVANTAGE -> getString(R.string.advantage)
+                        CardType.LINEAR_DISADVANTAGE -> getString(R.string.disadvantage)
+                        else -> getString(R.string.advantage_disadvantage)
+                    },
+                    card.name,
+                    card.points.first().score,
+                    DATE_FORMAT.format(card.points.first().cdate.time)
+                )
+            } else {
+                String.format(
+                    getString(R.string.informationTextNotScore),
+                    card.name
+                )
+            } else {
+            fromHtml(
+                getString(
+                    R.string.informationDescartesSquaredText,
+                    getString(
+                        when (card.type) {
+                            CardType.SQUARE_DO_HAPPEN -> R.string.descartesSquaredIQuarterFotGetString
+                            CardType.SQUARE_NOT_DO_HAPPEN -> R.string.descartesSquaredIIQuarterFotGetString
+                            CardType.SQUARE_DO_NOT_HAPPEN -> R.string.descartesSquaredIIIQuarterFotGetString
+                            else -> R.string.descartesSquaredIVQuarterFotGetString
+                        }
+                    )
+                )
             )
         }
     }

@@ -101,6 +101,10 @@
     <string name="descartesSquaredIIQuarter">II – <b>Минус</b> если <b>произойдёт</b></string>
     <string name="descartesSquaredIIIQuarter">III – <b>Плюс</b> если <b>не произойдёт</b></string>
     <string name="descartesSquaredIVQuarter">IV – <b>Минус</b> если <b>не произойдёт</b></string>
+    <string name="descartesSquaredIQuarterFotGetString">I – &lt;b>Плюс&lt;/b> если &lt;b>произойдёт&lt;/b></string>
+    <string name="descartesSquaredIIQuarterFotGetString">II – &lt;b>Минус&lt;/b> если &lt;b>произойдёт&lt;/b></string>
+    <string name="descartesSquaredIIIQuarterFotGetString">III – &lt;b>Плюс&lt;/b> если &lt;b>не произойдёт&lt;/b></string>
+    <string name="descartesSquaredIVQuarterFotGetString">IV – &lt;b>Минус&lt;/b> если &lt;b>не произойдёт&lt;/b></string>
 
     <string name="descartesSquaredIQuarterShort">I</string>
     <string name="descartesSquaredIIQuarterShort">II</string>
@@ -113,5 +117,7 @@
     <string name="cardDescartesSquaredNameBusyTitle">Название карты занято</string>
     <string name="cardDescartesSquaredNameBusyMessage">Карта с именем %s уже существует. Пожалуйста введите другое название.</string>
     <string name="informationCardDescartesSquaredAlertBody">Карта расположена в черверти: \"%s\"</string>
+
+    <string name="informationDescartesSquaredText">Эта карта находится в четверти: %s</string>
 
 </resources>

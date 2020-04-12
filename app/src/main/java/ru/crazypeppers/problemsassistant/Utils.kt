@@ -2,12 +2,13 @@
 
 package ru.crazypeppers.problemsassistant
 
+import android.os.Build
+import android.text.Html
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.URLSpan
 import android.widget.TextView
 import ru.crazypeppers.problemsassistant.data.dto.Card
-import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.data.dto.Problem
 import java.math.RoundingMode
 import java.util.*
@@ -103,4 +104,16 @@ fun createProblemStub(): Problem {
             )
         )
     )
+}
+
+@Suppress("DEPRECATION")
+fun fromHtml(htmlString: String): Spanned {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        Html.fromHtml(
+            htmlString,
+            Html.FROM_HTML_MODE_COMPACT
+        )
+    } else {
+        Html.fromHtml(htmlString)
+    }
 }

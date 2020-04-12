@@ -12,6 +12,7 @@ import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.data.dto.Card
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
+import ru.crazypeppers.problemsassistant.fromHtml
 import ru.crazypeppers.problemsassistant.hyperlinkStyle
 import ru.crazypeppers.problemsassistant.toStringRound
 
@@ -21,7 +22,6 @@ import ru.crazypeppers.problemsassistant.toStringRound
  * @constructor Конструктор
  * @param context текущий контекст
  * @param cardList список карт
- * @param gettingTitle способ формирования названия карты
  */
 class CardArrayAdapter(context: Context, cardList: List<Card>) :
     ArrayAdapter<Card>(context, R.layout.element_card_list, cardList) {
@@ -77,19 +77,24 @@ class CardArrayAdapter(context: Context, cardList: List<Card>) :
             )
             cardAvgPoint.hyperlinkStyle()
             cardAvgPoint.setOnClickListener {
-                adb.setMessage(
+                val text = TextView(context)
+
+                text.text = fromHtml(
                     String.format(
-                        context.getString(R.string.informationCardDescartesSquaredAlertBody),
                         context.getString(
-                            when (card.type) {
-                                CardType.SQUARE_DO_HAPPEN -> R.string.descartesSquaredIQuarter
-                                CardType.SQUARE_NOT_DO_HAPPEN -> R.string.descartesSquaredIIQuarter
-                                CardType.SQUARE_DO_NOT_HAPPEN -> R.string.descartesSquaredIIIQuarter
-                                else -> R.string.descartesSquaredIVQuarter
-                            }
+                            R.string.informationCardDescartesSquaredAlertBody,
+                            context.getString(
+                                when (card.type) {
+                                    CardType.SQUARE_DO_HAPPEN -> R.string.descartesSquaredIQuarterFotGetString
+                                    CardType.SQUARE_NOT_DO_HAPPEN -> R.string.descartesSquaredIIQuarterFotGetString
+                                    CardType.SQUARE_DO_NOT_HAPPEN -> R.string.descartesSquaredIIIQuarterFotGetString
+                                    else -> R.string.descartesSquaredIVQuarterFotGetString
+                                }
+                            )
                         )
                     )
                 )
+                adb.setView(text)
                 adb.create().show()
             }
         }
