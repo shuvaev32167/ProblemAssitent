@@ -46,19 +46,17 @@ class CardListFragment : ListFragment(), OnBackPressedListener {
             }
 
             inputAdd.show()
-            val arg = arguments
-            if (arg != null) {
-                val data = (activity.application as DataApplication).data
-                problemPosition = arg.getInt(PROBLEM_POSITION_TEXT)
-                val problem = data[problemPosition]
-                listAdapter =
-                    CardArrayAdapter(activity, problem.cards)
+            val arg = arguments as Bundle
+            val data = (activity.application as DataApplication).data
+            problemPosition = arg.getInt(PROBLEM_POSITION_TEXT)
+            val problem = data[problemPosition]
+            listAdapter =
+                CardArrayAdapter(activity, problem.cards)
 
-                if (problem.type == ProblemType.LINE) {
-                    activity.title = getString(R.string.card_list_fragment_label)
-                } else if (problem.type == ProblemType.DESCARTES_SQUARED) {
-                    activity.title = getString(R.string.cardListLabel)
-                }
+            if (problem.type == ProblemType.LINE) {
+                activity.title = getString(R.string.card_list_fragment_label)
+            } else if (problem.type == ProblemType.DESCARTES_SQUARED) {
+                activity.title = getString(R.string.cardListLabel)
             }
 
 
@@ -66,7 +64,9 @@ class CardListFragment : ListFragment(), OnBackPressedListener {
                 val popupMenu = PopupMenu(activity, viewListItem)
                 popupMenu.menu.add(1, 0, 1, getString(R.string.popupEdit))
                 popupMenu.menu.add(1, 1, 2, getString(R.string.popupDelete))
-                popupMenu.menu.add(1, 2, 3, getString(R.string.graphScoreChanged))
+                if (problem.type == ProblemType.LINE) {
+                    popupMenu.menu.add(1, 2, 3, getString(R.string.graphScoreChanged))
+                }
                 popupMenu.show()
 
                 popupMenu.setOnMenuItemClickListener {
