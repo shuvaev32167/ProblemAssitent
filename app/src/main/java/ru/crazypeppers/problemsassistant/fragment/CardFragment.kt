@@ -147,6 +147,13 @@ class CardFragment : Fragment(), OnBackPressedListener {
         }
     }
 
+    /**
+     * Определение информационного текста, на основе данных карты [card].
+     * В зависимости от типа проблемы ([Card.parent]), будет вернут или `String` или `Span`.
+     *
+     * @param card карта
+     * @return текст для информационного сообщения
+     */
     private fun getInformationTextText(card: Card): CharSequence {
         return if (card.parent!!.type == ProblemType.LINE)
             if (card.points.isNotEmpty()) {

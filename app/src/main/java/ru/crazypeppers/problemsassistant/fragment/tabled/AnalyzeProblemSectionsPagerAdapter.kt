@@ -26,7 +26,7 @@ class AnalyzeProblemSectionsPagerAdapter(
     private val arguments: Bundle?
 ) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-    val PAGE_COUNT = 3
+    private val PAGE_COUNT = 3
     private val ANALYZE_PROBLEM_TABS = context.resources.getTextArray(R.array.analyzeProblemTabs)
 
     override fun getCount(): Int {

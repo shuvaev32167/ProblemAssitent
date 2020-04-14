@@ -47,6 +47,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Обработка нажатия системной кнопки назад
+     */
     override fun onBackPressed() {
         if (onBackPressedListener?.onBackPressed() == true)
             return

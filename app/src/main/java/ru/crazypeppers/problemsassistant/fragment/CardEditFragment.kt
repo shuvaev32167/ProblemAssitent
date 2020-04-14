@@ -130,6 +130,11 @@ class CardEditFragment : Fragment(), OnBackPressedListener {
         }
     }
 
+    /**
+     * Установка заголовка активити по карте
+     *
+     * @param card карта
+     */
     private fun setActivityTitle(card: Card) {
         activity?.title = when (card.type) {
             CardType.LINEAR_ADVANTAGE -> getString(R.string.advantageEditLabel)
@@ -138,6 +143,11 @@ class CardEditFragment : Fragment(), OnBackPressedListener {
         }
     }
 
+    /**
+     * Получения типа карты, согласно выпадающему меню [descartesSquaredQuarterSpinner]
+     *
+     * @return Тип карты
+     */
     private fun getCardTypeFromSpinner(): CardType {
         return when (descartesSquaredQuarterSpinner.selectedItemPosition) {
             0 -> CardType.SQUARE_DO_HAPPEN

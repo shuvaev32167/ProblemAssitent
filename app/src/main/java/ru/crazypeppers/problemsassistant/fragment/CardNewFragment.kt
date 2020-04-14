@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_card_new.*
+import kotlinx.android.synthetic.main.fragment_card_new.cardDescription
+import kotlinx.android.synthetic.main.fragment_card_new.cardName
 import kotlinx.android.synthetic.main.layout_variants.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
@@ -175,6 +177,11 @@ class CardNewFragment : Fragment(), OnBackPressedListener {
         })
     }
 
+    /**
+     * Установка заголовка активити по оценке карты
+     *
+     * @param score оценка карты
+     */
     private fun setActivityTitle(score: Int) {
         activity?.title = when {
             score < 0 -> getString(R.string.disadvantageNewLabel)
@@ -183,6 +190,11 @@ class CardNewFragment : Fragment(), OnBackPressedListener {
         }
     }
 
+    /**
+     * Получения типа карты, согласно выпадающему меню [descartesSquaredQuarterSpinner]
+     *
+     * @return Тип карты
+     */
     private fun getCardTypeFromSpinner(): CardType {
         return when (descartesSquaredQuarterSpinner.selectedItemPosition) {
             0 -> CardType.SQUARE_DO_HAPPEN

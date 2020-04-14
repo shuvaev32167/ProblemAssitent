@@ -91,6 +91,14 @@ class Card(
     @Transient
     var parent: Problem? = null
 
+    /**
+     * Расчёт веса элемента оценки
+     *
+     * @param maxDay число дней между первой и последней оценкой
+     * @param diffDay разница в днях между текущей и последней оценкой
+     * @param position позиция оценки
+     * @return вес элемента оценки
+     */
     private fun calculateWeightElement(maxDay: Int, diffDay: Int, position: Int): Double {
         val weight = (100 + maxDay - diffDay / position.toDouble()) / position.toDouble()
         if (weight < 0) {
@@ -197,6 +205,12 @@ class Card(
         dischargeAvgPoints()
     }
 
+    /**
+     * Поиск оценки по дате
+     *
+     * @param data дата, по которой ищем
+     * @return найденная оценка, или `null`, если не удалось найти оценку
+     */
     private fun findPointByDate(data: Calendar): Point? {
         points.forEach { if (it.cdate == data) return it }
         return null

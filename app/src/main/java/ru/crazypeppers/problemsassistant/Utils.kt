@@ -106,6 +106,12 @@ fun createProblemStub(): Problem {
     )
 }
 
+/**
+ * Оборачиваение строки с `HTML` тегами в Span, для корректной обработки тегов.
+ *
+ * @param htmlString строка с `HTML` тегами
+ * @return Span со стракой
+ */
 @Suppress("DEPRECATION")
 fun fromHtml(htmlString: String): Spanned {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
