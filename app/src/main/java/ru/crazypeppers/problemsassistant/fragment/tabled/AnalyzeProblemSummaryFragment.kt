@@ -3,6 +3,7 @@ package ru.crazypeppers.problemsassistant.fragment.tabled
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_analyze_problem_summery.*
@@ -18,7 +19,7 @@ import ru.crazypeppers.problemsassistant.toStringRound
 /**
  * Фрагмент отвечающий за общую инфвормацию в анализе проблемы
  */
-class AnalyzeProblemSummeryFragment : Fragment() {
+class AnalyzeProblemSummaryFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,15 +60,20 @@ class AnalyzeProblemSummeryFragment : Fragment() {
 
             val assessments = problem.cards.flatMap { it.points }.sortedBy { it.cdate }
 
-            dateOfFirstProblemAssessment.text = String.format(
-                getString(R.string.dateOfFirstProblemAssessmentLabel),
-                DATE_FORMAT.format(assessments.first().cdate.time)
-            )
+            if (assessments.isNotEmpty()) {
+                dateOfFirstProblemAssessment.text = String.format(
+                    getString(R.string.dateOfFirstProblemAssessmentLabel),
+                    DATE_FORMAT.format(assessments.first().cdate.time)
+                )
 
-            dateOfLastProblemAssessment.text = String.format(
-                getString(R.string.dateOfLastProblemAssessmentLabel),
-                DATE_FORMAT.format(assessments.last().cdate.time)
-            )
+                dateOfLastProblemAssessment.text = String.format(
+                    getString(R.string.dateOfLastProblemAssessmentLabel),
+                    DATE_FORMAT.format(assessments.last().cdate.time)
+                )
+            } else {
+                dateOfFirstProblemAssessment.visibility = GONE
+                dateOfLastProblemAssessment.visibility = GONE
+            }
         }
     }
 }

@@ -14,10 +14,18 @@
         <item>@string/positive_5</item>
     </string-array>
 
-    <string-array name="analyzeProblemTabs">
-        <item>@string/analyzeProblemTab1</item>
-        <item>@string/analyzeProblemTab2</item>
-        <item>@string/analyzeProblemTab3</item>
+    <string-array name="analyzeLinearProblemTabs">
+        <item>@string/analyzeProblemTabSummaryInformation</item>
+        <item>@string/analyzeLinearProblemTabAdvantages</item>
+        <item>@string/analyzeLinearProblemTabDisadvantages</item>
+    </string-array>
+
+    <string-array name="analyzeDescartesSquaredProblemTabs">
+        <item>@string/analyzeProblemTabSummaryInformation</item>
+        <item>@string/descartesSquaredIQuarter</item>
+        <item>@string/descartesSquaredIIQuarter</item>
+        <item>@string/descartesSquaredIIIQuarter</item>
+        <item>@string/descartesSquaredIVQuarter</item>
     </string-array>
 
     <string-array name="problemType">
@@ -26,9 +34,9 @@
     </string-array>
 
     <string-array name="descartesSquaredQuarters">
-        <item>@string/descartesSquaredIQuarter</item>
-        <item>@string/descartesSquaredIIQuarter</item>
-        <item>@string/descartesSquaredIIIQuarter</item>
-        <item>@string/descartesSquaredIVQuarter</item>
+        <item>@string/descartesSquaredIQuarterLong</item>
+        <item>@string/descartesSquaredIIQuarterLong</item>
+        <item>@string/descartesSquaredIIIQuarterLong</item>
+        <item>@string/descartesSquaredIVQuarterLong</item>
     </string-array>
 </resources>

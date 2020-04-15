@@ -9,7 +9,6 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isPlatformPopup
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.hamcrest.Matchers
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Before
 import org.junit.Test
@@ -38,14 +37,14 @@ class AnalyzeProblemFragmentInstrumentedTestFragment : FragmentIntegrationTestPa
 
     @Test
     fun testMotivationList() {
-        onView(withText(R.string.analyzeProblemTab2)).perform(click())
+        onView(withText(R.string.analyzeLinearProblemTabAdvantages)).perform(click())
         onView(withText("ttest")).check(matches(withTextColor(0xFF00FA00.toInt())))
             .check(matches(isCompletelyDisplayed()))
     }
 
     @Test
     fun testAnchorList() {
-        onView(withText(R.string.analyzeProblemTab3)).perform(click())
+        onView(withText(R.string.analyzeLinearProblemTabDisadvantages)).perform(click())
         onView(withText("1234")).check(matches(withTextColor(0xFFFA0000.toInt())))
             .check(matches(isCompletelyDisplayed()))
         onView(withText("4321")).check(matches(withTextColor(0xFFFA0000.toInt())))

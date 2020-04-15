@@ -8,7 +8,9 @@ import androidx.fragment.app.FragmentPagerAdapter
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.data.LAMBDA_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.data.dto.Problem
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
+import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import java.io.Serializable
 
 /**
@@ -23,33 +25,65 @@ import java.io.Serializable
 class AnalyzeProblemSectionsPagerAdapter(
     fm: FragmentManager,
     context: Context,
-    private val arguments: Bundle?
+    private val arguments: Bundle?,
+    private val problem: Problem
 ) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-    private val PAGE_COUNT = 3
-    private val ANALYZE_PROBLEM_TABS = context.resources.getTextArray(R.array.analyzeProblemTabs)
+    /**
+     * Число вкладок при анализе линейной проблемы
+     */
+    private val analyzeLinearProblemTabCount = 3
+
+    /**
+     * Загаловки вкладок для анализа линейной проблемы
+     */
+    private val analyzeLinearProblemTabNames =
+        context.resources.getTextArray(R.array.analyzeLinearProblemTabs)
+
+    /**
+     * Число вкладок при анализе проблемы решаемой по квадрату декартаDESCARTES_SQUARED
+     */
+    private val analyzeDescartesSquaredProblemTabCount = 5
+
+    /**
+     * Заголовки вкладок для анализа проблемы, решаемый по квадрату декарта
+     */
+    private val analyzeDescartesSquaredProblemTabNames =
+        context.resources.getTextArray(R.array.analyzeDescartesSquaredProblemTabs)
 
     override fun getCount(): Int {
-        return PAGE_COUNT
+        return if (problem.type == ProblemType.LINE) {
+            analyzeLinearProblemTabCount
+        } else {
+            analyzeDescartesSquaredProblemTabCount
+        }
     }
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                val analyzeProblemSummeryFragment = AnalyzeProblemSummeryFragment()
+                val analyzeProblemSummeryFragment = AnalyzeProblemSummaryFragment()
                 analyzeProblemSummeryFragment.arguments = arguments
                 return analyzeProblemSummeryFragment
             }
-            1, 2 -> {
+            1, 2, 3, 4 -> {
                 val analyzeProblemMotivationList = AnalyzeProblemCardList()
                 val bundle = Bundle(arguments)
                 bundle.putSerializable(
                     LAMBDA_TEXT,
-                    if (position == 1) { card: Card ->
-                        card.type == CardType.LINEAR_ADVANTAGE
-                    }
-                    else { card: Card ->
-                        card.type == CardType.LINEAR_DISADVANTAGE
+                    when (position) {
+                        1 -> { card: Card ->
+                            card.type == CardType.LINEAR_ADVANTAGE || card.type == CardType.SQUARE_DO_HAPPEN
+                        }
+                        2 -> { card: Card ->
+                            card.type == CardType.LINEAR_DISADVANTAGE || card.type == CardType.SQUARE_NOT_DO_HAPPEN
+                        }
+                        3 -> { card: Card ->
+                            card.type == CardType.SQUARE_DO_NOT_HAPPEN
+                        }
+                        else -> { card: Card ->
+                            card.type == CardType.SQUARE_DO_NOT_HAPPEN
+                        }
                     } as Serializable
                 )
                 analyzeProblemMotivationList.arguments = bundle
@@ -60,7 +94,11 @@ class AnalyzeProblemSectionsPagerAdapter(
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return ANALYZE_PROBLEM_TABS[position]
+        return if (problem.type == ProblemType.LINE) {
+            analyzeLinearProblemTabNames[position]
+        } else {
+            analyzeDescartesSquaredProblemTabNames[position]
+        }
     }
 
 }

@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_analyze_problem.*
+import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
+import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.fragment.tabled.AnalyzeProblemSectionsPagerAdapter
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 
@@ -37,7 +39,15 @@ class AnalyzeProblemFragment : Fragment(), OnBackPressedListener {
         inputAdd.hide()
 
         viewPager.adapter =
-            AnalyzeProblemSectionsPagerAdapter(childFragmentManager, activity, arguments)
+            AnalyzeProblemSectionsPagerAdapter(
+                childFragmentManager,
+                activity,
+                arguments,
+                (activity.application as DataApplication).data[requireArguments().getInt(
+                    PROBLEM_POSITION_TEXT,
+                    0
+                )]
+            )
 
         tabLayout.setupWithViewPager(viewPager)
     }

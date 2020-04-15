@@ -22,9 +22,9 @@
     <string name="popupEdit">Редактировать</string>
     <string name="popupDelete">Удалить</string>
 
-    <string name="analyzeProblemTab1">Общая информация</string>
-    <string name="analyzeProblemTab2">Пеимущества</string>
-    <string name="analyzeProblemTab3">Недостатки</string>
+    <string name="analyzeProblemTabSummaryInformation">Общая информация</string>
+    <string name="analyzeLinearProblemTabAdvantages">Пеимущества</string>
+    <string name="analyzeLinearProblemTabDisadvantages">Недостатки</string>
 
     <string name="popupAnalyze">Анализировать</string>
     <string name="avgPointsLabel">Вы хотите решить %s с индексом, равным %s</string>
@@ -97,10 +97,14 @@
     <string name="descartesSquaredShort">КД</string>
 
     <string name="descartesSquaredSpinnerCardLabel">Выберите четверть карты:</string>
-    <string name="descartesSquaredIQuarter">I – <b>Плюс</b> если <b>произойдёт</b></string>
-    <string name="descartesSquaredIIQuarter">II – <b>Минус</b> если <b>произойдёт</b></string>
-    <string name="descartesSquaredIIIQuarter">III – <b>Плюс</b> если <b>не произойдёт</b></string>
-    <string name="descartesSquaredIVQuarter">IV – <b>Минус</b> если <b>не произойдёт</b></string>
+    <string name="descartesSquaredIQuarterLong">I – <b>Плюс</b> если <b>произойдёт</b></string>
+    <string name="descartesSquaredIIQuarterLong">II – <b>Минус</b> если <b>произойдёт</b></string>
+    <string name="descartesSquaredIIIQuarterLong">III – <b>Плюс</b> если <b>не произойдёт</b></string>
+    <string name="descartesSquaredIVQuarterLong">IV – <b>Минус</b> если <b>не произойдёт</b></string>
+    <string name="descartesSquaredIQuarter">I – <b>+</b>, <b>произойдёт</b></string>
+    <string name="descartesSquaredIIQuarter">II – <b>-</b>, <b>произойдёт</b></string>
+    <string name="descartesSquaredIIIQuarter">III – <b>+</b>, <b>не произойдёт</b></string>
+    <string name="descartesSquaredIVQuarter">IV – <b>-</b>, <b>не произойдёт</b></string>
     <string name="descartesSquaredIQuarterFotGetString">I – &lt;b>Плюс&lt;/b> если &lt;b>произойдёт&lt;/b></string>
     <string name="descartesSquaredIIQuarterFotGetString">II – &lt;b>Минус&lt;/b> если &lt;b>произойдёт&lt;/b></string>
     <string name="descartesSquaredIIIQuarterFotGetString">III – &lt;b>Плюс&lt;/b> если &lt;b>не произойдёт&lt;/b></string>
