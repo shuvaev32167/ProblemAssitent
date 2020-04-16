@@ -10,30 +10,17 @@ import ru.crazypeppers.problemsassistant.roundTo
 import java.util.*
 
 /**
- * Описание карты (мотивации/якоря) для решения проблемы
+ * Описание карты (мотивации/якоря) для решения линейной проблемы
  *
- * @property name Название карты
  * @property points Список очков
+ *
+ * @constructor
+ * @param name название карты
  */
-class Card(
-    var name: String,
+class LinearCard(
+    name: String,
     val points: List<Point>
-) {
-    /**
-     * Тип карты
-     */
-    var type: CardType = CardType.NONE
-
-    /**
-     * Пояснение карты
-     */
-    var description: String = ""
-
-    /**
-     * Картинка карты
-     */
-    var imageBase64: String? = null
-
+) : BaseCard(name) {
     init {
         for (point in points) {
             point.parent = this
@@ -84,12 +71,6 @@ class Card(
      * Среднее зачение очков, привязанных к карте
      */
     var avgPoints: Float = 0f
-
-    /**
-     * Проблема, к которой относится карты
-     */
-    @Transient
-    var parent: Problem? = null
 
     /**
      * Расчёт веса элемента оценки
@@ -171,7 +152,7 @@ class Card(
      *
      * @return Цвет карты, представленный типом `Int`
      */
-    fun calculateColor(): Int {
+    override fun calculateColor(): Int {
         val avgPoints = (avgPoints * 50).toInt()
         return when {
             avgPoints > 0 -> {
@@ -216,14 +197,7 @@ class Card(
         return null
     }
 
-    /**
-     * Акутуализация полей карты с версии [versionFrom] по версия [versionTo].
-     *
-     * @param parent проблема, к которой относятся карта
-     * @param versionFrom версия с которой производить актуализацию данных
-     * @param versionTo версия по которую производить актуализацию данных
-     */
-    fun actualize(
+    override fun actualize(
         parent: Problem,
         versionFrom: SupportedVersionData,
         versionTo: SupportedVersionData

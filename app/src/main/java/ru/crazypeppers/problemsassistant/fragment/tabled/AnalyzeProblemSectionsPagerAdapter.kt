@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.data.LAMBDA_TEXT
-import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.data.dto.BaseCard
 import ru.crazypeppers.problemsassistant.data.dto.Problem
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
@@ -72,17 +72,17 @@ class AnalyzeProblemSectionsPagerAdapter(
                 bundle.putSerializable(
                     LAMBDA_TEXT,
                     when (position) {
-                        1 -> { card: Card ->
+                        1 -> { card: BaseCard ->
                             card.type == CardType.LINEAR_ADVANTAGE || card.type == CardType.SQUARE_DO_HAPPEN
                         }
-                        2 -> { card: Card ->
+                        2 -> { card: BaseCard ->
                             card.type == CardType.LINEAR_DISADVANTAGE || card.type == CardType.SQUARE_NOT_DO_HAPPEN
                         }
-                        3 -> { card: Card ->
+                        3 -> { card: BaseCard ->
                             card.type == CardType.SQUARE_DO_NOT_HAPPEN
                         }
-                        else -> { card: Card ->
-                            card.type == CardType.SQUARE_DO_NOT_HAPPEN
+                        else -> { card: BaseCard ->
+                            card.type == CardType.SQUARE_NOT_DO_NOT_HAPPEN
                         }
                     } as Serializable
                 )

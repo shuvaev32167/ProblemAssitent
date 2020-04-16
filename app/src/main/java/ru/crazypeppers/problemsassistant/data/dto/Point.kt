@@ -22,7 +22,7 @@ class Point() {
      * Карта, к которой относятся очки
      */
     @Transient
-    var parent: Card? = null
+    var parent: LinearCard? = null
 
     /**
      * @param score выставленные очки
@@ -39,7 +39,7 @@ class Point() {
      * @param versionTo версия по которую производить актуализацию данных
      */
     fun actualize(
-        parent: Card,
+        parent: LinearCard,
         versionFrom: SupportedVersionData,
         versionTo: SupportedVersionData
     ) {

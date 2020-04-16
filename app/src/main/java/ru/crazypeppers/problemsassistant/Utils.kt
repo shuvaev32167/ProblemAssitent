@@ -8,7 +8,8 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.URLSpan
 import android.widget.TextView
-import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.data.dto.BaseCard
+import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Problem
 import java.math.RoundingMode
 import java.util.*
@@ -97,8 +98,8 @@ fun TextView.hyperlinkStyle() {
 fun createProblemStub(): Problem {
     return Problem(
         "test",
-        mutableListOf(
-            Card(
+        mutableListOf<BaseCard>(
+            LinearCard(
                 "ttest",
                 mutableListOf()
             )

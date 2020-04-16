@@ -118,6 +118,7 @@
     <string name="cardListLabel">Список карт</string>
     <string name="cardNewLabel">Создание карты</string>
     <string name="cardEditLabel">Редактирование карты</string>
+    <string name="cardLabel">Карта</string>
     <string name="cardDescartesSquaredNameBusyTitle">Название карты занято</string>
     <string name="cardDescartesSquaredNameBusyMessage">Карта с именем %s уже существует. Пожалуйста введите другое название.</string>
     <string name="informationCardDescartesSquaredAlertBody">Карта расположена в черверти: \"%s\"</string>

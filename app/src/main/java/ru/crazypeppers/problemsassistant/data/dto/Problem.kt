@@ -12,7 +12,7 @@ import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
  */
 class Problem(
     var name: String,
-    val cards: MutableList<Card> = mutableListOf()
+    val cards: MutableList<BaseCard> = mutableListOf()
 ) {
     /**
      * Тип проблемы
@@ -45,7 +45,7 @@ class Problem(
      * @return Карта
      * @throws IndexOutOfBoundsException при передачи значения [positionCard] выходящего за границы списка карт [cards]
      */
-    operator fun get(positionCard: Int): Card {
+    operator fun get(positionCard: Int): BaseCard {
         return cards[positionCard]
     }
 
@@ -54,7 +54,7 @@ class Problem(
      *
      * @param card карта
      */
-    fun add(card: Card) {
+    fun add(card: BaseCard) {
         card.parent = this
         cards.add(card)
     }
@@ -76,7 +76,7 @@ class Problem(
      * @param currentCard текущая редактируемая карта
      * @return `true`, если карта с таким именем есть в списке [cards], иначе `false`
      */
-    fun hasCardWithName(cardName: String, currentCard: Card? = null): Boolean {
+    fun hasCardWithName(cardName: String, currentCard: BaseCard? = null): Boolean {
         cards.forEach {
             if (it.name.equals(cardName, true) && it !== currentCard)
                 return true
@@ -117,7 +117,7 @@ class Problem(
      * @return вес проблемы.
      */
     fun calculateScoreProblem(): Float {
-        val avgPointsList = cards.filter {
+        val avgPointsList = cards.filterIsInstance<LinearCard>().filter {
             if (it.points.isEmpty())
                 return@filter false
             return@filter true

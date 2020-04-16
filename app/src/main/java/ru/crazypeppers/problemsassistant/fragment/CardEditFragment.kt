@@ -18,7 +18,7 @@ import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.data.CARD_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
-import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.data.dto.BaseCard
 import ru.crazypeppers.problemsassistant.data.dto.Problem
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
@@ -30,7 +30,7 @@ import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 class CardEditFragment : Fragment(), OnBackPressedListener {
     private var positionProblem = NOT_POSITION
     private var positionCard = NOT_POSITION
-    private lateinit var card: Card
+    private lateinit var card: BaseCard
     private lateinit var problem: Problem
 
     override fun onCreateView(
@@ -135,11 +135,12 @@ class CardEditFragment : Fragment(), OnBackPressedListener {
      *
      * @param card карта
      */
-    private fun setActivityTitle(card: Card) {
+    private fun setActivityTitle(card: BaseCard) {
         activity?.title = when (card.type) {
             CardType.LINEAR_ADVANTAGE -> getString(R.string.advantageEditLabel)
             CardType.LINEAR_DISADVANTAGE -> getString(R.string.disadvantageEditLabel)
-            else -> getString(R.string.advantage_disadvantageEditLabel)
+            CardType.NONE -> getString(R.string.advantage_disadvantageEditLabel)
+            else -> getString(R.string.cardEditLabel)
         }
     }
 

@@ -18,10 +18,11 @@ import ru.crazypeppers.problemsassistant.data.CARD_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.DATE_FORMAT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
-import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.data.dto.BaseCard
+import ru.crazypeppers.problemsassistant.data.dto.DescartesSquaredCard
+import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
-import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.fromHtml
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 
@@ -78,7 +79,8 @@ class CardFragment : Fragment(), OnBackPressedListener {
             activity.title = when (card.type) {
                 CardType.LINEAR_ADVANTAGE -> getString(R.string.advantageFragmentLabel)
                 CardType.LINEAR_DISADVANTAGE -> getString(R.string.disadvantageFragmentLabel)
-                else -> getString(R.string.advantage_disadvantageFragmentLabel)
+                CardType.NONE -> getString(R.string.advantage_disadvantageFragmentLabel)
+                else -> getString(R.string.cardLabel)
             }
             cardName.text = card.name
             cardNameTitle.text = String.format(
@@ -107,13 +109,17 @@ class CardFragment : Fragment(), OnBackPressedListener {
                     )
                 )
             }
-            if (card.points.isEmpty()) {
-                seekBarVariants.progress = 5
-                confirmButton.visibility = GONE
-                makeNewScoreButton.setText(R.string.makeScoreButton)
-            } else {
-                confirmButton.visibility = VISIBLE
-                makeNewScoreButton.setText(R.string.makeNewScoreButton)
+            if (card is LinearCard) {
+                if (card.points.isEmpty()) {
+                    seekBarVariants.progress = 5
+                    confirmButton.visibility = GONE
+                    makeNewScoreButton.setText(R.string.makeScoreButton)
+                } else {
+                    confirmButton.visibility = VISIBLE
+                    makeNewScoreButton.setText(R.string.makeNewScoreButton)
+                }
+            } else if (card is DescartesSquaredCard) {
+                newLayoutButtons.visibility = GONE
             }
 
             informationText.text = getInformationTextText(card)
@@ -125,7 +131,7 @@ class CardFragment : Fragment(), OnBackPressedListener {
 
         saveButton.setOnClickListener {
             val score = seekBarVariants.progress - 5
-            val card = application.data[positionProblem][positionCard]
+            val card = application.data[positionProblem][positionCard] as LinearCard
             card.add(Point(score))
             application.saveData()
             informationText.text = getInformationTextText(card)
@@ -133,7 +139,7 @@ class CardFragment : Fragment(), OnBackPressedListener {
         }
 
         confirmButton.setOnClickListener {
-            val card = application.data[positionProblem][positionCard]
+            val card = application.data[positionProblem][positionCard] as LinearCard
             card.add(Point(card.points.first().score))
             application.saveData()
             informationText.text = getInformationTextText(card)
@@ -149,13 +155,13 @@ class CardFragment : Fragment(), OnBackPressedListener {
 
     /**
      * Определение информационного текста, на основе данных карты [card].
-     * В зависимости от типа проблемы ([Card.parent]), будет вернут или `String` или `Span`.
+     * В зависимости от типа проблемы ([BaseCard.parent]), будет вернут или `String` или `Span`.
      *
      * @param card карта
      * @return текст для информационного сообщения
      */
-    private fun getInformationTextText(card: Card): CharSequence {
-        return if (card.parent!!.type == ProblemType.LINE)
+    private fun getInformationTextText(card: BaseCard): CharSequence {
+        return if (card is LinearCard)
             if (card.points.isNotEmpty()) {
                 String.format(
                     getString(R.string.informationText),
@@ -191,7 +197,7 @@ class CardFragment : Fragment(), OnBackPressedListener {
     }
 
     override fun onBackPressed(): Boolean {
-        return if (newLayoutButtons.visibility != VISIBLE || informationText.visibility != VISIBLE) {
+        return if (newLayoutButtons.visibility != VISIBLE && informationText.visibility != VISIBLE) {
             newLayoutButtons.visibility = VISIBLE
             informationText.visibility = VISIBLE
             frameVariant.visibility = GONE

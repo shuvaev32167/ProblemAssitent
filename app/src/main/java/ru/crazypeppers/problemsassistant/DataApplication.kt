@@ -1,8 +1,12 @@
 package ru.crazypeppers.problemsassistant
 
 import android.app.Application
-import com.google.gson.Gson
+import android.util.Log
+import com.google.gson.GsonBuilder
+import ru.crazypeppers.problemsassistant.adapter.JsonSerializeDeserializeCardAdapter
 import ru.crazypeppers.problemsassistant.data.Data
+import ru.crazypeppers.problemsassistant.data.TAG
+import ru.crazypeppers.problemsassistant.data.dto.BaseCard
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.InputStreamReader
@@ -12,7 +16,10 @@ import java.io.OutputStreamWriter
  * Реализация [Application] с возможносью оперировать данными
  */
 class DataApplication : Application() {
-    private val gson = Gson()
+    private val gson = GsonBuilder().registerTypeAdapter(
+        BaseCard::class.java,
+        JsonSerializeDeserializeCardAdapter()
+    ).create()
 
     /**
      * Данные
@@ -61,6 +68,7 @@ class DataApplication : Application() {
                 }
             }
         } catch (e: Exception) {
+            Log.e(TAG, "Ошибка при чтении данных", e)
             return Data(
                 mutableListOf(
                     createProblemStub()

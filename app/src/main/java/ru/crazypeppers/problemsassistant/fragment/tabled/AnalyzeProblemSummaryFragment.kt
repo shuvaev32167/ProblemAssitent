@@ -13,13 +13,15 @@ import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.data.DATE_FORMAT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
+import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.toStringRound
 
 /**
  * Фрагмент отвечающий за общую инфвормацию в анализе проблемы
  */
-class AnalyzeProblemSummaryFragment : Fragment() {
+class
+AnalyzeProblemSummaryFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +60,8 @@ class AnalyzeProblemSummaryFragment : Fragment() {
                 getString(R.string.summaryCountCardLabel), problem.cards.count()
             )
 
-            val assessments = problem.cards.flatMap { it.points }.sortedBy { it.cdate }
+            val assessments = problem.cards.filterIsInstance<LinearCard>().flatMap { it.points }
+                .sortedBy { it.cdate }
 
             if (assessments.isNotEmpty()) {
                 dateOfFirstProblemAssessment.text = String.format(

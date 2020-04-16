@@ -9,9 +9,10 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import ru.crazypeppers.problemsassistant.R
-import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.data.dto.BaseCard
+import ru.crazypeppers.problemsassistant.data.dto.DescartesSquaredCard
+import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
-import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.fromHtml
 import ru.crazypeppers.problemsassistant.hyperlinkStyle
 import ru.crazypeppers.problemsassistant.toStringRound
@@ -23,8 +24,8 @@ import ru.crazypeppers.problemsassistant.toStringRound
  * @param context текущий контекст
  * @param cardList список карт
  */
-class CardArrayAdapter(context: Context, cardList: List<Card>) :
-    ArrayAdapter<Card>(context, R.layout.element_card_list, cardList) {
+class CardArrayAdapter(context: Context, cardList: List<BaseCard>) :
+    ArrayAdapter<BaseCard>(context, R.layout.element_card_list, cardList) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var view = convertView
         val card = getItem(position)!!
@@ -48,7 +49,7 @@ class CardArrayAdapter(context: Context, cardList: List<Card>) :
         adb.setTitle(R.string.informationTitle)
         adb.setIcon(android.R.drawable.ic_dialog_info)
         adb.setNeutralButton(R.string.okButton, null)
-        if (card.parent?.type == ProblemType.LINE) {
+        if (card is LinearCard) {
             if (card.points.isEmpty()) {
                 cardAvgPoint.visibility = INVISIBLE
             } else {
@@ -65,7 +66,7 @@ class CardArrayAdapter(context: Context, cardList: List<Card>) :
                 }
                 cardAvgPoint.hyperlinkStyle()
             }
-        } else if (card.parent?.type == ProblemType.DESCARTES_SQUARED) {
+        } else if (card is DescartesSquaredCard) {
             cardAvgPoint.visibility = VISIBLE
             cardAvgPoint.text = context.getString(
                 when (card.type) {

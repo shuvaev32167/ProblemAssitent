@@ -17,7 +17,7 @@ import ru.crazypeppers.problemsassistant.adapter.CardArrayAdapter
 import ru.crazypeppers.problemsassistant.data.CARD_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
-import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.data.dto.BaseCard
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 import ru.crazypeppers.problemsassistant.listener.ScrollListenerHidingView
@@ -87,7 +87,7 @@ class CardListFragment : ListFragment(), OnBackPressedListener {
                             adb.setMessage(
                                 String.format(
                                     getString(R.string.removeItemConfirmMessage),
-                                    (listAdapter?.getItem(position) as Card).name
+                                    (listAdapter?.getItem(position) as BaseCard).name
                                 )
                             )
                             adb.setIcon(android.R.drawable.ic_dialog_alert)

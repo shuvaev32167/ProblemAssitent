@@ -20,7 +20,8 @@ import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
-import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.data.dto.DescartesSquaredCard
+import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
@@ -132,10 +133,10 @@ class CardNewFragment : Fragment(), OnBackPressedListener {
             } else {
                 if (problem.type == ProblemType.LINE) {
                     if (checkScoreNow.isChecked) {
-                        problem.add(Card(newName, cardDescription.text.toString()))
+                        problem.add(LinearCard(newName, cardDescription.text.toString()))
                     } else {
                         problem.add(
-                            Card(
+                            LinearCard(
                                 cardName = newName,
                                 cardDescription = cardDescription.text.toString(),
                                 parent = problem,
@@ -149,7 +150,7 @@ class CardNewFragment : Fragment(), OnBackPressedListener {
                     }
                 } else if (problem.type == ProblemType.DESCARTES_SQUARED) {
                     problem.add(
-                        Card(
+                        DescartesSquaredCard(
                             cardName = newName,
                             cardDescription = cardDescription.text.toString(),
                             cardType = getCardTypeFromSpinner()

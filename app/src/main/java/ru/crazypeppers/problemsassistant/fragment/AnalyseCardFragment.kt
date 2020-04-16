@@ -26,6 +26,8 @@ import ru.crazypeppers.problemsassistant.data.CARD_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.DATE_FORMAT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
+import ru.crazypeppers.problemsassistant.data.dto.BaseCard
+import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.diffDay
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
@@ -66,9 +68,9 @@ class AnalyseCardFragment : Fragment(), OnBackPressedListener {
             val card = application.data[positionProblem][positionCard]
             graphLabel.text =
                 String.format(getString(R.string.analyzeCardFragmentGraphLabel), card.name)
-            if (card.points.isEmpty()) {
+            if (card.isHideChart()) {
                 lineChart.visibility = GONE
-            } else {
+            } else if (card is LinearCard) {
                 lineChart.visibility = VISIBLE
                 val values = ArrayList<Entry>(card.points.size)
                 val firstDay = card.points.first().cdate
@@ -132,6 +134,18 @@ class AnalyseCardFragment : Fragment(), OnBackPressedListener {
                 lineChart.legend.isEnabled = false
                 lineChart.setPinchZoom(true)
             }
+        }
+    }
+
+    /**
+     * Определение надо ли для данной карты скрывать график
+     *
+     * @return `true`, если надо скрывать, в противном случае `false`
+     */
+    private fun BaseCard.isHideChart(): Boolean {
+        return when (this) {
+            is LinearCard -> this.points.isEmpty()
+            else -> true
         }
     }
 }
