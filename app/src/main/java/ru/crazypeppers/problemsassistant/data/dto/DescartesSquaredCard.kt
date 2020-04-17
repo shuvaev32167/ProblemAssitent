@@ -2,6 +2,8 @@ package ru.crazypeppers.problemsassistant.data.dto
 
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
+import ru.crazypeppers.problemsassistant.withoutTime
+import java.util.*
 
 /**
  * Карта для решения проблемы методом декарта
@@ -14,9 +16,16 @@ import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
 class DescartesSquaredCard(cardName: String, cardDescription: String, cardType: CardType) :
     BaseCard(cardName) {
 
+    /**
+     * Дата создания карты
+     */
+    var createCardDate: Calendar
+        private set
+
     init {
         this.description = cardDescription
         this.type = cardType
+        createCardDate = Calendar.getInstance().withoutTime()
     }
 
     override fun actualize(
@@ -26,6 +35,9 @@ class DescartesSquaredCard(cardName: String, cardDescription: String, cardType: 
     ) {
         if (this.parent == null) {
             this.parent = parent
+        }
+        if (createCardDate == null) {
+            createCardDate = Calendar.getInstance().withoutTime()
         }
     }
 
