@@ -7,76 +7,169 @@
     android:fillViewport="true"
     tools:context=".fragment.tabled.AnalyzeProblemSummaryFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/summeryInformation"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearProblemLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/avgPointsLabel"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@id/countMotivation"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/countMotivation"
+            <TextView
+                android:id="@+id/summeryInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/avgPointsLabel"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/countMotivation"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/countMotivation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/countMotivationLabel"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/countAnchor"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/summeryInformation" />
+
+            <TextView
+                android:id="@+id/countAnchor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/countAnchorLabel"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/summeryCountCard"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/countMotivation" />
+
+            <TextView
+                android:id="@+id/summeryCountCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/summaryCountCardLabel"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/dateOfFirstProblemAssessment"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/countAnchor" />
+
+            <TextView
+                android:id="@+id/dateOfFirstProblemAssessment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dateOfFirstProblemAssessmentLabel"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/dateOfLastProblemAssessment"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/summeryCountCard" />
+
+            <TextView
+                android:id="@+id/dateOfLastProblemAssessment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dateOfLastProblemAssessmentLabel"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dateOfFirstProblemAssessment" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/descartesSquaredProblemLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/countMotivationLabel"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@id/countAnchor"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/summeryInformation" />
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
-        <TextView
-            android:id="@+id/countAnchor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/countAnchorLabel"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@id/summeryCountCard"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/countMotivation" />
+            <TextView
+                android:id="@+id/descartesSquaredCountIGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/descartesSquaredGroupCardCountLabel"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/descartesSquaredCountIIGroup"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/summeryCountCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/summaryCountCardLabel"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@id/dateOfFirstProblemAssessment"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/countAnchor" />
+            <TextView
+                android:id="@+id/descartesSquaredCountIIGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/descartesSquaredGroupCardCountLabel"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/descartesSquaredCountIIIGroup"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descartesSquaredCountIGroup" />
 
-        <TextView
-            android:id="@+id/dateOfFirstProblemAssessment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/dateOfFirstProblemAssessmentLabel"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@id/dateOfLastProblemAssessment"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/summeryCountCard" />
+            <TextView
+                android:id="@+id/descartesSquaredCountIIIGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/descartesSquaredGroupCardCountLabel"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/descartesSquaredCountIVGroup"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descartesSquaredCountIIGroup" />
 
-        <TextView
-            android:id="@+id/dateOfLastProblemAssessment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/dateOfLastProblemAssessmentLabel"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dateOfFirstProblemAssessment" />
+            <TextView
+                android:id="@+id/descartesSquaredCountIVGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/descartesSquaredGroupCardCountLabel"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/descartesSquaredSummeryCountCard"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descartesSquaredCountIIIGroup" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/descartesSquaredSummeryCountCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/summaryCountCardLabel"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/descartesSquaredDateOfFistCardCreate"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descartesSquaredCountIVGroup" />
+
+            <TextView
+                android:id="@+id/descartesSquaredDateOfFistCardCreate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/descartesSquaredDateOfFistCardCreateLabel"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/descartesSquaredDateOfLastCardCreate"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descartesSquaredSummeryCountCard" />
+
+            <TextView
+                android:id="@+id/descartesSquaredDateOfLastCardCreate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/descartesSquaredDateOfLastCardCreateLabel"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descartesSquaredDateOfFistCardCreate" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 
 </ScrollView>

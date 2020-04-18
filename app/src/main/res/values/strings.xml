@@ -27,7 +27,7 @@
     <string name="analyzeLinearProblemTabDisadvantages">Недостатки</string>
 
     <string name="popupAnalyze">Анализировать</string>
-    <string name="avgPointsLabel">Вы хотите решить %s с индексом, равным %s</string>
+
     <string name="problem_list_fragment_label">Список проблем</string>
     <string name="card_list_fragment_label">Список преимуществ/недостатков</string>
     <string name="action_settings">Настройки</string>
@@ -63,11 +63,6 @@
     <string name="cardAdvantageNameBusyMessage">Преимущество с именем %s уже существует. Пожалуйста введите другое название.</string>
     <string name="cardDisadvantageNameBusyMessage">Недостаток с именем %s уже существует. Пожалуйста введите другое название.</string>
     <string name="cardAdvantage_DisadvantageNameBusyMessage">Преимущество/Недостаток с именем %s уже существует. Пожалуйста введите другое название.</string>
-    <string name="countMotivationLabel">Число ваших преимуществ — %s</string>
-    <string name="countAnchorLabel">Число ваших недостатков — %s</string>
-    <string name="summaryCountCardLabel">Общее число ваших карт — %s</string>
-    <string name="dateOfFirstProblemAssessmentLabel">Дата первой оценки проблемы — %s</string>
-    <string name="dateOfLastProblemAssessmentLabel">Дата последней оценки проблемы — %s</string>
     <string name="informationTitle">Информация</string>
     <string name="informationProblemAlertBody">Значение %s является средним арифметическим от суммы средних значений ваших карт (преимуществ и недостатков)</string>
     <string name="informationProblemDescartesSquaredAlertBody">Проблема %s решается с применением квадрата Декарта</string>
@@ -124,5 +119,16 @@
     <string name="informationCardDescartesSquaredAlertBody">Карта расположена в черверти: \"%s\"</string>
 
     <string name="informationDescartesSquaredText">Эта карта находится в четверти: %s</string>
+
+    <string name="avgPointsLabel">Вы хотите решить %s с индексом, равным %s</string>
+    <string name="countMotivationLabel">Число ваших преимуществ — %s</string>
+    <string name="countAnchorLabel">Число ваших недостатков — %s</string>
+    <string name="summaryCountCardLabel">Общее число ваших карт — %d</string>
+    <string name="dateOfFirstProblemAssessmentLabel">Дата первой оценки проблемы — %s</string>
+    <string name="dateOfLastProblemAssessmentLabel">Дата последней оценки проблемы — %s</string>
+
+    <string name="descartesSquaredGroupCardCountLabel">Число карты в группе \"%1$s\" — %2$d</string>
+    <string name="descartesSquaredDateOfFistCardCreateLabel">Дата создания первой карты — %s</string>
+    <string name="descartesSquaredDateOfLastCardCreateLabel">Дата создания последней карты — %s</string>
 
 </resources>
