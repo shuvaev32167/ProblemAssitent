@@ -3,8 +3,7 @@ package ru.crazypeppers.problemsassistant.fragment
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.longClick
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isPlatformPopup
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -17,7 +16,7 @@ import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.FragmentIntegrationTestParent
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.data.DATE_FORMAT
-import ru.crazypeppers.problemsassistant.data.dto.Card
+import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.testUtils.Matchers.withTextColor
 import ru.crazypeppers.problemsassistant.toStringRound
@@ -28,8 +27,8 @@ class AnalyzeProblemFragmentInstrumentedTestFragment : FragmentIntegrationTestPa
     @Before
     fun comeInFragment() {
         val data = (activityRule.activity.application as DataApplication).data
-        data[0][0].add(Point(5))
-        data[0].add(Card("1234", "4321", listOf(Point(-5)), data[0]))
+        (data[0][0] as LinearCard).add(Point(5))
+        data[0].add(LinearCard("1234", "4321", listOf(Point(-5)), data[0]))
         onView(withId(android.R.id.text1)).perform(longClick())
         onView(withText(R.string.popupAnalyze))
             .inRoot(isPlatformPopup()).perform(click())
@@ -44,6 +43,7 @@ class AnalyzeProblemFragmentInstrumentedTestFragment : FragmentIntegrationTestPa
 
     @Test
     fun testAnchorList() {
+        onView(withText(R.string.analyzeLinearProblemTabAdvantages)).perform(swipeLeft())
         onView(withText(R.string.analyzeLinearProblemTabDisadvantages)).perform(click())
         onView(withText("1234")).check(matches(withTextColor(0xFFFA0000.toInt())))
             .check(matches(isCompletelyDisplayed()))
@@ -95,7 +95,7 @@ class AnalyzeProblemFragmentInstrumentedTestFragment : FragmentIntegrationTestPa
                     String.format(
                         activityRule.activity.getString(
                             R.string.summaryCountCardLabel
-                        ), "2"
+                        ), 2
                     )
                 )
             )
