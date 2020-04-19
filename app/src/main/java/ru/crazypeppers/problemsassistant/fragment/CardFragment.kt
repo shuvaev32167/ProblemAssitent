@@ -30,6 +30,9 @@ import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
  * Фрагмент отвечающий за оценивание карты
  */
 class CardFragment : Fragment(), OnBackPressedListener {
+    private var positionProblem = NOT_POSITION
+    private var positionCard = NOT_POSITION
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,8 +51,6 @@ class CardFragment : Fragment(), OnBackPressedListener {
         val inputAdd = activity.findViewById<FloatingActionButton>(R.id.inputAdd)
         inputAdd.hide()
 
-        var positionProblem = NOT_POSITION
-        var positionCard = NOT_POSITION
         val arg = arguments
         if (arg != null) {
             positionProblem = arg.getInt(PROBLEM_POSITION_TEXT, NOT_POSITION)
@@ -110,14 +111,9 @@ class CardFragment : Fragment(), OnBackPressedListener {
                 )
             }
             if (card is LinearCard) {
-                if (card.points.isEmpty()) {
-                    seekBarVariants.progress = 5
-                    confirmButton.visibility = GONE
-                    makeNewScoreButton.setText(R.string.makeScoreButton)
-                } else {
-                    confirmButton.visibility = VISIBLE
-                    makeNewScoreButton.setText(R.string.makeNewScoreButton)
-                }
+                processingAppearanceOfElementsDependingOnAvailabilityOfPoints(
+                    card.points
+                )
             } else if (card is DescartesSquaredCard) {
                 newLayoutButtons.visibility = GONE
             }
@@ -150,6 +146,9 @@ class CardFragment : Fragment(), OnBackPressedListener {
             informationText.visibility = GONE
             frameVariant.visibility = VISIBLE
             layoutButtons.visibility = VISIBLE
+            val card = application.data[positionProblem][positionCard]
+            if (card is LinearCard)
+                seekBarVariants.progress = (card.points.maxBy { it.cdate }?.score ?: 0) + 5
         }
     }
 
@@ -202,9 +201,33 @@ class CardFragment : Fragment(), OnBackPressedListener {
             informationText.visibility = VISIBLE
             frameVariant.visibility = GONE
             layoutButtons.visibility = GONE
+            if (positionProblem != NOT_POSITION && positionCard != NOT_POSITION) {
+                val card =
+                    (requireActivity().application as DataApplication).data[positionProblem][positionCard]
+                if (card is LinearCard)
+                    processingAppearanceOfElementsDependingOnAvailabilityOfPoints(
+                        card.points
+                    )
+            }
             true
         } else {
             false
+        }
+    }
+
+    /**
+     * Обработка внешнего вида элементов, в зависимости от наличия оценок
+     *
+     * @param points оценки карты
+     */
+    private fun processingAppearanceOfElementsDependingOnAvailabilityOfPoints(points: List<Point>) {
+        if (points.isEmpty()) {
+            seekBarVariants.progress = 5
+            confirmButton.visibility = GONE
+            makeNewScoreButton.setText(R.string.makeScoreButton)
+        } else {
+            confirmButton.visibility = VISIBLE
+            makeNewScoreButton.setText(R.string.makeNewScoreButton)
         }
     }
 }
