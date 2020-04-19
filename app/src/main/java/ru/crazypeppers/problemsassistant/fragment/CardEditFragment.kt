@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_card_edit.*
-import kotlinx.android.synthetic.main.layout_variants.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
@@ -82,41 +81,40 @@ class CardEditFragment : Fragment(), OnBackPressedListener {
             }
             val newName = cardName.text.toString()
 
-            val adb: AlertDialog.Builder = AlertDialog.Builder(activity)
-            val titleId: Int
-            val messageId: Int
-            if (problem.type == ProblemType.LINE) {
-                when {
-                    seekBarVariants.progress > 5 -> {
-                        titleId = R.string.cardAdvantageNameBusyTitle
-                        messageId = R.string.cardAdvantageNameBusyMessage
-                    }
-                    seekBarVariants.progress < 5 -> {
-                        titleId = R.string.cardDisadvantageNameBusyTitle
-                        messageId = R.string.cardDisadvantageNameBusyMessage
-                    }
-                    else -> {
-                        titleId = R.string.cardAdvantage_DisadvantageNameBusyTitle
-                        messageId = R.string.cardAdvantage_DisadvantageNameBusyMessage
-                    }
-                }
-            } else {
-                titleId = R.string.cardDescartesSquaredNameBusyTitle
-                messageId = R.string.cardDescartesSquaredNameBusyMessage
-            }
-            adb.setTitle(titleId)
-            adb.setMessage(
-                String.format(
-                    getString(messageId),
-                    newName
-                )
-            )
-            adb.setIcon(android.R.drawable.ic_dialog_alert)
-            adb.setNeutralButton(R.string.fixButton, null)
-            val alert = adb.create()
             val problem = application.data[positionProblem]
             if (problem.hasCardWithName(newName, card)) {
-                alert.show()
+                val adb: AlertDialog.Builder = AlertDialog.Builder(activity)
+                val titleId: Int
+                val messageId: Int
+                if (problem.type == ProblemType.LINE) {
+                    when (card.type) {
+                        CardType.LINEAR_ADVANTAGE -> {
+                            titleId = R.string.cardAdvantageNameBusyTitle
+                            messageId = R.string.cardAdvantageNameBusyMessage
+                        }
+                        CardType.LINEAR_DISADVANTAGE -> {
+                            titleId = R.string.cardDisadvantageNameBusyTitle
+                            messageId = R.string.cardDisadvantageNameBusyMessage
+                        }
+                        else -> {
+                            titleId = R.string.cardAdvantage_DisadvantageNameBusyTitle
+                            messageId = R.string.cardAdvantage_DisadvantageNameBusyMessage
+                        }
+                    }
+                } else {
+                    titleId = R.string.cardDescartesSquaredNameBusyTitle
+                    messageId = R.string.cardDescartesSquaredNameBusyMessage
+                }
+                adb.setTitle(titleId)
+                adb.setMessage(
+                    String.format(
+                        getString(messageId),
+                        newName
+                    )
+                )
+                adb.setIcon(android.R.drawable.ic_dialog_alert)
+                adb.setNeutralButton(R.string.fixButton, null)
+                adb.create().show()
                 return@setOnClickListener
             } else {
                 card.name = newName
