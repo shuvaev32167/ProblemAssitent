@@ -15,7 +15,7 @@
             android:id="@+id/cardName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/label_edit_card_name"
+            android:hint="@string/advantages_disadvantageName"
             android:importantForAutofill="no"
             android:inputType="textCapSentences"
             app:layout_constraintBottom_toTopOf="@id/cardDescription"
