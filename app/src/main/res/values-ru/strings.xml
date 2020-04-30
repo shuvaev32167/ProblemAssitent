@@ -6,7 +6,6 @@
     <string name="label_edit_problem_name">Название проблемы</string>
     <string name="saveButton">Сохранить</string>
     <string name="cancelButton">Отмена</string>
-    <string name="removeButton">Удалить</string>
     <string name="popupEdit">Редактировать</string>
     <string name="popupDelete">Удалить</string>
 
@@ -35,31 +34,31 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="analyzeProblemFragmentLabel">Анализ проблемы</string>
     <string name="analyzeCardFragmentLabel">График изменения оценки</string>
-    <string name="analyzeCardFragmentGraphLabel">Изменение оценки по %s</string>
+    <string name="analyzeCardFragmentGraphLabel">Изменение оценки по \"%s\"</string>
     <string name="removeItemConfirm">Подтверждение удаления</string>
-    <string name="removeItemConfirmMessage">Вы действительно хотите удалить элемент %s?</string>
+    <string name="removeItemConfirmMessage">Вы действительно хотите удалить элемент \"%s\"?</string>
     <string name="yesButton">Да</string>
     <string name="noButton">Нет</string>
-    <string name="graphScoreChanged">График измененения оценки</string>
+    <string name="graphScoreChanged">График изменения оценки</string>
     <string name="fixButton">Исправить</string>
     <string name="okButton">Хорошо</string>
     <string name="problemNameBusyTitle">Название проблемы занято</string>
-    <string name="problemNameBusyMessage">Проблема с именем %s уже существует. Пожалуйста введите другое название для проблемы.</string>
+    <string name="problemNameBusyMessage">Проблема \"%s\" уже существует. Пожалуйста, введите другое название для проблемы.</string>
     <string name="cardAdvantageNameBusyTitle">Название преимущества занято</string>
     <string name="cardDisadvantageNameBusyTitle">Название недостатка занято</string>
     <string name="cardAdvantage_DisadvantageNameBusyTitle">Название преимущества/недостатка занято</string>
-    <string name="cardAdvantageNameBusyMessage">Преимущество с именем %s уже существует. Пожалуйста введите другое название.</string>
-    <string name="cardDisadvantageNameBusyMessage">Недостаток с именем %s уже существует. Пожалуйста введите другое название.</string>
-    <string name="cardAdvantage_DisadvantageNameBusyMessage">Преимущество/Недостаток с именем %s уже существует. Пожалуйста введите другое название.</string>
+    <string name="cardAdvantageNameBusyMessage">Преимущество \"%s\" уже существует. Пожалуйста, введите другое название.</string>
+    <string name="cardDisadvantageNameBusyMessage">Недостаток \"%s\" уже существует. Пожалуйста, введите другое название.</string>
+    <string name="cardAdvantage_DisadvantageNameBusyMessage">Преимущество/Недостаток с именем %s уже существует. Пожалуйста, введите другое название.</string>
     <string name="informationTitle">Информация</string>
-    <string name="informationProblemAlertBody">Значение %s является средним арифметическим от суммы средних значений ваших карт (преимуществ и недостатков)</string>
+    <string name="informationProblemAlertBody">Значение \"%s\" является средним арифметическим от суммы средних значений ваших карт (преимуществ и недостатков)</string>
     <string name="informationProblemDescartesSquaredAlertBody">Проблема %s решается с применением квадрата Декарта</string>
-    <string name="informationCardAlertBody">Значение %s является средним от оценок вашей карты (преимуществ и недостатков)</string>
+    <string name="informationCardAlertBody">Значение \"%s\" является средним от оценок вашей карты (преимуществ и недостатков)</string>
 
     <string name="checkScoreNow">Оценить преимущество/недостаток позже</string>
 
-    <string name="informationText">В последний раз вы оценили %1$s %2$s на %3$s %4$s.\nВы можите подтвердить или переоценить оценку.</string>
-    <string name="informationTextNotScore">Вы ещё не оценивали %s.\nВам необходимо произвести оценку.</string>
+    <string name="informationText">В последний раз вы оценили %1$s \"%2$s\" на \"%3$s\" %4$s.\nВы можете подтвердить или переоценить оценку.</string>
+    <string name="informationTextNotScore">Вы ещё не оценивали \"%s\".\nВам необходимо произвести оценку.</string>
     <string name="advantage">преимущество</string>
     <string name="disadvantage">недостаток</string>
     <string name="advantage_disadvantage">преимущество/недостаток</string>
@@ -103,12 +102,12 @@
     <string name="cardEditLabel">Редактирование карты</string>
     <string name="cardLabel">Карта</string>
     <string name="cardDescartesSquaredNameBusyTitle">Название карты занято</string>
-    <string name="cardDescartesSquaredNameBusyMessage">Карта с именем %s уже существует. Пожалуйста введите другое название.</string>
-    <string name="informationCardDescartesSquaredAlertBody">Карта расположена в черверти: \"%s\"</string>
+    <string name="cardDescartesSquaredNameBusyMessage">Карта с именем \"%s\" уже существует. Пожалуйста, введите другое название.</string>
+    <string name="informationCardDescartesSquaredAlertBody">Карта расположена в четверти: \"%s\"</string>
 
-    <string name="informationDescartesSquaredText">Эта карта находится в четверти: %s</string>
+    <string name="informationDescartesSquaredText">Эта карта находится в четверти: \"%s\"</string>
 
-    <string name="avgPointsLabel">Вы хотите решить %s с индексом, равным %s</string>
+    <string name="avgPointsLabel">Вы хотите решить \"%s\" с индексом, равным %s</string>
     <string name="countMotivationLabel">Число ваших преимуществ — %s</string>
     <string name="countAnchorLabel">Число ваших недостатков — %s</string>
     <string name="summaryCountCardLabel">Общее число ваших карт — %d</string>

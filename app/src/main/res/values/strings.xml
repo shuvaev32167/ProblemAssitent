@@ -1,12 +1,11 @@
 <resources>
-    <string name="app_name">Помощник в решении проблем</string>
-    <string name="label_edit_card_name">Название преимущества/недостатка</string>
-    <string name="advantagesName">Название преимущества</string>
-    <string name="disadvantageName">Название недостака</string>
-    <string name="advantages_disadvantageName">Название преимущества/недостатка</string>
-    <string name="label_edit_problem_name">Название проблемы</string>
-    <string name="saveButton">Сохранить</string>
-    <string name="cancelButton">Отмена</string>
+    <string name="app_name">Problem assistant</string>
+    <string name="advantagesName">Name of an advantage</string>
+    <string name="disadvantageName">Name of a disadvantage</string>
+    <string name="advantages_disadvantageName">Title of an advantage/disadvantage</string>
+    <string name="label_edit_problem_name">Title of problem</string>
+    <string name="saveButton">Save</string>
+    <string name="cancelButton">Cancel</string>
     <string name="negative_5" translatable="false">-5</string>
     <string name="negative_4" translatable="false">-4</string>
     <string name="negative_3" translatable="false">-3</string>
@@ -18,117 +17,116 @@
     <string name="positive_3" translatable="false">3</string>
     <string name="positive_4" translatable="false">4</string>
     <string name="positive_5" translatable="false">5</string>
-    <string name="removeButton">Удалить</string>
-    <string name="popupEdit">Редактировать</string>
-    <string name="popupDelete">Удалить</string>
+    <string name="popupEdit">Edit</string>
+    <string name="popupDelete">Delete</string>
 
-    <string name="analyzeProblemTabSummaryInformation">Общая информация</string>
-    <string name="analyzeLinearProblemTabAdvantages">Пеимущества</string>
-    <string name="analyzeLinearProblemTabDisadvantages">Недостатки</string>
+    <string name="analyzeProblemTabSummaryInformation">General information</string>
+    <string name="analyzeLinearProblemTabAdvantages">Advantages</string>
+    <string name="analyzeLinearProblemTabDisadvantages">Disadvantages</string>
 
-    <string name="popupAnalyze">Анализировать</string>
+    <string name="popupAnalyze">Analyze</string>
 
-    <string name="problem_list_fragment_label">Список проблем</string>
-    <string name="card_list_fragment_label">Список преимуществ/недостатков</string>
-    <string name="action_settings">Настройки</string>
-    <string name="problem_edit_fragment_label">Изменение проблемы</string>
-    <string name="problem_new_fragment_label">Создание проблемы</string>
-    <string name="advantageEditLabel">Изменение преимущества</string>
-    <string name="disadvantageEditLabel">Изменение недостатка</string>
-    <string name="advantage_disadvantageEditLabel">Изменение преимущества/недостатка</string>
-    <string name="advantageNewLabel">Создание преимущества</string>
-    <string name="disadvantageNewLabel">Создание недостатка</string>
-    <string name="advantage_disadvantageNewLabel">Создание преимущества/недостатка</string>
-    <string name="advantageFragmentLabel">Преимущество</string>
-    <string name="disadvantageFragmentLabel">Недостаток</string>
-    <string name="advantage_disadvantageFragmentLabel">Преимущество/недостаток</string>
-    <string name="label_edit_card_description">Описание преимущества/недостатка</string>
+    <string name="problem_list_fragment_label">Problem list</string>
+    <string name="card_list_fragment_label">Advantage/Disadvantage list</string>
+    <string name="action_settings">Settings</string>
+    <string name="problem_edit_fragment_label">Edit problem</string>
+    <string name="problem_new_fragment_label">New problem</string>
+    <string name="advantageEditLabel">Edit advantage</string>
+    <string name="disadvantageEditLabel">Edit disadvantage</string>
+    <string name="advantage_disadvantageEditLabel">Edit advantage/disadvantage</string>
+    <string name="advantageNewLabel">New advantage</string>
+    <string name="disadvantageNewLabel">New disadvantage</string>
+    <string name="advantage_disadvantageNewLabel">New advantage/disadvantage</string>
+    <string name="advantageFragmentLabel">Advantage</string>
+    <string name="disadvantageFragmentLabel">Disadvantages</string>
+    <string name="advantage_disadvantageFragmentLabel">Advantage/Disadvantages</string>
+    <string name="label_edit_card_description">Description of advantage/disadvantage</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="analyzeProblemFragmentLabel">Анализ проблемы</string>
-    <string name="analyzeCardFragmentLabel">График изменения оценки</string>
-    <string name="analyzeCardFragmentGraphLabel">Изменение оценки по %s</string>
-    <string name="removeItemConfirm">Подтверждение удаления</string>
-    <string name="removeItemConfirmMessage">Вы действительно хотите удалить элемент %s?</string>
-    <string name="yesButton">Да</string>
-    <string name="noButton">Нет</string>
-    <string name="graphScoreChanged">График измененения оценки</string>
-    <string name="fixButton">Исправить</string>
-    <string name="okButton">Хорошо</string>
-    <string name="problemNameBusyTitle">Название проблемы занято</string>
-    <string name="problemNameBusyMessage">Проблема с именем %s уже существует. Пожалуйста введите другое название для проблемы.</string>
-    <string name="cardAdvantageNameBusyTitle">Название преимущества занято</string>
-    <string name="cardDisadvantageNameBusyTitle">Название недостатка занято</string>
-    <string name="cardAdvantage_DisadvantageNameBusyTitle">Название преимущества/недостатка занято</string>
-    <string name="cardAdvantageNameBusyMessage">Преимущество с именем %s уже существует. Пожалуйста введите другое название.</string>
-    <string name="cardDisadvantageNameBusyMessage">Недостаток с именем %s уже существует. Пожалуйста введите другое название.</string>
-    <string name="cardAdvantage_DisadvantageNameBusyMessage">Преимущество/Недостаток с именем %s уже существует. Пожалуйста введите другое название.</string>
-    <string name="informationTitle">Информация</string>
-    <string name="informationProblemAlertBody">Значение %s является средним арифметическим от суммы средних значений ваших карт (преимуществ и недостатков)</string>
-    <string name="informationProblemDescartesSquaredAlertBody">Проблема %s решается с применением квадрата Декарта</string>
-    <string name="informationCardAlertBody">Значение %s является средним от оценок вашей карты (преимуществ и недостатков)</string>
+    <string name="analyzeProblemFragmentLabel">Problem analysis</string>
+    <string name="analyzeCardFragmentLabel">Rating changes chart</string>
+    <string name="analyzeCardFragmentGraphLabel">Rating changes in %s</string>
+    <string name="removeItemConfirm">Deleting confirmation</string>
+    <string name="removeItemConfirmMessage">Do you really want to delete %s?</string>
+    <string name="yesButton">Yes</string>
+    <string name="noButton">No</string>
+    <string name="graphScoreChanged">Rating changes chart</string>
+    <string name="fixButton">Fix</string>
+    <string name="okButton">OK</string>
+    <string name="problemNameBusyTitle">Problem title is busy</string>
+    <string name="problemNameBusyMessage">Problem \"%s\" is already exists. Please enter another title.</string>
+    <string name="cardAdvantageNameBusyTitle">Advantage title is busy</string>
+    <string name="cardDisadvantageNameBusyTitle">Disadvantage title is busy</string>
+    <string name="cardAdvantage_DisadvantageNameBusyTitle">Advantage/Disadvantage title is busy</string>
+    <string name="cardAdvantageNameBusyMessage">Advantage \"%s\" is already exists. Please enter another title.</string>
+    <string name="cardDisadvantageNameBusyMessage">Disadvantage \"%s\" is already exists. Please enter another title.</string>
+    <string name="cardAdvantage_DisadvantageNameBusyMessage">Advantage/Disadvantage \"%s\" is already exists. Please enter another title.</string>
+    <string name="informationTitle">Information</string>
+    <string name="informationProblemAlertBody">Value \"%s\" is a mean of your advantages/disadvantages average values sum</string>
+    <string name="informationProblemDescartesSquaredAlertBody">Problem \"%s\" is solving via Descartes square</string>
+    <string name="informationCardAlertBody">Value \"%s\" is an average of your advantages/disadvantages</string>
 
-    <string name="checkScoreNow">Оценить преимущество/недостаток позже</string>
+    <string name="checkScoreNow">Rate an advantage/disadvantage later</string>
 
-    <string name="informationText">В последний раз вы оценили %1$s %2$s на %3$s %4$s.\nВы можите подтвердить или переоценить оценку.</string>
-    <string name="informationTextNotScore">Вы ещё не оценивали %s.\nВам необходимо произвести оценку.</string>
-    <string name="advantage">преимущество</string>
-    <string name="disadvantage">недостаток</string>
-    <string name="advantage_disadvantage">преимущество/недостаток</string>
-    <string name="confirmButton">Подтвердить</string>
-    <string name="makeNewScoreButton">Переоценить</string>
-    <string name="makeScoreButton">Оценить</string>
+    <string name="informationText">Last time you rated %1$s \"%2$s\" with \"%3$s\" at %4$s.\nYou can confirm or revalue the rating.</string>
+    <string name="informationTextNotScore">You didn\'t rate \"%s\".\nYou need to revalue the rating.</string>
+    <string name="advantage">advantage</string>
+    <string name="disadvantage">disadvantage</string>
+    <string name="advantage_disadvantage">advantage/disadvantage</string>
+    <string name="confirmButton">Confirm</string>
+    <string name="makeNewScoreButton">Revalue</string>
+    <string name="makeScoreButton">Rate</string>
 
-    <string name="cardNameTitle">Название %s:</string>
-    <string name="cardDescriptionTitle">Описание %s:</string>
-    <string name="advantageR">преимущества</string>
-    <string name="disadvantageR">недостатка</string>
-    <string name="advantage_disadvantageR">преимущества/недостатка</string>
+    <string name="cardNameTitle">Title of %s:</string>
+    <string name="cardDescriptionTitle">Description of %s:</string>
+    <string name="advantageR">advantage</string>
+    <string name="disadvantageR">disadvantage</string>
+    <string name="advantage_disadvantageR">advantage/disadvantage</string>
 
-    <string name="problemTypeLabel">Тип проблемы:</string>
-    <string name="linearProblem">Линейная проблема</string>
-    <string name="descartesSquaredProblem">Квадрат декарта</string>
+    <string name="problemTypeLabel">Problem type:</string>
+    <string name="linearProblem">Linear problem</string>
+    <string name="descartesSquaredProblem">Descartes square</string>
 
-    <string name="descartesSquaredShort">КД</string>
+    <string name="descartesSquaredShort">DS</string>
 
-    <string name="descartesSquaredSpinnerCardLabel">Выберите четверть карты:</string>
-    <string name="descartesSquaredIQuarterLong">I – <b>Плюс</b> если <b>произойдёт</b></string>
-    <string name="descartesSquaredIIQuarterLong">II – <b>Минус</b> если <b>произойдёт</b></string>
-    <string name="descartesSquaredIIIQuarterLong">III – <b>Плюс</b> если <b>не произойдёт</b></string>
-    <string name="descartesSquaredIVQuarterLong">IV – <b>Минус</b> если <b>не произойдёт</b></string>
-    <string name="descartesSquaredIQuarter">I – <b>+</b>, <b>произойдёт</b></string>
-    <string name="descartesSquaredIIQuarter">II – <b>-</b>, <b>произойдёт</b></string>
-    <string name="descartesSquaredIIIQuarter">III – <b>+</b>, <b>не произойдёт</b></string>
-    <string name="descartesSquaredIVQuarter">IV – <b>-</b>, <b>не произойдёт</b></string>
-    <string name="descartesSquaredIQuarterFotGetString">I – &lt;b>Плюс&lt;/b> если &lt;b>произойдёт&lt;/b></string>
-    <string name="descartesSquaredIIQuarterFotGetString">II – &lt;b>Минус&lt;/b> если &lt;b>произойдёт&lt;/b></string>
-    <string name="descartesSquaredIIIQuarterFotGetString">III – &lt;b>Плюс&lt;/b> если &lt;b>не произойдёт&lt;/b></string>
-    <string name="descartesSquaredIVQuarterFotGetString">IV – &lt;b>Минус&lt;/b> если &lt;b>не произойдёт&lt;/b></string>
+    <string name="descartesSquaredSpinnerCardLabel">Choose the graph quadrant:</string>
+    <string name="descartesSquaredIQuarterLong">I – <b>Plus</b> if it will <b>happen</b></string>
+    <string name="descartesSquaredIIQuarterLong">II – <b>Minus</b> if it will <b>happen</b></string>
+    <string name="descartesSquaredIIIQuarterLong">III – <b>Plus</b> if it won\'t <b>happen</b></string>
+    <string name="descartesSquaredIVQuarterLong">IV – <b>Minus</b> if it won\'t <b>happen</b></string>
+    <string name="descartesSquaredIQuarter">I – <b>+</b>, <b>it will happen</b></string>
+    <string name="descartesSquaredIIQuarter">II – <b>-</b>, <b>it will happen</b></string>
+    <string name="descartesSquaredIIIQuarter">III – <b>+</b>, <b>it won\'t happen</b></string>
+    <string name="descartesSquaredIVQuarter">IV – <b>-</b>, <b>it won\'t happen</b></string>
+    <string name="descartesSquaredIQuarterFotGetString">I – &lt;b>Plus&lt;/b> if it will &lt;b>happen&lt;/b></string>
+    <string name="descartesSquaredIIQuarterFotGetString">II – &lt;b>Minus&lt;/b> if it will &lt;b>happen&lt;/b></string>
+    <string name="descartesSquaredIIIQuarterFotGetString">III – &lt;b>Plus&lt;/b> if it won\'t &lt;b>happen&lt;/b></string>
+    <string name="descartesSquaredIVQuarterFotGetString">IV – &lt;b>Minus&lt;/b> if it won\'t &lt;b>happen&lt;/b></string>
 
     <string name="descartesSquaredIQuarterShort">I</string>
     <string name="descartesSquaredIIQuarterShort">II</string>
     <string name="descartesSquaredIIIQuarterShort">III</string>
     <string name="descartesSquaredIVQuarterShort">IV</string>
 
-    <string name="cardListLabel">Список карт</string>
-    <string name="cardNewLabel">Создание карты</string>
-    <string name="cardEditLabel">Редактирование карты</string>
-    <string name="cardLabel">Карта</string>
-    <string name="cardDescartesSquaredNameBusyTitle">Название карты занято</string>
-    <string name="cardDescartesSquaredNameBusyMessage">Карта с именем %s уже существует. Пожалуйста введите другое название.</string>
-    <string name="informationCardDescartesSquaredAlertBody">Карта расположена в черверти: \"%s\"</string>
+    <string name="cardListLabel">Card list</string>
+    <string name="cardNewLabel">Create card</string>
+    <string name="cardEditLabel">Edit card</string>
+    <string name="cardLabel">Card</string>
+    <string name="cardDescartesSquaredNameBusyTitle">Card title is busy</string>
+    <string name="cardDescartesSquaredNameBusyMessage">Card \"%s\" is already exists. Please enter another title.</string>
+    <string name="informationCardDescartesSquaredAlertBody">The card is located in the quadrant: \"%s\"</string>
 
-    <string name="informationDescartesSquaredText">Эта карта находится в четверти: %s</string>
+    <string name="informationDescartesSquaredText">The card is located in the quadrant: \"%s\"</string>
 
-    <string name="avgPointsLabel">Вы хотите решить %s с индексом, равным %s</string>
-    <string name="countMotivationLabel">Число ваших преимуществ — %s</string>
-    <string name="countAnchorLabel">Число ваших недостатков — %s</string>
-    <string name="summaryCountCardLabel">Общее число ваших карт — %d</string>
-    <string name="dateOfFirstProblemAssessmentLabel">Дата первой оценки проблемы — %s</string>
-    <string name="dateOfLastProblemAssessmentLabel">Дата последней оценки проблемы — %s</string>
+    <string name="avgPointsLabel">You want to solve \"%s\" with an index of %s</string>
+    <string name="countMotivationLabel">Count of your advantages — %s</string>
+    <string name="countAnchorLabel">Count of your disadvantage — %s</string>
+    <string name="summaryCountCardLabel">Total count of your cards — %d</string>
+    <string name="dateOfFirstProblemAssessmentLabel">Date of first problem rating 0— %s</string>
+    <string name="dateOfLastProblemAssessmentLabel">Date of last problem rating — %s</string>
 
-    <string name="descartesSquaredGroupCardCountLabel">Число карты в группе \"%1$s\" — %2$d</string>
-    <string name="descartesSquaredDateOfFistCardCreateLabel">Дата создания первой карты — %s</string>
-    <string name="descartesSquaredDateOfLastCardCreateLabel">Дата создания последней карты — %s</string>
+    <string name="descartesSquaredGroupCardCountLabel">Count of card in the quadrant \"%1$s\" — %2$d</string>
+    <string name="descartesSquaredDateOfFistCardCreateLabel">Date of first card create — %s</string>
+    <string name="descartesSquaredDateOfLastCardCreateLabel">Date of first card create — %s</string>
 
 </resources>
