@@ -1,10 +1,8 @@
 package ru.crazypeppers.problemsassistant.listener
 
-import android.app.Activity
-import android.graphics.Point
-import android.view.Display
 import android.view.View
 import android.widget.AbsListView
+import ru.crazypeppers.problemsassistant.activity.MainActivity
 
 /**
  * Слушатель, скрывающий [view], при скролиге списка
@@ -12,14 +10,8 @@ import android.widget.AbsListView
  * @property activity активити, на которой скрываем
  * @property view элемент, для плавного скрытия
  */
-class ScrollListenerHidingView(val activity: Activity, val view: View) :
+class ScrollListenerHidingView(val activity: MainActivity, val view: View) :
     AbsListView.OnScrollListener {
-    private val display: Display = activity.windowManager.defaultDisplay
-    private val size = Point()
-
-    init {
-        display.getSize(size)
-    }
 
     override fun onScroll(
         view: AbsListView?,
@@ -33,7 +25,7 @@ class ScrollListenerHidingView(val activity: Activity, val view: View) :
         val btnInitPosY: Int = this.view.scrollY
         if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
             this.view.animate().cancel()
-            this.view.animate().translationYBy(size.y - this.view.y)
+            this.view.animate().translationYBy(activity.windowSize.y - this.view.y)
         } else {
             this.view.animate().cancel()
             this.view.animate().translationY(btnInitPosY.toFloat())

@@ -2,6 +2,7 @@
 
 package ru.crazypeppers.problemsassistant
 
+import android.content.res.Resources
 import android.os.Build
 import android.text.Html
 import android.text.SpannableString
@@ -124,3 +125,15 @@ fun fromHtml(htmlString: String): Spanned {
         Html.fromHtml(htmlString)
     }
 }
+
+/**
+ * Получение значения `dp`, равное указанному значению `px`
+ */
+val Int.dp: Int
+    get() = (this / Resources.getSystem().displayMetrics.density).toInt()
+
+/**
+ * Получение значения `px`, равное указанному значению `dp`
+ */
+val Int.px: Int
+    get() = (this * Resources.getSystem().displayMetrics.density).toInt()
