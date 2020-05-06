@@ -27,7 +27,12 @@ class JsonSerializeDeserializeCardAdapter : JsonSerializer<BaseCard>, JsonDeseri
         val jsonObject = json.asJsonObject
         val prim = jsonObject["type"]
 
-        val `class` = when (CardType.valueOf(prim.asString)) {
+        var type = prim.asString
+        if (type.indexOf("LINER") >= 0) {
+            type = type.replace("LINER", "LINEAR")
+        }
+
+        val `class` = when (CardType.valueOf(type)) {
             CardType.NONE, CardType.LINEAR_ADVANTAGE, CardType.LINEAR_DISADVANTAGE -> LinearCard::class.java
             CardType.SQUARE_DO_HAPPEN, CardType.SQUARE_DO_NOT_HAPPEN, CardType.SQUARE_NOT_DO_NOT_HAPPEN, CardType.SQUARE_NOT_DO_HAPPEN -> DescartesSquaredCard::class.java
             else -> BaseCard::class.java

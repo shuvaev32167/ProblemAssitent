@@ -7,16 +7,15 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdSize.FULL_WIDTH
+import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import ru.crazypeppers.problemsassistant.R
-import ru.crazypeppers.problemsassistant.dp
+import ru.crazypeppers.problemsassistant.*
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
-import ru.crazypeppers.problemsassistant.px
 
 /**
  * Оснавная активити приложения
@@ -43,32 +42,37 @@ class MainActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
+        val bannerSize = calculateAdBannerSize()
+        val adView = AdView(this)
+        adLayout.addView(adView)
+        adView.adSize = bannerSize.toAdSize()
+        if (BuildConfig.DEBUG) {
+            adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
+        } else {
+            adView.adUnitId = "ca-app-pub-5893289139190514/2695107336"
+        }
+        inputAdd.y -= bannerSize.y.px
         MobileAds.initialize(this) {}
         adView.loadAd(AdRequest.Builder().build())
-        inputAdd.y -= calculateAdBannerHeight()
     }
 
     /**
-     * Расчёт размера высоты рекламного баннера
+     * Расчёт размера рекламного баннера
      *
-     * @return значение высоты рекламного баннера в `px`
+     * @return размер рекламного баннера
      */
-    private fun calculateAdBannerHeight(): Int {
-        val adSize = adView.adSize
-        if (adSize == AdSize.BANNER) {
-            return 50.px
-        } else if (adSize == AdSize.SMART_BANNER) {
-            val windowHeight = windowSize.y.dp
-            return when {
-                windowHeight <= 400 -> 32.px
-                windowHeight <= 720 -> 50.px
-                windowHeight > 720 -> 90.px
-                else -> 0
-            }
+    private fun calculateAdBannerSize(): Point {
+        val size = Point()
+        size.x = FULL_WIDTH
+        val windowHeight = windowSize.y.dp
+        size.y = when {
+            windowHeight <= 400 -> 20
+            windowHeight <= 720 -> 32
+            windowHeight > 720 -> 50
+            else -> 0
         }
-        return 0
+        return size
     }
-
 
     //Заготовка под меню
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
