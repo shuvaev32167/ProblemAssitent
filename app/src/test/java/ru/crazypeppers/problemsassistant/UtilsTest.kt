@@ -2,6 +2,8 @@ package ru.crazypeppers.problemsassistant
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import ru.crazypeppers.problemsassistant.data.dto.LinearCard
+import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.util.*
 import java.util.Calendar.*
 
@@ -70,17 +72,19 @@ class UtilsTest {
         assertNotNull(problem.name)
         assertNotNull(problem.cards)
         assertTrue { problem.cards.isNotEmpty() }
-        assertNotNull(problem[0])
-        assertNotNull(problem[0].name)
-        assertNotNull(problem[0].description)
-        assertNotNull(problem[0].parent)
-        assertSame(problem, problem[0].parent)
-        assertNotNull(problem[0].points)
-        assertTrue { problem[0].points.isNotEmpty() }
-        assertNotNull(problem[0][0])
-        assertNotNull(problem[0][0].score)
-        assertNotNull(problem[0][0].cdate)
-        assertNotNull(problem[0][0].parent)
-        assertSame(problem[0], problem[0][0].parent)
+        val linearCard = problem[0] as LinearCard
+        assertNotNull(linearCard)
+        assertNotNull(linearCard.name)
+        assertNotNull(linearCard.description)
+        assertNotNull(linearCard.parent)
+        assertSame(problem, linearCard.parent)
+        assertNotNull(linearCard.points)
+        assertTrue { linearCard.points.isEmpty() }
+        linearCard.add(Point(5))
+        assertNotNull(linearCard[0])
+        assertNotNull(linearCard[0].score)
+        assertNotNull(linearCard[0].cdate)
+        assertNotNull(linearCard[0].parent)
+        assertSame(linearCard, linearCard[0].parent)
     }
 }
