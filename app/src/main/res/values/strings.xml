@@ -2,8 +2,8 @@
     <string name="app_name">Problem assistant</string>
     <string name="advantagesName">Name of an advantage</string>
     <string name="disadvantageName">Name of a disadvantage</string>
-    <string name="advantages_disadvantageName">Title of an advantage/disadvantage</string>
-    <string name="label_edit_problem_name">Title of problem</string>
+    <string name="advantages_disadvantageName">Title of the advantage/disadvantage</string>
+    <string name="label_edit_problem_name">Title of the problem</string>
     <string name="saveButton">Save</string>
     <string name="cancelButton">Cancel</string>
     <string name="negative_5" translatable="false">-5</string>
@@ -27,7 +27,7 @@
     <string name="popupAnalyze">Analyze</string>
 
     <string name="problem_list_fragment_label">Problem list</string>
-    <string name="card_list_fragment_label">Advantage/Disadvantage list</string>
+    <string name="card_list_fragment_label">Advantages/Disadvantages list</string>
     <string name="action_settings">Settings</string>
     <string name="problem_edit_fragment_label">Edit problem</string>
     <string name="problem_new_fragment_label">New problem</string>
@@ -38,8 +38,8 @@
     <string name="disadvantageNewLabel">New disadvantage</string>
     <string name="advantage_disadvantageNewLabel">New advantage/disadvantage</string>
     <string name="advantageFragmentLabel">Advantage</string>
-    <string name="disadvantageFragmentLabel">Disadvantages</string>
-    <string name="advantage_disadvantageFragmentLabel">Advantage/Disadvantages</string>
+    <string name="disadvantageFragmentLabel">Disadvantage</string>
+    <string name="advantage_disadvantageFragmentLabel">Advantage/Disadvantage</string>
     <string name="label_edit_card_description">Description of advantage/disadvantage</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -51,7 +51,7 @@
     <string name="yesButton">Yes</string>
     <string name="noButton">No</string>
     <string name="graphScoreChanged">Rating changes chart</string>
-    <string name="fixButton">Fix</string>
+    <string name="fixButton">Edit</string>
     <string name="okButton">OK</string>
     <string name="problemNameBusyTitle">Problem title is busy</string>
     <string name="problemNameBusyMessage">Problem \"%s\" is already exists. Please enter another title.</string>
@@ -108,7 +108,7 @@
     <string name="descartesSquaredIIIQuarterShort">III</string>
     <string name="descartesSquaredIVQuarterShort">IV</string>
 
-    <string name="cardListLabel">Card list</string>
+    <string name="cardListLabel">Cards list</string>
     <string name="cardNewLabel">Create card</string>
     <string name="cardEditLabel">Edit card</string>
     <string name="cardLabel">Card</string>
@@ -122,11 +122,11 @@
     <string name="countMotivationLabel">Count of your advantages — %s</string>
     <string name="countAnchorLabel">Count of your disadvantage — %s</string>
     <string name="summaryCountCardLabel">Total count of your cards — %d</string>
-    <string name="dateOfFirstProblemAssessmentLabel">Date of first problem rating 0— %s</string>
-    <string name="dateOfLastProblemAssessmentLabel">Date of last problem rating — %s</string>
+    <string name="dateOfFirstProblemAssessmentLabel">Date of first problem estimate — %s</string>
+    <string name="dateOfLastProblemAssessmentLabel">Date of last problem estimate — %s</string>
 
-    <string name="descartesSquaredGroupCardCountLabel">Count of card in the quadrant \"%1$s\" — %2$d</string>
-    <string name="descartesSquaredDateOfFistCardCreateLabel">Date of first card create — %s</string>
-    <string name="descartesSquaredDateOfLastCardCreateLabel">Date of first card create — %s</string>
+    <string name="descartesSquaredGroupCardCountLabel">Quadrant \"%1$s\" card count is  — %2$d</string>
+    <string name="descartesSquaredDateOfFistCardCreateLabel">Date of first card creation — %s</string>
+    <string name="descartesSquaredDateOfLastCardCreateLabel">Date of first card creation — %s</string>
 
 </resources>
