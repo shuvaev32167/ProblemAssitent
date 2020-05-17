@@ -6,6 +6,7 @@ import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Rule
 import ru.crazypeppers.problemsassistant.activity.MainActivity
+import ru.crazypeppers.problemsassistant.util.createProblemStub
 import java.io.File
 
 abstract class FragmentIntegrationTestParent {

@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.fragment_analyse_card.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
-import ru.crazypeppers.problemsassistant.addDayAsNewInstance
 import ru.crazypeppers.problemsassistant.data.CARD_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.DATE_FORMAT
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
@@ -29,8 +28,9 @@ import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.BaseCard
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
-import ru.crazypeppers.problemsassistant.diffDay
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
+import ru.crazypeppers.problemsassistant.util.addDayAsNewInstance
+import ru.crazypeppers.problemsassistant.util.diffDay
 import ru.crazypeppers.problemsassistant.view.ChartGraphMarkerView
 
 /**

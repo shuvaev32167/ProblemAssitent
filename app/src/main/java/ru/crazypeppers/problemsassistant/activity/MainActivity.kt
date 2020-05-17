@@ -11,11 +11,14 @@ import com.google.android.gms.ads.AdSize.FULL_WIDTH
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
-
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import ru.crazypeppers.problemsassistant.*
+import ru.crazypeppers.problemsassistant.BuildConfig
+import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
+import ru.crazypeppers.problemsassistant.util.dp
+import ru.crazypeppers.problemsassistant.util.px
+import ru.crazypeppers.problemsassistant.util.toAdSize
 
 /**
  * Оснавная активити приложения

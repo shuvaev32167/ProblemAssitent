@@ -2,6 +2,7 @@ package ru.crazypeppers.problemsassistant
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import ru.crazypeppers.problemsassistant.util.*
 import java.util.Calendar.*
 
 class UtilsTest {

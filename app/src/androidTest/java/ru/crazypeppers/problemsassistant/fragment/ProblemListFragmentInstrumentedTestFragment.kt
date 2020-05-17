@@ -5,8 +5,6 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.ViewAction
-import androidx.test.espresso.action.*
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
@@ -31,7 +29,7 @@ class ProblemListFragmentInstrumentedTestFragment : FragmentIntegrationTestParen
     fun testEditProblemName() {
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
-        onView(withId(android.R.id.text1)).check(matches(withText("test"))).perform(longClick())
+        onView(withId(android.R.id.text1)).check(matches(withText("example"))).perform(longClick())
 
         onView(isAssignableFrom(ListView::class.java)).check(matches(correctNumberOfItems(3)))
 
@@ -45,7 +43,7 @@ class ProblemListFragmentInstrumentedTestFragment : FragmentIntegrationTestParen
             )
         ).check(matches(withText(R.string.problem_edit_fragment_label)))
         onView(withId(R.id.problemName)).check(matches(withHint(R.string.label_edit_problem_name)))
-        onView(withId(R.id.problemName)).check(matches(withText("test")))
+        onView(withId(R.id.problemName)).check(matches(withText("example")))
             .perform(replaceText("123"))
 
         onView(withId(R.id.cancelButton)).check(matches(withText(R.string.cancelButton)))
@@ -61,7 +59,7 @@ class ProblemListFragmentInstrumentedTestFragment : FragmentIntegrationTestParen
     fun testRemoveElementList() {
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
-        onView(withId(android.R.id.text1)).check(matches(withText("test"))).perform(longClick())
+        onView(withId(android.R.id.text1)).check(matches(withText("example"))).perform(longClick())
 
         onView(isAssignableFrom(ListView::class.java)).check(matches(correctNumberOfItems(3)))
 
@@ -78,7 +76,7 @@ class ProblemListFragmentInstrumentedTestFragment : FragmentIntegrationTestParen
 
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
-        onView(withId(android.R.id.text1)).check(matches(withText("test"))).perform(longClick())
+        onView(withId(android.R.id.text1)).check(matches(withText("example"))).perform(longClick())
         onView(withText(R.string.popupDelete)).inRoot(isPlatformPopup())
             .check(matches(isDisplayed())).perform(click())
 
@@ -97,7 +95,7 @@ class ProblemListFragmentInstrumentedTestFragment : FragmentIntegrationTestParen
     fun testListProblem() {
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
-        onView(withId(android.R.id.text1)).check(matches(withText("test")))
+        onView(withId(android.R.id.text1)).check(matches(withText("example")))
         onView(withId(R.id.problemPoint)).check(matches(withText("0.00"))).perform(click())
         onView(withText(R.string.informationTitle))
             .inRoot(isDialog())
@@ -114,13 +112,13 @@ class ProblemListFragmentInstrumentedTestFragment : FragmentIntegrationTestParen
         onData(anything()).atPosition(0).onChildView(withId(R.id.problemPoint))
             .check(matches(withText("0.00")))
         onData(anything()).atPosition(0).onChildView(withId(android.R.id.text1))
-            .check(matches(withText("test")))
+            .check(matches(withText("example")))
         createNewProblem()
         onView(withId(android.R.id.list)).check(matches(withListSize(2)))
         onData(anything()).atPosition(0).onChildView(withId(R.id.problemPoint))
             .check(matches(withText("0.00")))
         onData(anything()).atPosition(0).onChildView(withId(android.R.id.text1))
-            .check(matches(withText("test")))
+            .check(matches(withText("example")))
         onData(anything()).atPosition(1).onChildView(withId(R.id.problemPoint))
             .check(matches(withText("0.00")))
         onData(anything()).atPosition(1).onChildView(withId(android.R.id.text1))

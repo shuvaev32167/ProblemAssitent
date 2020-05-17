@@ -13,9 +13,9 @@ import ru.crazypeppers.problemsassistant.data.dto.BaseCard
 import ru.crazypeppers.problemsassistant.data.dto.DescartesSquaredCard
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
-import ru.crazypeppers.problemsassistant.fromHtml
-import ru.crazypeppers.problemsassistant.hyperlinkStyle
-import ru.crazypeppers.problemsassistant.toStringRound
+import ru.crazypeppers.problemsassistant.util.fromHtml
+import ru.crazypeppers.problemsassistant.util.hyperlinkStyle
+import ru.crazypeppers.problemsassistant.util.toStringRound
 
 /**
  * Адаптер для представления списка карт

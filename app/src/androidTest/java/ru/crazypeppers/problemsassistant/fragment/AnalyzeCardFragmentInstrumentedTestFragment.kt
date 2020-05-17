@@ -31,7 +31,7 @@ class AnalyzeCardFragmentInstrumentedTestFragment : FragmentIntegrationTestParen
     fun testLabel() {
         val textGraphLabel = String.format(
             activityRule.activity.getString(R.string.analyzeCardFragmentGraphLabel),
-            "ttest"
+            "example"
         )
         onView(withId(R.id.graphLabel)).check(matches(withText(textGraphLabel)))
     }

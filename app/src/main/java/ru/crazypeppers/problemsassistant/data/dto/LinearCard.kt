@@ -5,8 +5,8 @@ import ru.crazypeppers.problemsassistant.data.TAG
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
-import ru.crazypeppers.problemsassistant.diffDay
-import ru.crazypeppers.problemsassistant.roundTo
+import ru.crazypeppers.problemsassistant.util.diffDay
+import ru.crazypeppers.problemsassistant.util.roundTo
 import java.util.*
 
 /**

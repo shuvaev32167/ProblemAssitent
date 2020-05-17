@@ -7,13 +7,14 @@ import ru.crazypeppers.problemsassistant.adapter.JsonSerializeDeserializeCardAda
 import ru.crazypeppers.problemsassistant.data.Data
 import ru.crazypeppers.problemsassistant.data.TAG
 import ru.crazypeppers.problemsassistant.data.dto.BaseCard
+import ru.crazypeppers.problemsassistant.util.createProblemStub
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 
 /**
- * Реализация [Application] с возможносью оперировать данными
+ * Реализация [Application] с возможностью оперировать данными
  */
 class DataApplication : Application() {
     private val gson = GsonBuilder().registerTypeAdapter(

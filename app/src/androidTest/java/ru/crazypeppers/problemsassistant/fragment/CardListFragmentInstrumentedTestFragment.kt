@@ -38,7 +38,7 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
     fun testEditCard() {
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
-        onView(withId(R.id.cardName)).check(matches(withText("ttest"))).perform(longClick())
+        onView(withId(R.id.cardName)).check(matches(withText("example"))).perform(longClick())
 
         onView(isAssignableFrom(ListView::class.java)).check(matches(correctNumberOfItems(3)))
 
@@ -52,7 +52,7 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
             )
         ).check(matches(withText(R.string.advantage_disadvantageEditLabel)))
         onView(withId(R.id.cardName)).check(matches(withHint(R.string.advantages_disadvantageName)))
-            .check(matches(withText("ttest"))).perform(replaceText("123"))
+            .check(matches(withText("example"))).perform(replaceText("123"))
         onView(withId(R.id.cardDescription)).check(matches(withHint(R.string.label_edit_card_description)))
             .check(matches(withText(""))).perform(replaceText("321"))
 
@@ -70,7 +70,7 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
     fun testRemoveElementList() {
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
-        onView(withId(R.id.cardName)).check(matches(withText("ttest"))).perform(longClick())
+        onView(withId(R.id.cardName)).check(matches(withText("example"))).perform(longClick())
 
         onView(isAssignableFrom(ListView::class.java)).check(matches(correctNumberOfItems(3)))
 
@@ -87,7 +87,7 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
 
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
-        onView(withId(R.id.cardName)).check(matches(withText("ttest"))).perform(longClick())
+        onView(withId(R.id.cardName)).check(matches(withText("example"))).perform(longClick())
         onView(withText(R.string.popupDelete)).inRoot(isPlatformPopup())
             .check(matches(isDisplayed())).perform(click())
 
@@ -107,7 +107,7 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
         onData(anything()).atPosition(0).onChildView(withId(R.id.cardName))
-            .check(matches(withText("ttest"))).check(matches(withTextColor(0xFF000000.toInt())))
+            .check(matches(withText("example"))).check(matches(withTextColor(0xFF000000.toInt())))
             .perform(click())
 
         onView(
@@ -122,7 +122,7 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
         onView(withId(R.id.saveButton)).check(matches(not(isDisplayed())))
         onView(withId(R.id.cancelButton)).check(matches(not(isDisplayed())))
 
-        onView(withId(R.id.cardName)).check(matches(withText("ttest")))
+        onView(withId(R.id.cardName)).check(matches(withText("example")))
             .check(matches(withTextColor(0xFF000000.toInt())))
         onView(withId(R.id.cardDescription)).check(matches(not(isDisplayed())))
 
@@ -131,7 +131,7 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
                 withText(
                     String.format(
                         activityRule.activity.getString(R.string.informationTextNotScore),
-                        "ttest"
+                        "example"
                     )
                 )
             )
@@ -171,7 +171,7 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
         onData(anything()).atPosition(0).onChildView(withId(R.id.cardName))
-            .check(matches(withText("ttest"))).check(matches(withTextColor(0xFF00FA00.toInt())))
+            .check(matches(withText("example"))).check(matches(withTextColor(0xFF00FA00.toInt())))
 
         Espresso.pressBack()
         onView(withId(R.id.problemPoint)).check(matches(withText("5.00")))
@@ -181,7 +181,7 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
     fun testListCard() {
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
-        onView(withId(R.id.cardName)).check(matches(withText("ttest"))).check(
+        onView(withId(R.id.cardName)).check(matches(withText("example"))).check(
             matches(withTextColor(0xFF000000.toInt()))
         )
     }
@@ -190,7 +190,7 @@ class CardListFragmentInstrumentedTestFragment : FragmentIntegrationTestParent()
     fun testAddCard() {
         onView(withId(android.R.id.list)).check(matches(isDisplayed()))
         onView(withId(android.R.id.list)).check(matches(withListSize(1)))
-        onView(withId(R.id.cardName)).check(matches(withText("ttest"))).check(
+        onView(withId(R.id.cardName)).check(matches(withText("example"))).check(
             matches(withTextColor(0xFF000000.toInt()))
         )
         createNewCard()

@@ -19,7 +19,7 @@ import ru.crazypeppers.problemsassistant.data.DATE_FORMAT
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.testUtils.Matchers.withTextColor
-import ru.crazypeppers.problemsassistant.toStringRound
+import ru.crazypeppers.problemsassistant.util.toStringRound
 import java.util.*
 
 @RunWith(AndroidJUnit4::class)
@@ -37,7 +37,7 @@ class AnalyzeProblemFragmentInstrumentedTestFragment : FragmentIntegrationTestPa
     @Test
     fun testMotivationList() {
         onView(withText(R.string.analyzeLinearProblemTabAdvantages)).perform(click())
-        onView(withText("ttest")).check(matches(withTextColor(0xFF00FA00.toInt())))
+        onView(withText("example")).check(matches(withTextColor(0xFF00FA00.toInt())))
             .check(matches(isCompletelyDisplayed()))
     }
 
@@ -59,7 +59,7 @@ class AnalyzeProblemFragmentInstrumentedTestFragment : FragmentIntegrationTestPa
                     String.format(
                         activityRule.activity.getString(
                             R.string.avgPointsLabel
-                        ), "test", 0f.toStringRound(2)
+                        ), "example", 0f.toStringRound(2)
                     )
                 )
             )

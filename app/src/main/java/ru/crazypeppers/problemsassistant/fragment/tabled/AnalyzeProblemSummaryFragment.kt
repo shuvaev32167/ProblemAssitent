@@ -18,8 +18,8 @@ import ru.crazypeppers.problemsassistant.data.dto.DescartesSquaredCard
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
-import ru.crazypeppers.problemsassistant.fromHtml
-import ru.crazypeppers.problemsassistant.toStringRound
+import ru.crazypeppers.problemsassistant.util.fromHtml
+import ru.crazypeppers.problemsassistant.util.toStringRound
 
 /**
  * Фрагмент отвечающий за общую инфвормацию в анализе проблемы
@@ -94,33 +94,37 @@ AnalyzeProblemSummaryFragment : Fragment() {
                 val cards = problem.cards.filterIsInstance<DescartesSquaredCard>()
                     .sortedBy { it.createCardDate }
 
-                descartesSquaredCountIGroup.text = fromHtml(
-                    getString(R.string.descartesSquaredGroupCardCountLabel,
-                        getString(R.string.descartesSquaredIQuarterFotGetString),
-                        cards.count { it.type == CardType.SQUARE_DO_HAPPEN }
+                descartesSquaredCountIGroup.text =
+                    fromHtml(
+                        getString(R.string.descartesSquaredGroupCardCountLabel,
+                            getString(R.string.descartesSquaredIQuarterFotGetString),
+                            cards.count { it.type == CardType.SQUARE_DO_HAPPEN }
+                        )
                     )
-                )
 
-                descartesSquaredCountIIGroup.text = fromHtml(
-                    getString(R.string.descartesSquaredGroupCardCountLabel,
-                        getString(R.string.descartesSquaredIIQuarterFotGetString),
-                        cards.count { it.type == CardType.SQUARE_NOT_DO_HAPPEN }
+                descartesSquaredCountIIGroup.text =
+                    fromHtml(
+                        getString(R.string.descartesSquaredGroupCardCountLabel,
+                            getString(R.string.descartesSquaredIIQuarterFotGetString),
+                            cards.count { it.type == CardType.SQUARE_NOT_DO_HAPPEN }
+                        )
                     )
-                )
 
-                descartesSquaredCountIIIGroup.text = fromHtml(
-                    getString(R.string.descartesSquaredGroupCardCountLabel,
-                        getString(R.string.descartesSquaredIIIQuarterFotGetString),
-                        cards.count { it.type == CardType.SQUARE_DO_NOT_HAPPEN }
+                descartesSquaredCountIIIGroup.text =
+                    fromHtml(
+                        getString(R.string.descartesSquaredGroupCardCountLabel,
+                            getString(R.string.descartesSquaredIIIQuarterFotGetString),
+                            cards.count { it.type == CardType.SQUARE_DO_NOT_HAPPEN }
+                        )
                     )
-                )
 
-                descartesSquaredCountIVGroup.text = fromHtml(
-                    getString(R.string.descartesSquaredGroupCardCountLabel,
-                        getString(R.string.descartesSquaredIVQuarterFotGetString),
-                        cards.count { it.type == CardType.SQUARE_NOT_DO_NOT_HAPPEN }
+                descartesSquaredCountIVGroup.text =
+                    fromHtml(
+                        getString(R.string.descartesSquaredGroupCardCountLabel,
+                            getString(R.string.descartesSquaredIVQuarterFotGetString),
+                            cards.count { it.type == CardType.SQUARE_NOT_DO_NOT_HAPPEN }
+                        )
                     )
-                )
 
                 descartesSquaredSummeryCountCard.text =
                     getString(R.string.summaryCountCardLabel, cards.count())

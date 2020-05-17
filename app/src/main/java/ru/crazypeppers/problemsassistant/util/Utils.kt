@@ -1,6 +1,6 @@
 @file:JvmName("Utils")
 
-package ru.crazypeppers.problemsassistant
+package ru.crazypeppers.problemsassistant.util
 
 import android.content.res.Resources
 import android.graphics.Point
@@ -100,10 +100,10 @@ fun TextView.hyperlinkStyle() {
  */
 fun createProblemStub(): Problem {
     return Problem(
-        "test",
+        "example",
         mutableListOf<BaseCard>(
             LinearCard(
-                "ttest",
+                "example",
                 mutableListOf()
             )
         )

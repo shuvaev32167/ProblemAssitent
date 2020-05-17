@@ -23,8 +23,8 @@ import ru.crazypeppers.problemsassistant.data.dto.DescartesSquaredCard
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
-import ru.crazypeppers.problemsassistant.fromHtml
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
+import ru.crazypeppers.problemsassistant.util.fromHtml
 
 /**
  * Фрагмент отвечающий за оценивание карты
