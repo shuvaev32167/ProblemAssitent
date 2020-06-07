@@ -107,7 +107,7 @@
 
     <string name="informationDescartesSquaredText">Эта карта находится в четверти: \"%s\"</string>
 
-    <string name="avgPointsLabel">Вы хотите решить \"%s\" с индексом, равным %s</string>
+    <string name="avgPointsLabel">Вы хотите решить \"%s\" с индексом — %s</string>
     <string name="countMotivationLabel">Число ваших преимуществ — %s</string>
     <string name="countAnchorLabel">Число ваших недостатков — %s</string>
     <string name="summaryCountCardLabel">Общее число ваших карт — %d</string>

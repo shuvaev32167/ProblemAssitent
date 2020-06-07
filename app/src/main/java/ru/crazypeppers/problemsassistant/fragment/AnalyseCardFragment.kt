@@ -73,7 +73,7 @@ class AnalyseCardFragment : Fragment(), OnBackPressedListener {
             } else if (card is LinearCard) {
                 lineChart.visibility = VISIBLE
                 val values = ArrayList<Entry>(card.points.size)
-                val firstDay = card.points.first().cdate
+                val firstDay = card.points.last().cdate
                 card.points.forEach {
                     values.add(
                         Entry(
@@ -83,6 +83,7 @@ class AnalyseCardFragment : Fragment(), OnBackPressedListener {
                         )
                     )
                 }
+                values.sortBy { it.x }
                 val dataSet = LineDataSet(values, "points")
                 dataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
                 dataSet.color = BLACK

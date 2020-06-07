@@ -18,6 +18,7 @@ import java.math.RoundingMode
 import java.util.*
 import java.util.Calendar.DATE
 
+
 /**
  * Округление до [numFractionDigits] знаков после запятой.
  *
@@ -54,7 +55,7 @@ fun Calendar.withoutTime(): Calendar {
 private const val millisecondPerDay = 24 * 60 * 60 * 1000
 
 /**
- * Разчёт разницы между двумя датамы в полных днях.
+ * Расчёт разницы между двумя датами в полных днях.
  * Текущее считается большем
  *
  * @param date дата, до которой надо найти разницу

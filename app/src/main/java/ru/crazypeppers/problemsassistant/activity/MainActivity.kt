@@ -1,6 +1,8 @@
 package ru.crazypeppers.problemsassistant.activity
 
+import android.content.Context
 import android.graphics.Point
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Display
 import android.view.Menu
@@ -19,6 +21,7 @@ import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 import ru.crazypeppers.problemsassistant.util.dp
 import ru.crazypeppers.problemsassistant.util.px
 import ru.crazypeppers.problemsassistant.util.toAdSize
+
 
 /**
  * Оснавная активити приложения
@@ -68,6 +71,10 @@ class MainActivity : AppCompatActivity() {
         val size = Point()
         size.x = FULL_WIDTH
         val windowHeight = windowSize.y.dp
+        if (!isOnline()) {
+            size.y = 0
+            return size
+        }
         size.y = when {
             windowHeight <= 400 -> 20
             windowHeight <= 720 -> 32
@@ -75,6 +82,21 @@ class MainActivity : AppCompatActivity() {
             else -> 0
         }
         return size
+    }
+
+    /**
+     * Проверка наличия интернет соединения
+     *
+     * @return `true`, если есть соединение, в противном случае — `false`
+     */
+    private fun isOnline(): Boolean {
+        return try {
+            val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val activeNetwork = cm.activeNetworkInfo!!
+            activeNetwork.isConnectedOrConnecting
+        } catch (e: Exception) {
+            false
+        }
     }
 
     //Заготовка под меню

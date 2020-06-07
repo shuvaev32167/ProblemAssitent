@@ -99,13 +99,13 @@ class LinearCard(
             avgPoints = 0f
         } else {
             val lastRatingDate = points.first().cdate
-            val maxDiffDay = points.last().cdate.diffDay(lastRatingDate)
+            val maxDiffDay = lastRatingDate.diffDay(points.last().cdate)
             var sumValue = .0
             var sumWeight = .0
             for ((position, point) in points.withIndex()) {
                 val weight = calculateWeightElement(
                     maxDiffDay,
-                    point.cdate.diffDay(lastRatingDate),
+                    lastRatingDate.diffDay(point.cdate),
                     position + 1
                 )
                 sumValue += point.score * weight

@@ -45,7 +45,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="analyzeProblemFragmentLabel">Problem analysis</string>
     <string name="analyzeCardFragmentLabel">Rating changes chart</string>
-    <string name="analyzeCardFragmentGraphLabel">Rating changes in %s</string>
+    <string name="analyzeCardFragmentGraphLabel">Rating changes in \"%s\"</string>
     <string name="removeItemConfirm">Deleting confirmation</string>
     <string name="removeItemConfirmMessage">Do you really want to delete %s?</string>
     <string name="yesButton">Yes</string>
@@ -120,12 +120,12 @@
 
     <string name="avgPointsLabel">You want to solve \"%s\" with an index of %s</string>
     <string name="countMotivationLabel">Count of your advantages — %s</string>
-    <string name="countAnchorLabel">Count of your disadvantage — %s</string>
+    <string name="countAnchorLabel">Count of your disadvantages — %s</string>
     <string name="summaryCountCardLabel">Total count of your cards — %d</string>
     <string name="dateOfFirstProblemAssessmentLabel">Date of first problem estimate — %s</string>
     <string name="dateOfLastProblemAssessmentLabel">Date of last problem estimate — %s</string>
 
-    <string name="descartesSquaredGroupCardCountLabel">Quadrant \"%1$s\" card count is  — %2$d</string>
+    <string name="descartesSquaredGroupCardCountLabel">Quadrant \"%1$s\" card count is — %2$d</string>
     <string name="descartesSquaredDateOfFistCardCreateLabel">Date of first card creation — %s</string>
     <string name="descartesSquaredDateOfLastCardCreateLabel">Date of first card creation — %s</string>
 
