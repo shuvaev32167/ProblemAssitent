@@ -3,14 +3,12 @@
 package ru.crazypeppers.problemsassistant.util
 
 import android.content.res.Resources
-import android.graphics.Point
 import android.os.Build
 import android.text.Html
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.URLSpan
 import android.widget.TextView
-import com.google.android.gms.ads.AdSize
 import ru.crazypeppers.problemsassistant.data.dto.BaseCard
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Problem
@@ -140,12 +138,3 @@ val Int.dp: Int
  */
 val Int.px: Int
     get() = (this * Resources.getSystem().displayMetrics.density).toInt()
-
-/**
- * Преобразует [Point] в [AdSize]. x -> height, y -> width.
- *
- * @return [AdSize] со значениями из [Point]
- */
-fun Point.toAdSize(): AdSize {
-    return AdSize(x, y)
-}

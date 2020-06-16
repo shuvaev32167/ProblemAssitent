@@ -1,26 +1,15 @@
 package ru.crazypeppers.problemsassistant.activity
 
-import android.content.Context
 import android.graphics.Point
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Display
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize.FULL_WIDTH
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
-import ru.crazypeppers.problemsassistant.BuildConfig
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
-import ru.crazypeppers.problemsassistant.util.dp
-import ru.crazypeppers.problemsassistant.util.px
-import ru.crazypeppers.problemsassistant.util.toAdSize
 
 
 /**
@@ -46,56 +35,6 @@ class MainActivity : AppCompatActivity() {
         inputAdd.setOnClickListener {
             Snackbar.make(it, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
-        }
-
-        val bannerSize = calculateAdBannerSize()
-        val adView = AdView(this)
-        adLayout.addView(adView)
-        adView.adSize = bannerSize.toAdSize()
-        if (BuildConfig.DEBUG) {
-            adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
-        } else {
-            adView.adUnitId = "ca-app-pub-5893289139190514/2695107336"
-        }
-        inputAdd.y -= bannerSize.y.px
-        MobileAds.initialize(this) {}
-        adView.loadAd(AdRequest.Builder().build())
-    }
-
-    /**
-     * Расчёт размера рекламного баннера
-     *
-     * @return размер рекламного баннера
-     */
-    private fun calculateAdBannerSize(): Point {
-        val size = Point()
-        size.x = FULL_WIDTH
-        val windowHeight = windowSize.y.dp
-        if (!isOnline()) {
-            size.y = 0
-            return size
-        }
-        size.y = when {
-            windowHeight <= 400 -> 20
-            windowHeight <= 720 -> 32
-            windowHeight > 720 -> 50
-            else -> 0
-        }
-        return size
-    }
-
-    /**
-     * Проверка наличия интернет соединения
-     *
-     * @return `true`, если есть соединение, в противном случае — `false`
-     */
-    private fun isOnline(): Boolean {
-        return try {
-            val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val activeNetwork = cm.activeNetworkInfo!!
-            activeNetwork.isConnectedOrConnecting
-        } catch (e: Exception) {
-            false
         }
     }
 

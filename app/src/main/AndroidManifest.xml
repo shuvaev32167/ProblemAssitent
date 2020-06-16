@@ -14,9 +14,6 @@
         android:supportsRtl="true"
         android:fullBackupContent="@xml/backup_descriptor"
         android:theme="@style/AppTheme">
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-5893289139190514~5196475142" />
 
         <activity
             android:name=".activity.MainActivity"
