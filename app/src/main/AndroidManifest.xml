@@ -15,6 +15,16 @@
         android:fullBackupContent="@xml/backup_descriptor"
         android:theme="@style/AppTheme">
 
+        <provider
+            android:name=".provider.GenericFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
@@ -22,8 +32,65 @@
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="*"
+                    android:mimeType="application/*"
+                    android:pathPattern=".*\\.problemAssistant"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="application/*"
+                    android:pathPattern=".*\\..*\\.problemAssistant"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="application/*"
+                    android:pathPattern=".*\\..*\\..*\\.problemAssistant"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="application/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\.problemAssistant"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="application/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\.problemAssistant"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="application/*"
+                    android:pathPattern=".*\\.problemAssistant"
+                    android:scheme="content" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.problemAssistant"
+                    android:scheme="http" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.problemAssistant"
+                    android:scheme="https" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.problemAssistant"
+                    android:scheme="ftp" />
+
             </intent-filter>
         </activity>
     </application>

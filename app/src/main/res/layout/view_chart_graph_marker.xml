@@ -6,7 +6,7 @@
     android:background="@android:color/transparent"
     android:gravity="center">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvContent"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -14,7 +14,7 @@
         android:background="@drawable/chart_graph_marker"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@android:color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="@dimen/thumb_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -16,7 +16,7 @@ class PageFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            mPage = arguments!!.getInt(ARG_PAGE)
+            mPage = requireArguments().getInt(ARG_PAGE)
         }
     }
 

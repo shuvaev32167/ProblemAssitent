@@ -78,4 +78,17 @@
         android:label="@string/analyzeCardFragmentLabel"
         tools:layout="@layout/fragment_analyse_card" />
 
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="ru.crazypeppers.problemsassistant.fragment.SettingsFragment"
+        android:label="@string/settingsFragmentLabel"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/ImportFragment"
+        android:name="ru.crazypeppers.problemsassistant.fragment.ImportFragment"
+        android:label="@string/importFragmentLabel"
+        tools:layout="@layout/fragment_import" />
+
+
 </navigation>

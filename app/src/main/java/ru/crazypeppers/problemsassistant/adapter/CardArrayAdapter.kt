@@ -8,14 +8,15 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatTextView
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.data.dto.BaseCard
 import ru.crazypeppers.problemsassistant.data.dto.DescartesSquaredCard
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
+import ru.crazypeppers.problemsassistant.extension.toStringRound
 import ru.crazypeppers.problemsassistant.util.fromHtml
 import ru.crazypeppers.problemsassistant.util.hyperlinkStyle
-import ru.crazypeppers.problemsassistant.util.toStringRound
 
 /**
  * Адаптер для представления списка карт
@@ -36,7 +37,7 @@ class CardArrayAdapter(context: Context, cardList: List<BaseCard>) :
         val cardName = view?.findViewById(R.id.cardName) as TextView
         cardName.text = card.name
         cardName.setTextColor(color)
-        val cardDescription = view.findViewById<TextView>(R.id.cardDescription)
+        val cardDescription = view.findViewById<AppCompatTextView>(R.id.cardDescription)
         if (card.description.isNotBlank()) {
             cardDescription.text = card.description
             cardDescription.setTextColor(color)
@@ -44,7 +45,7 @@ class CardArrayAdapter(context: Context, cardList: List<BaseCard>) :
         } else {
             cardDescription.visibility = GONE
         }
-        val cardAvgPoint = view.findViewById<TextView>(R.id.cardAvgPoint)
+        val cardAvgPoint = view.findViewById<AppCompatTextView>(R.id.cardAvgPoint)
         val adb: AlertDialog.Builder = AlertDialog.Builder(context)
         adb.setTitle(R.string.informationTitle)
         adb.setIcon(android.R.drawable.ic_dialog_info)

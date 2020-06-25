@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/summeryInformation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/countMotivation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/summeryInformation" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/countAnchor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/countMotivation" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/summeryCountCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/countAnchor" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/dateOfFirstProblemAssessment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/summeryCountCard" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/dateOfLastProblemAssessment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
             android:layout_height="match_parent"
             android:visibility="gone">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/descartesSquaredCountIGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/descartesSquaredCountIIGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/descartesSquaredCountIGroup" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/descartesSquaredCountIIIGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/descartesSquaredCountIIGroup" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/descartesSquaredCountIVGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/descartesSquaredCountIIIGroup" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/descartesSquaredSummeryCountCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -146,7 +146,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/descartesSquaredCountIVGroup" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/descartesSquaredDateOfFistCardCreate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/descartesSquaredSummeryCountCard" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/descartesSquaredDateOfLastCardCreate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

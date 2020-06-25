@@ -18,8 +18,8 @@ import ru.crazypeppers.problemsassistant.data.dto.DescartesSquaredCard
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
+import ru.crazypeppers.problemsassistant.extension.toStringRound
 import ru.crazypeppers.problemsassistant.util.fromHtml
-import ru.crazypeppers.problemsassistant.util.toStringRound
 
 /**
  * Фрагмент отвечающий за общую инфвормацию в анализе проблемы

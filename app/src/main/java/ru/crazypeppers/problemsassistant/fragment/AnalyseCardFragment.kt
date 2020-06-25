@@ -28,9 +28,9 @@ import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.BaseCard
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
+import ru.crazypeppers.problemsassistant.extension.addDayAsNewInstance
+import ru.crazypeppers.problemsassistant.extension.diffDay
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
-import ru.crazypeppers.problemsassistant.util.addDayAsNewInstance
-import ru.crazypeppers.problemsassistant.util.diffDay
 import ru.crazypeppers.problemsassistant.view.ChartGraphMarkerView
 
 /**

@@ -5,6 +5,11 @@ import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData.Companion.compare
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData.Companion.inc
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData.Companion.lastVersion
+import ru.crazypeppers.problemsassistant.enumiration.ImportType
+import ru.crazypeppers.problemsassistant.enumiration.ImportType.*
+import ru.crazypeppers.problemsassistant.extension.add
+import ru.crazypeppers.problemsassistant.extension.clear
+import ru.crazypeppers.problemsassistant.extension.removeAt
 
 /**
  * Описание данных для сохранения в файл
@@ -30,8 +35,7 @@ data class Data(val problems: List<Problem>) {
      * @throws IndexOutOfBoundsException при передачи значения [positionProblem] выходящего за границы списка проблем [problems]
      */
     fun removeAt(positionProblem: Int) {
-        if (problems is MutableList)
-            problems.removeAt(positionProblem)
+        problems.removeAt(positionProblem)
     }
 
     /**
@@ -52,8 +56,7 @@ data class Data(val problems: List<Problem>) {
      */
     fun add(problem: Problem) {
         problem.parent = this
-        if (problems is MutableList)
-            problems.add(problem)
+        problems.add(problem)
     }
 
     /**
@@ -69,6 +72,14 @@ data class Data(val problems: List<Problem>) {
                 return true
         }
         return false
+    }
+
+    private fun findProblemWithName(problemName: String): Problem? {
+        problems.forEach {
+            if (it.name.equals(problemName, true))
+                return it
+        }
+        return null
     }
 
     /**
@@ -96,7 +107,48 @@ data class Data(val problems: List<Problem>) {
      * Очищение списка проблем [problems]
      */
     fun clearData() {
-        if (problems is MutableList)
-            problems.clear()
+        problems.clear()
+    }
+
+    fun replaceProblems(
+        problems: List<Problem>,
+        importType: ImportType
+    ) {
+        when (importType) {
+            FULL_REPLACE -> if (this.problems is MutableList) {
+                clearData()
+                addAll(problems)
+                for (problem in problems) {
+                    problem.parent = this
+                }
+            }
+            ENRICHMENT -> {
+                for (problem in problems) {
+                    val findProblemWithName = findProblemWithName(problem.name)
+                    if (findProblemWithName == null) {
+                        add(problem)
+                    } else {
+                        findProblemWithName.replaceCard(problem.cards, importType)
+                    }
+                }
+            }
+            ONLY_NEW -> {
+                for (problem in problems) {
+                    if (!hasProblemWithName(problem.name)) {
+                        add(problem)
+                    }
+                }
+            }
+
+        }
+    }
+
+    private fun addAll(problems: List<Problem>) {
+        if (this.problems is MutableList) {
+            this.problems.addAll(problems)
+            for (problem in problems) {
+                problem.parent = this
+            }
+        }
     }
 }

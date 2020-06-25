@@ -129,4 +129,14 @@
     <string name="descartesSquaredDateOfFistCardCreateLabel">Date of first card creation — %s</string>
     <string name="descartesSquaredDateOfLastCardCreateLabel">Date of first card creation — %s</string>
 
+    <string name="settingsFragmentLabel">Settings</string>
+    <string name="importButton">Import</string>
+    <string name="exportButton">Export</string>
+    <string name="importFragmentLabel">Import data</string>
+    <string name="exportDataAction">Share data file to…</string>
+    <string name="importDataAction">Select a data file</string>
+    <string name="fullReplaceRadioButton">Complete data replacement with imported data</string>
+    <string name="enrichmentRadioButton">Data enrichment with imported data</string>
+    <string name="onlyNewRadioButton">Import only new problems</string>
+
 </resources>

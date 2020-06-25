@@ -13,7 +13,7 @@
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cardName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,7 +24,7 @@
             android:maxLines="1"
             android:textAppearance="?attr/textAppearanceListItem" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cardDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
 
     </RelativeLayout>
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/cardAvgPoint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -18,8 +18,8 @@ import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.data.DATE_FORMAT
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
+import ru.crazypeppers.problemsassistant.extension.toStringRound
 import ru.crazypeppers.problemsassistant.testUtils.Matchers.withTextColor
-import ru.crazypeppers.problemsassistant.util.toStringRound
 import java.util.*
 
 @RunWith(AndroidJUnit4::class)

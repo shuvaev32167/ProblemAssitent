@@ -5,8 +5,11 @@ import ru.crazypeppers.problemsassistant.data.TAG
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
-import ru.crazypeppers.problemsassistant.util.diffDay
-import ru.crazypeppers.problemsassistant.util.roundTo
+import ru.crazypeppers.problemsassistant.enumiration.ImportType
+import ru.crazypeppers.problemsassistant.enumiration.ImportType.*
+import ru.crazypeppers.problemsassistant.extension.clear
+import ru.crazypeppers.problemsassistant.extension.diffDay
+import ru.crazypeppers.problemsassistant.extension.roundTo
 import java.util.*
 
 /**
@@ -89,8 +92,8 @@ class LinearCard(
     }
 
     /**
-     * Расчёт среднего значения очков. Расчитанное значение сохранится.
-     * Для сброса расчитанного значения использовать метод [dischargeAvgPoints].
+     * Расчёт среднего значения очков. Рассчитанное значение сохранится.
+     * Для сброса рассчитанного значения использовать метод [dischargeAvgPoints].
      *
      * @return Среднее значение очков
      */
@@ -117,7 +120,6 @@ class LinearCard(
                 avgPoints = 0f
             }
         }
-
 
         if (parent == null) {
             Log.e(TAG, "Не определён родитель для карты $name, $description")
@@ -227,5 +229,31 @@ class LinearCard(
      */
     operator fun get(positionPoint: Int): Point {
         return points[positionPoint]
+    }
+
+    fun replacePoints(points: List<Point>, importType: ImportType) {
+        when (importType) {
+            FULL_REPLACE -> {
+                this.points.clear()
+                addAll(points)
+            }
+            ENRICHMENT, ONLY_NEW -> {
+                for (point in points) {
+                    val findPointByDate = findPointByDate(point.cdate)
+                    if (findPointByDate == null) {
+                        add(point)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun addAll(points: List<Point>) {
+        if (this.points is MutableList) {
+            this.points.addAll(points)
+            for (point in points) {
+                point.parent = this
+            }
+        }
     }
 }

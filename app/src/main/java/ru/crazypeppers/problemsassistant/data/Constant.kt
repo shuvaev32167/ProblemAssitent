@@ -3,12 +3,12 @@ package ru.crazypeppers.problemsassistant.data
 import java.text.DateFormat
 
 /**
- * Наименование поля для передачи выбраной позиции проблемы
+ * Наименование поля для передачи выбранной позиции проблемы
  */
 const val PROBLEM_POSITION_TEXT = "problemPosition"
 
 /**
- * Наименование поля для передачи выбраной позиции карты
+ * Наименование поля для передачи выбранной позиции карты
  */
 const val CARD_POSITION_TEXT = "cardPosition"
 
@@ -18,7 +18,7 @@ const val CARD_POSITION_TEXT = "cardPosition"
 const val NOT_POSITION = -1
 
 /**
- * Наименование поля для передачи лямбда-варажений
+ * Наименование поля для передачи лямбда-выражений
  */
 const val LAMBDA_TEXT = "lambda"
 

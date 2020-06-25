@@ -1,7 +1,7 @@
 package ru.crazypeppers.problemsassistant.data.dto
 
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
-import ru.crazypeppers.problemsassistant.util.withoutTime
+import ru.crazypeppers.problemsassistant.extension.withoutTime
 import java.util.*
 
 /**

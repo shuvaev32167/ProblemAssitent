@@ -3,6 +3,10 @@ package ru.crazypeppers.problemsassistant.data.dto
 import ru.crazypeppers.problemsassistant.data.Data
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
+import ru.crazypeppers.problemsassistant.enumiration.ImportType
+import ru.crazypeppers.problemsassistant.enumiration.ImportType.*
+import ru.crazypeppers.problemsassistant.extension.add
+import ru.crazypeppers.problemsassistant.extension.removeAt
 
 /**
  * Описание решаемой проблемы
@@ -12,7 +16,7 @@ import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
  */
 class Problem(
     var name: String,
-    val cards: MutableList<BaseCard> = mutableListOf()
+    val cards: List<BaseCard> = mutableListOf()
 ) {
     /**
      * Тип проблемы
@@ -84,6 +88,14 @@ class Problem(
         return false
     }
 
+    private fun findCardWithName(cardName: String): BaseCard? {
+        cards.forEach {
+            if (it.name.equals(cardName, true))
+                return it
+        }
+        return null
+    }
+
     /**
      * Акутуализация полей проблемы с версии [versionFrom] по версия [versionTo].
      *
@@ -123,5 +135,44 @@ class Problem(
             return@filter true
         }.map { it.avgPoints }
         return avgPointsList.sum() / avgPointsList.size
+    }
+
+    fun replaceCard(cards: List<BaseCard>, importType: ImportType) {
+        when (importType) {
+            FULL_REPLACE -> {
+                if (this.cards is MutableList) {
+                    this.cards.clear()
+                    addAll(cards)
+                }
+            }
+            ENRICHMENT -> {
+                for (card in cards) {
+                    val findCardWithName = findCardWithName(card.name)
+                    if (findCardWithName == null) {
+                        add(card)
+                    } else {
+                        if (findCardWithName is LinearCard && card is LinearCard) {
+                            findCardWithName.replacePoints(card.points, importType)
+                        }
+                    }
+                }
+            }
+            ONLY_NEW -> {
+                for (card in cards) {
+                    if (!hasCardWithName(card.name)) {
+                        add(card)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun addAll(cards: List<BaseCard>) {
+        if (this.cards is MutableList) {
+            this.cards.addAll(cards)
+            for (card in cards) {
+                card.parent = this
+            }
+        }
     }
 }

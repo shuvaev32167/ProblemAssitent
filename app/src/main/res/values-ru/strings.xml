@@ -118,4 +118,14 @@
     <string name="descartesSquaredDateOfFistCardCreateLabel">Дата создания первой карты — %s</string>
     <string name="descartesSquaredDateOfLastCardCreateLabel">Дата создания последней карты — %s</string>
 
+    <string name="settingsFragmentLabel">Настройки</string>
+    <string name="importButton">Импорт</string>
+    <string name="exportButton">Экспорт</string>
+    <string name="importFragmentLabel">Импортирование данных</string>
+    <string name="exportDataAction">Отправть файл с данными через…</string>
+    <string name="importDataAction">Выберите файл с данными</string>
+    <string name="fullReplaceRadioButton">Полная замена данных на импортируемые данные</string>
+    <string name="enrichmentRadioButton">Обогащение данных импортируемыми данными</string>
+    <string name="onlyNewRadioButton">Импортировать только новые проблемы</string>
+
 </resources>

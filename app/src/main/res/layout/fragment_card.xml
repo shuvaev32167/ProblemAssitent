@@ -21,7 +21,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/cardNameTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -31,9 +31,9 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/cardName"/>
+                app:layout_constraintBottom_toTopOf="@id/cardName" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/cardName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 app:layout_constraintTop_toBottomOf="@id/cardNameTitle"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -57,7 +57,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardNameLayout">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/cardDescriptionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,9 +67,9 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/cardDescription"/>
+                app:layout_constraintBottom_toTopOf="@id/cardDescription" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/cardDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/informationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/informationText">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/confirmButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/makeNewScoreButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/frameVariant">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/saveButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/cancelButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

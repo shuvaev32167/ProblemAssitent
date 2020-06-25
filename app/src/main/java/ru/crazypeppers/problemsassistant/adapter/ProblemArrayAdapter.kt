@@ -10,8 +10,8 @@ import androidx.appcompat.app.AlertDialog
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.data.dto.Problem
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
+import ru.crazypeppers.problemsassistant.extension.toStringRound
 import ru.crazypeppers.problemsassistant.util.hyperlinkStyle
-import ru.crazypeppers.problemsassistant.util.toStringRound
 
 /**
  * Адаптер для представления списка проблем
