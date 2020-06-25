@@ -124,8 +124,8 @@
     <string name="importFragmentLabel">Импортирование данных</string>
     <string name="exportDataAction">Отправть файл с данными через…</string>
     <string name="importDataAction">Выберите файл с данными</string>
-    <string name="fullReplaceRadioButton">Полная замена данных на импортируемые данные</string>
-    <string name="enrichmentRadioButton">Обогащение данных импортируемыми данными</string>
+    <string name="fullReplaceRadioButton">Перезапись данных на импортируемые данные</string>
+    <string name="enrichmentRadioButton">Дополнение данных импортируемыми данными</string>
     <string name="onlyNewRadioButton">Импортировать только новые проблемы</string>
 
 </resources>
