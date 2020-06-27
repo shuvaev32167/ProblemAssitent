@@ -16,7 +16,7 @@ import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 
 
 /**
- * Оснавная активити приложения
+ * Основная активити приложения
  */
 class MainActivity : AppCompatActivity() {
 
@@ -53,18 +53,8 @@ class MainActivity : AppCompatActivity() {
         if (data != null) {
             intent.data = null
             nav_host_fragment.findNavController()
-                .navigate(R.id.ImportFragment, bundleOf("Uri" to intent.data))
+                .navigate(R.id.ImportFragment, bundleOf("Uri" to data))
         }
-    }
-
-    /**
-     * Поиск элемента меню ([menu]]) по id его ресурса
-     *
-     * @param resId id ресурса элемента меню ([menu]])
-     * @return элемент меню, или `null`, если не удалось его найти
-     */
-    fun findMenuItem(resId: Int): MenuItem? {
-        return menu.findItem(resId)
     }
 
     //Заготовка под меню
@@ -73,6 +63,13 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_main, menu)
         this.menu = menu
         return true
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        if (menu != null) {
+            this.menu = menu
+        }
+        return super.onPrepareOptionsMenu(menu)
     }
 
     //Заготовка под меню
@@ -97,5 +94,15 @@ class MainActivity : AppCompatActivity() {
         if (onBackPressedListener?.onBackPressed() == true)
             return
         super.onBackPressed()
+    }
+
+    /**
+     * Поиск элемента меню ([menu]]) по id его ресурса
+     *
+     * @param resId id ресурса элемента меню ([menu]])
+     * @return элемент меню, или `null`, если не удалось его найти
+     */
+    fun findMenuItem(resId: Int): MenuItem? {
+        return menu.findItem(resId)
     }
 }
