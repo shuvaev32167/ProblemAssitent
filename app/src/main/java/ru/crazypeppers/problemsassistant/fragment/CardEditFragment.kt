@@ -22,11 +22,12 @@ import ru.crazypeppers.problemsassistant.data.dto.Problem
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
+import ru.crazypeppers.problemsassistant.util.HideInputMode
 
 /**
  * Фрагмент отвечающий за редактирование существующей карты или добавление новой.
  */
-class CardEditFragment : Fragment(), OnBackPressedListener {
+class CardEditFragment : Fragment(), OnBackPressedListener, HideInputMode {
     private var positionProblem = NOT_POSITION
     private var positionCard = NOT_POSITION
     private lateinit var card: BaseCard
@@ -71,10 +72,12 @@ class CardEditFragment : Fragment(), OnBackPressedListener {
         setActivityTitle(card)
 
         cancelButton.setOnClickListener {
+            hideInputMode(activity)
             findNavController().popBackStack()
         }
 
         saveButton.setOnClickListener {
+            hideInputMode(activity)
             if (positionProblem == NOT_POSITION) {
                 findNavController().popBackStack()
                 return@setOnClickListener

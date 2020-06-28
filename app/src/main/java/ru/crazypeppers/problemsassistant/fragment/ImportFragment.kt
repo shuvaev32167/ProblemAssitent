@@ -38,19 +38,19 @@ class ImportFragment : Fragment(), OnBackPressedListener {
         activity.title = getString(R.string.importFragmentLabel)
         val uri = requireArguments().getParcelable<Uri>("Uri")!!
 
-        val importType: ImportType = when {
-            fullReplaceRadioButton.isChecked -> {
-                ImportType.FULL_REPLACE
-            }
-            enrichmentRadioButton.isChecked -> {
-                ImportType.ENRICHMENT
-            }
-            else -> {
-                ImportType.ONLY_NEW
-            }
-        }
-
         importButton.setOnClickListener {
+            val importType: ImportType = when {
+                fullReplaceRadioButton.isChecked -> {
+                    ImportType.FULL_REPLACE
+                }
+                enrichmentRadioButton.isChecked -> {
+                    ImportType.ENRICHMENT
+                }
+                else -> {
+                    ImportType.ONLY_NEW
+                }
+            }
+
             activity.contentResolver.openInputStream(uri).use { inputStream ->
                 InputStreamReader(inputStream!!).use { inputStreamReader ->
                     BufferedReader(inputStreamReader).use { bufferedReader ->

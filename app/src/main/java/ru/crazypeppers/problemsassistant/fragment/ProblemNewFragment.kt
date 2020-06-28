@@ -15,11 +15,12 @@ import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.data.dto.Problem
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
+import ru.crazypeppers.problemsassistant.util.HideInputMode
 
 /**
  * Фрагмент, отвечающий за добавление новой проблемы
  */
-class ProblemNewFragment : Fragment(), OnBackPressedListener {
+class ProblemNewFragment : Fragment(), OnBackPressedListener, HideInputMode {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,10 +43,12 @@ class ProblemNewFragment : Fragment(), OnBackPressedListener {
         }
 
         cancelButton.setOnClickListener {
+            hideInputMode(activity)
             findNavController().popBackStack()
         }
 
         saveButton.setOnClickListener {
+            hideInputMode(activity)
             val application = activity?.application as DataApplication
             val newName = problemName.text.toString()
 

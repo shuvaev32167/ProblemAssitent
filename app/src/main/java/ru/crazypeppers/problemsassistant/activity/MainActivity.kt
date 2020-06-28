@@ -13,12 +13,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
+import ru.crazypeppers.problemsassistant.util.HideInputMode
 
 
 /**
  * Основная активити приложения
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), HideInputMode {
 
     var onBackPressedListener: OnBackPressedListener? = null
 
@@ -91,6 +92,7 @@ class MainActivity : AppCompatActivity() {
      * Обработка нажатия системной кнопки назад
      */
     override fun onBackPressed() {
+        hideInputMode(this)
         if (onBackPressedListener?.onBackPressed() == true)
             return
         super.onBackPressed()

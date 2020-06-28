@@ -15,11 +15,12 @@ import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
+import ru.crazypeppers.problemsassistant.util.HideInputMode
 
 /**
  * Фрагмент отвечающий за редактирование существующей проблемы.
  */
-class ProblemEditFragment : Fragment(), OnBackPressedListener {
+class ProblemEditFragment : Fragment(), OnBackPressedListener, HideInputMode {
     private var positionProblem = NOT_POSITION
 
     override fun onCreateView(
@@ -55,10 +56,12 @@ class ProblemEditFragment : Fragment(), OnBackPressedListener {
         }
 
         cancelButton.setOnClickListener {
+            hideInputMode(activity)
             findNavController().popBackStack()
         }
 
         saveButton.setOnClickListener {
+            hideInputMode(activity)
             val application = activity?.application as DataApplication
             val newName = problemName.text.toString()
 

@@ -26,11 +26,12 @@ import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
+import ru.crazypeppers.problemsassistant.util.HideInputMode
 
 /**
  * A simple [Fragment] subclass.
  */
-class CardNewFragment : Fragment(), OnBackPressedListener {
+class CardNewFragment : Fragment(), OnBackPressedListener, HideInputMode {
     private var positionProblem = NOT_POSITION
 
     override fun onCreateView(
@@ -82,10 +83,12 @@ class CardNewFragment : Fragment(), OnBackPressedListener {
         }
 
         cancelButton.setOnClickListener {
+            hideInputMode(activity)
             findNavController().popBackStack()
         }
 
         saveButton.setOnClickListener {
+            hideInputMode(activity)
             if (positionProblem == NOT_POSITION) {
                 findNavController().popBackStack()
                 return@setOnClickListener
