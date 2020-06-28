@@ -1,5 +1,6 @@
 package ru.crazypeppers.problemsassistant.data.dto
 
+import com.google.gson.annotations.SerializedName
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
 import ru.crazypeppers.problemsassistant.extension.withoutTime
 import java.util.*
@@ -11,11 +12,13 @@ class Point() {
     /**
      * Выставленные очки
      */
+    @SerializedName("score")
     var score = 0
 
     /**
      * Дата оценки
      */
+    @SerializedName("cdate")
     val cdate: Calendar = Calendar.getInstance().withoutTime()
 
     /**

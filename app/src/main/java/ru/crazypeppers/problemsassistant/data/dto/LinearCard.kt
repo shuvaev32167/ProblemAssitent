@@ -1,6 +1,7 @@
 package ru.crazypeppers.problemsassistant.data.dto
 
 import android.util.Log
+import com.google.gson.annotations.SerializedName
 import ru.crazypeppers.problemsassistant.data.TAG
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
@@ -22,6 +23,7 @@ import java.util.*
  */
 class LinearCard(
     name: String,
+    @SerializedName("points")
     val points: List<Point>
 ) : BaseCard(name) {
     init {
@@ -73,6 +75,7 @@ class LinearCard(
     /**
      * Среднее зачение очков, привязанных к карте
      */
+    @SerializedName("avgPoints")
     var avgPoints: Float = 0f
 
     /**

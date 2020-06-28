@@ -1,5 +1,6 @@
 package ru.crazypeppers.problemsassistant.data.dto
 
+import com.google.gson.annotations.SerializedName
 import ru.crazypeppers.problemsassistant.data.Data
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
@@ -15,12 +16,15 @@ import ru.crazypeppers.problemsassistant.extension.removeAt
  * @property cards Список карт (мотиваций/якорей)
  */
 class Problem(
+    @SerializedName("name")
     var name: String,
+    @SerializedName("cards")
     val cards: List<BaseCard> = mutableListOf()
 ) {
     /**
      * Тип проблемы
      */
+    @SerializedName("type")
     var type: ProblemType = ProblemType.LINE
     /**
      * Данные, в которые входит проблема

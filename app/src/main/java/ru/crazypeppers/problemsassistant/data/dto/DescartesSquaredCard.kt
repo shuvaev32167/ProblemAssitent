@@ -1,5 +1,6 @@
 package ru.crazypeppers.problemsassistant.data.dto
 
+import com.google.gson.annotations.SerializedName
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
 import ru.crazypeppers.problemsassistant.extension.withoutTime
@@ -19,6 +20,7 @@ class DescartesSquaredCard(cardName: String, cardDescription: String, cardType: 
     /**
      * Дата создания карты
      */
+    @SerializedName("createCardDate")
     var createCardDate: Calendar
         private set
 

@@ -1,5 +1,6 @@
 package ru.crazypeppers.problemsassistant.data.dto
 
+import com.google.gson.annotations.SerializedName
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
 
@@ -8,20 +9,23 @@ import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
  *
  * @property name Название карты
  */
-abstract class BaseCard(var name: String) {
+abstract class BaseCard(@SerializedName("name") var name: String) {
     /**
      * Тип карты
      */
+    @SerializedName("type")
     var type: CardType = CardType.NONE
 
     /**
      * Пояснение карты
      */
+    @SerializedName("description")
     var description: String = ""
 
     /**
      * Картинка карты
      */
+    @SerializedName("imageBase64")
     var imageBase64: String? = null
 
     /**

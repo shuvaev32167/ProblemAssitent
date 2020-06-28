@@ -1,5 +1,6 @@
 package ru.crazypeppers.problemsassistant.data
 
+import com.google.gson.annotations.SerializedName
 import ru.crazypeppers.problemsassistant.data.dto.Problem
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData.Companion.compare
@@ -16,10 +17,11 @@ import ru.crazypeppers.problemsassistant.extension.removeAt
  *
  * @property problems Список проблем
  */
-data class Data(val problems: List<Problem>) {
+data class Data(@SerializedName("problems") val problems: List<Problem>) {
     /**
      * Версия формата данных
      */
+    @SerializedName("version")
     var version: SupportedVersionData? = null
 
     init {
