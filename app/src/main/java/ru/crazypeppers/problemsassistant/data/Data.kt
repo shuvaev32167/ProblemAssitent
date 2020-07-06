@@ -8,9 +8,7 @@ import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData.C
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData.Companion.lastVersion
 import ru.crazypeppers.problemsassistant.enumiration.ImportType
 import ru.crazypeppers.problemsassistant.enumiration.ImportType.*
-import ru.crazypeppers.problemsassistant.extension.add
-import ru.crazypeppers.problemsassistant.extension.clear
-import ru.crazypeppers.problemsassistant.extension.removeAt
+import ru.crazypeppers.problemsassistant.extension.*
 
 /**
  * Описание данных для сохранения в файл
@@ -117,11 +115,13 @@ data class Data(@SerializedName("problems") val problems: List<Problem>) {
         importType: ImportType
     ) {
         when (importType) {
-            FULL_REPLACE -> if (this.problems is MutableList) {
-                clearData()
-                addAll(problems)
-                for (problem in problems) {
-                    problem.parent = this
+            FULL_REPLACE -> {
+                if (this.problems.isMutable()) {
+                    clearData()
+                    addAll(problems)
+                    for (problem in problems) {
+                        problem.parent = this
+                    }
                 }
             }
             ENRICHMENT -> {
@@ -146,11 +146,9 @@ data class Data(@SerializedName("problems") val problems: List<Problem>) {
     }
 
     private fun addAll(problems: List<Problem>) {
-        if (this.problems is MutableList) {
-            this.problems.addAll(problems)
-            for (problem in problems) {
-                problem.parent = this
-            }
+        this.problems.addAll(problems)
+        for (problem in problems) {
+            problem.parent = this
         }
     }
 }

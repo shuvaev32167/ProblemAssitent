@@ -35,7 +35,7 @@ class Point() {
     }
 
     /**
-     * Акутуализация полей очков с версии [versionFrom] по версия [versionTo].
+     * Актуализация полей очков с версии [versionFrom] по версия [versionTo].
      *
      * @param parent карта, к которой относятся очки
      * @param versionFrom версия с которой производить актуализацию данных
@@ -44,7 +44,7 @@ class Point() {
     fun actualize(
         parent: LinearCard,
         versionFrom: SupportedVersionData,
-        versionTo: SupportedVersionData
+        @Suppress("UNUSED_PARAMETER") versionTo: SupportedVersionData
     ) {
         if (this.parent == null) {
             this.parent = parent

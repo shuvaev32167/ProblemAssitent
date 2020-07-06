@@ -6,8 +6,7 @@ import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
 import ru.crazypeppers.problemsassistant.enumiration.ImportType
 import ru.crazypeppers.problemsassistant.enumiration.ImportType.*
-import ru.crazypeppers.problemsassistant.extension.add
-import ru.crazypeppers.problemsassistant.extension.removeAt
+import ru.crazypeppers.problemsassistant.extension.*
 
 /**
  * Описание решаемой проблемы
@@ -144,7 +143,7 @@ class Problem(
     fun replaceCard(cards: List<BaseCard>, importType: ImportType) {
         when (importType) {
             FULL_REPLACE -> {
-                if (this.cards is MutableList) {
+                if (this.cards.isMutable()) {
                     this.cards.clear()
                     addAll(cards)
                 }
@@ -172,7 +171,7 @@ class Problem(
     }
 
     private fun addAll(cards: List<BaseCard>) {
-        if (this.cards is MutableList) {
+        if (this.cards.isMutable()) {
             this.cards.addAll(cards)
             for (card in cards) {
                 card.parent = this

@@ -8,9 +8,7 @@ import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
 import ru.crazypeppers.problemsassistant.data.enumiration.SupportedVersionData
 import ru.crazypeppers.problemsassistant.enumiration.ImportType
 import ru.crazypeppers.problemsassistant.enumiration.ImportType.*
-import ru.crazypeppers.problemsassistant.extension.clear
-import ru.crazypeppers.problemsassistant.extension.diffDay
-import ru.crazypeppers.problemsassistant.extension.roundTo
+import ru.crazypeppers.problemsassistant.extension.*
 import java.util.*
 
 /**
@@ -183,8 +181,8 @@ class LinearCard(
             findPointByDate.score = point.score
         } else {
             point.parent = this
-            if (points is MutableList) {
-                points.add(point)
+            if (points.isMutable()) {
+                (points as MutableList).add(point)
                 points.sortByDescending { it.cdate }
             }
         }
@@ -234,6 +232,12 @@ class LinearCard(
         return points[positionPoint]
     }
 
+    /**
+     * Замена или добавление оценок, на основе типа импорта [importType]
+     *
+     * @param points импортированные оценки
+     * @param importType тип импорта
+     */
     fun replacePoints(points: List<Point>, importType: ImportType) {
         when (importType) {
             FULL_REPLACE -> {
@@ -251,12 +255,15 @@ class LinearCard(
         }
     }
 
+    /**
+     * Добавление всех новых оценок к существующим
+     *
+     * @param points
+     */
     private fun addAll(points: List<Point>) {
-        if (this.points is MutableList) {
-            this.points.addAll(points)
-            for (point in points) {
-                point.parent = this
-            }
+        this.points.addAll(points)
+        for (point in points) {
+            point.parent = this
         }
     }
 }
