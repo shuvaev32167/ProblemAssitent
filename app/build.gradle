@@ -32,6 +32,7 @@ android {
                 integrityCheckEnabled true
             }
         }
+        unitTests.includeAndroidResources = true
         unitTests.returnDefaultValues = true
     }
 // To inline the bytecode built with JVM target 1.8 into

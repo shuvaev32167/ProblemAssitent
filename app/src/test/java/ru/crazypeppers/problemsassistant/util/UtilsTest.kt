@@ -1,10 +1,9 @@
-package ru.crazypeppers.problemsassistant
+package ru.crazypeppers.problemsassistant.util
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
-import ru.crazypeppers.problemsassistant.util.createProblemStub
 
 class UtilsTest {
     @Test
