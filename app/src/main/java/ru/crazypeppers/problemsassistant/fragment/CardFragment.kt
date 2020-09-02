@@ -7,6 +7,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.SeekBar
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_card.*
@@ -23,6 +24,8 @@ import ru.crazypeppers.problemsassistant.data.dto.DescartesSquaredCard
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
+import ru.crazypeppers.problemsassistant.extension.informationBuilder
+import ru.crazypeppers.problemsassistant.extension.isToday
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 import ru.crazypeppers.problemsassistant.util.fromHtml
 
@@ -114,6 +117,10 @@ class CardFragment : Fragment(), OnBackPressedListener {
                 processingAppearanceOfElementsDependingOnAvailabilityOfPoints(
                     card.points
                 )
+
+                if (card.points.isNotEmpty() && card.points.first().cdate.isToday()) {
+                    confirmButton.visibility = GONE
+                }
             } else if (card is DescartesSquaredCard) {
                 newLayoutButtons.visibility = GONE
             }
@@ -136,9 +143,22 @@ class CardFragment : Fragment(), OnBackPressedListener {
 
         confirmButton.setOnClickListener {
             val card = application.data[positionProblem][positionCard] as LinearCard
+            val prevPoint = card.points.first()
             card.add(Point(card.points.first().score))
             application.saveData()
             informationText.text = getInformationTextText(card)
+            confirmButton.visibility = GONE
+
+            val informationBuilder =
+                AlertDialog.Builder(context ?: activity).informationBuilder()
+            informationBuilder.setMessage(
+                getString(
+                    R.string.confirmButtonInformationAction,
+                    prevPoint.score,
+                    DATE_FORMAT.format(prevPoint.cdate.time)
+                )
+            )
+            informationBuilder.create().show()
         }
 
         makeNewScoreButton.setOnClickListener {
@@ -148,7 +168,7 @@ class CardFragment : Fragment(), OnBackPressedListener {
             layoutButtons.visibility = VISIBLE
             val card = application.data[positionProblem][positionCard]
             if (card is LinearCard)
-                seekBarVariants.progress = (card.points.maxBy { it.cdate }?.score ?: 0) + 5
+                seekBarVariants.progress = (card.points.maxByOrNull { it.cdate }?.score ?: 0) + 5
         }
     }
 

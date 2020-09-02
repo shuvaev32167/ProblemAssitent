@@ -63,6 +63,7 @@
     <string name="disadvantage">недостаток</string>
     <string name="advantage_disadvantage">преимущество/недостаток</string>
     <string name="confirmButton">Подтвердить</string>
+    <string name="confirmButtonInformationAction">Ваша оценка \"%1$d\" за \"%2$s\" была подтверждена сегодняшним днём</string>
     <string name="makeNewScoreButton">Переоценить</string>
     <string name="makeScoreButton">Оценить</string>
 

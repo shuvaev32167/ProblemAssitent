@@ -74,6 +74,7 @@
     <string name="disadvantage">disadvantage</string>
     <string name="advantage_disadvantage">advantage/disadvantage</string>
     <string name="confirmButton">Confirm</string>
+    <string name="confirmButtonInformationAction">Your last rate \"%1$d\" at \"%2$s\" was confirmed today</string>
     <string name="makeNewScoreButton">Revalue</string>
     <string name="makeScoreButton">Rate</string>
 

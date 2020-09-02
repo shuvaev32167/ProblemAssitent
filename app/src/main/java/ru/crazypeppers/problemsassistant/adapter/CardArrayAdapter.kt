@@ -14,6 +14,7 @@ import ru.crazypeppers.problemsassistant.data.dto.BaseCard
 import ru.crazypeppers.problemsassistant.data.dto.DescartesSquaredCard
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
+import ru.crazypeppers.problemsassistant.extension.informationBuilder
 import ru.crazypeppers.problemsassistant.extension.toStringRound
 import ru.crazypeppers.problemsassistant.util.fromHtml
 import ru.crazypeppers.problemsassistant.util.hyperlinkStyle
@@ -46,10 +47,7 @@ class CardArrayAdapter(context: Context, cardList: List<BaseCard>) :
             cardDescription.visibility = GONE
         }
         val cardAvgPoint = view.findViewById<AppCompatTextView>(R.id.cardAvgPoint)
-        val adb: AlertDialog.Builder = AlertDialog.Builder(context)
-        adb.setTitle(R.string.informationTitle)
-        adb.setIcon(android.R.drawable.ic_dialog_info)
-        adb.setNeutralButton(R.string.okButton, null)
+        val adb: AlertDialog.Builder = AlertDialog.Builder(context).informationBuilder()
         if (card is LinearCard) {
             if (card.points.isEmpty()) {
                 cardAvgPoint.visibility = INVISIBLE

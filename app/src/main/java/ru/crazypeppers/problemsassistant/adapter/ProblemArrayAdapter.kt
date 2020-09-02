@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.data.dto.Problem
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
+import ru.crazypeppers.problemsassistant.extension.informationBuilder
 import ru.crazypeppers.problemsassistant.extension.toStringRound
 import ru.crazypeppers.problemsassistant.util.hyperlinkStyle
 
@@ -32,10 +33,7 @@ class ProblemArrayAdapter(context: Context, problemList: List<Problem>) :
         if (problem != null) {
             (view?.findViewById(android.R.id.text1) as TextView).text = problem.name
             val problemPointLabel = view.findViewById(R.id.problemPoint) as TextView
-            val adb: AlertDialog.Builder = AlertDialog.Builder(context)
-            adb.setTitle(R.string.informationTitle)
-            adb.setIcon(android.R.drawable.ic_dialog_info)
-            adb.setNeutralButton(R.string.okButton, null)
+            val adb: AlertDialog.Builder = AlertDialog.Builder(context).informationBuilder()
             if (problem.type == ProblemType.DESCARTES_SQUARED) {
                 adb.setMessage(
                     String.format(

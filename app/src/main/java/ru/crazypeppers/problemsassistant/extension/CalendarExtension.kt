@@ -34,10 +34,10 @@ fun Calendar.diffDay(date: Calendar): Int =
     ((this.timeInMillis - date.timeInMillis) / millisecondPerDay).toInt()
 
 /**
- * Создаёт новый обект, на основе текущего со звигом на указанное [day] число дней
+ * Создаёт новый объект, на основе текущего со звигом на указанное [day] число дней
  *
  * @param day число дней, которые надо добавить
- * @return Дата, с придавленым числом дней [day]
+ * @return Дата, с прибавленным числом дней [day]
  */
 fun Calendar.addDayAsNewInstance(day: Int): Calendar {
     val calendar = Calendar.getInstance()
@@ -45,3 +45,10 @@ fun Calendar.addDayAsNewInstance(day: Int): Calendar {
     calendar.add(Calendar.DATE, day)
     return calendar
 }
+
+/**
+ * Определение, является ли дата текущем днём
+ *
+ * @return `true`, если дата текущая, в противном случае — `false`
+ */
+fun Calendar.isToday(): Boolean = this.diffDay(Calendar.getInstance().withoutTime()) == 0
