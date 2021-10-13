@@ -18,7 +18,7 @@ enum class SupportedVersionData(val code: Int) {
          * @return Полследняя поддерживаемая версия формата данных.
          */
         @JvmStatic
-        fun lastVersion(): SupportedVersionData = values().maxBy { it.code }!!
+        fun lastVersion(): SupportedVersionData = values().maxByOrNull { it.code }!!
 
         /**
          * Увеличение версии на еденицу. Если происходит увеличения у `null`, то версия становиться [ONE].
