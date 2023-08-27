@@ -1,30 +1,35 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.jetbrains.dokka'
 apply plugin: 'de.mannodermaus.android-junit5'
-apply plugin: 'maven-publish'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdk 34
+    buildToolsVersion '34.0.0'
 
-    viewBinding.enabled = true
+    buildFeatures {
+        viewBinding true
+    }
 
     defaultConfig {
+        testInstrumentationRunnerArguments runnerBuilder: 'de.mannodermaus.junit5.AndroidJUnit5Builder'
         applicationId "ru.crazypeppers.problemsassistant"
         minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 8
-        versionName "1.0.4"
+        targetSdk 34
+        versionCode 9
+        versionName '1.0.5'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunnerArgument "runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder"
+    }
+    packagingOptions {
+        jniLibs {
+            excludes += ['META-INF/LICENSE*']
+        }
+        resources {
+            excludes += ['META-INF/LICENSE*']
+        }
     }
 
-    packagingOptions {
-        exclude "META-INF/LICENSE*"
-    }
 
     testOptions {
         junitPlatform {
@@ -56,40 +61,41 @@ android {
                     'proguard-rules.pro'
         }
     }
+    namespace 'ru.crazypeppers.problemsassistant'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'com.google.code.gson:gson:2.8.8'
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.1'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.google.android.material:material:1.9.0'
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     testImplementation 'junit:junit:4.13.2'
-    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.8.1'
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.10.0'
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
+    androidTestImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.0'
 
     androidTestImplementation 'de.mannodermaus.junit5:android-test-core:1.3.0'
     androidTestRuntimeOnly 'de.mannodermaus.junit5:android-test-runner:1.3.0'
 
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
 
-    debugImplementation 'androidx.fragment:fragment-testing:1.3.6'
+    debugImplementation 'androidx.fragment:fragment-testing:1.6.1'
 }
 
-configurations.all {
+configurations.configureEach {
     resolutionStrategy {
         force 'androidx.test:monitor:1.4.0'
     }

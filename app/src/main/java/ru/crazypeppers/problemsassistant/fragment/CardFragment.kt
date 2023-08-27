@@ -10,8 +10,6 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.fragment_card.*
-import kotlinx.android.synthetic.main.layout_variants.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
@@ -24,6 +22,7 @@ import ru.crazypeppers.problemsassistant.data.dto.DescartesSquaredCard
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
+import ru.crazypeppers.problemsassistant.databinding.FragmentCardBinding
 import ru.crazypeppers.problemsassistant.extension.informationBuilder
 import ru.crazypeppers.problemsassistant.extension.isToday
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
@@ -36,12 +35,21 @@ class CardFragment : Fragment(), OnBackPressedListener {
     private var positionProblem = NOT_POSITION
     private var positionCard = NOT_POSITION
 
+    private var _binding: FragmentCardBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card, container, false)
+    ): View {
+        _binding = FragmentCardBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,7 +68,8 @@ class CardFragment : Fragment(), OnBackPressedListener {
             positionCard = arg.getInt(CARD_POSITION_TEXT, NOT_POSITION)
         }
 
-        seekBarVariants.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.layoutVariants.seekBarVariants.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val score = progress - 5
                 activity.title = when {
@@ -68,7 +77,7 @@ class CardFragment : Fragment(), OnBackPressedListener {
                     score < 0 -> getString(R.string.disadvantageFragmentLabel)
                     else -> getString(R.string.advantage_disadvantageFragmentLabel)
                 }
-                scoreSeekBar.text = score.toString()
+                binding.layoutVariants.scoreSeekBar.text = score.toString()
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -86,8 +95,8 @@ class CardFragment : Fragment(), OnBackPressedListener {
                 CardType.NONE -> getString(R.string.advantage_disadvantageFragmentLabel)
                 else -> getString(R.string.cardLabel)
             }
-            cardName.text = card.name
-            cardNameTitle.text = String.format(
+            binding.cardName.text = card.name
+            binding.cardNameTitle.text = String.format(
                 getString(R.string.cardNameTitle),
                 getString(
                     when (card.type) {
@@ -98,11 +107,11 @@ class CardFragment : Fragment(), OnBackPressedListener {
                 )
             )
             if (card.description.isBlank()) {
-                cardDescriptionLayout.visibility = GONE
+                binding.cardDescriptionLayout.visibility = GONE
             } else {
-                cardDescriptionLayout.visibility = VISIBLE
-                cardDescription.text = card.description
-                cardDescriptionTitle.text = String.format(
+                binding.cardDescriptionLayout.visibility = VISIBLE
+                binding.cardDescription.text = card.description
+                binding.cardDescriptionTitle.text = String.format(
                     getString(R.string.cardDescriptionTitle),
                     getString(
                         when (card.type) {
@@ -119,35 +128,35 @@ class CardFragment : Fragment(), OnBackPressedListener {
                 )
 
                 if (card.points.isNotEmpty() && card.points.first().cdate.isToday()) {
-                    confirmButton.visibility = GONE
+                    binding.confirmButton.visibility = GONE
                 }
             } else if (card is DescartesSquaredCard) {
-                newLayoutButtons.visibility = GONE
+                binding.newLayoutButtons.visibility = GONE
             }
 
-            informationText.text = getInformationTextText(card)
+            binding.informationText.text = getInformationTextText(card)
         }
 
-        cancelButton.setOnClickListener {
+        binding.cancelButton.setOnClickListener {
             onBackPressed()
         }
 
-        saveButton.setOnClickListener {
-            val score = seekBarVariants.progress - 5
+        binding.saveButton.setOnClickListener {
+            val score = binding.layoutVariants.seekBarVariants.progress - 5
             val card = application.data[positionProblem][positionCard] as LinearCard
             card.add(Point(score))
             application.saveData()
-            informationText.text = getInformationTextText(card)
+            binding.informationText.text = getInformationTextText(card)
             onBackPressed()
         }
 
-        confirmButton.setOnClickListener {
+        binding.confirmButton.setOnClickListener {
             val card = application.data[positionProblem][positionCard] as LinearCard
             val prevPoint = card.points.first()
             card.add(Point(card.points.first().score))
             application.saveData()
-            informationText.text = getInformationTextText(card)
-            confirmButton.visibility = GONE
+            binding.informationText.text = getInformationTextText(card)
+            binding.confirmButton.visibility = GONE
 
             val informationBuilder =
                 AlertDialog.Builder(context ?: activity).informationBuilder()
@@ -161,14 +170,15 @@ class CardFragment : Fragment(), OnBackPressedListener {
             informationBuilder.create().show()
         }
 
-        makeNewScoreButton.setOnClickListener {
-            newLayoutButtons.visibility = GONE
-            informationText.visibility = GONE
-            frameVariant.visibility = VISIBLE
-            layoutButtons.visibility = VISIBLE
+        binding.makeNewScoreButton.setOnClickListener {
+            binding.newLayoutButtons.visibility = GONE
+            binding.informationText.visibility = GONE
+            binding.frameVariant.visibility = VISIBLE
+            binding.layoutButtons.visibility = VISIBLE
             val card = application.data[positionProblem][positionCard]
             if (card is LinearCard)
-                seekBarVariants.progress = (card.points.maxByOrNull { it.cdate }?.score ?: 0) + 5
+                binding.layoutVariants.seekBarVariants.progress =
+                    (card.points.maxByOrNull { it.cdate }?.score ?: 0) + 5
         }
     }
 
@@ -216,11 +226,11 @@ class CardFragment : Fragment(), OnBackPressedListener {
     }
 
     override fun onBackPressed(): Boolean {
-        return if (newLayoutButtons.visibility != VISIBLE && informationText.visibility != VISIBLE) {
-            newLayoutButtons.visibility = VISIBLE
-            informationText.visibility = VISIBLE
-            frameVariant.visibility = GONE
-            layoutButtons.visibility = GONE
+        return if (binding.newLayoutButtons.visibility != VISIBLE && binding.informationText.visibility != VISIBLE) {
+            binding.newLayoutButtons.visibility = VISIBLE
+            binding.informationText.visibility = VISIBLE
+            binding.frameVariant.visibility = GONE
+            binding.layoutButtons.visibility = GONE
             if (positionProblem != NOT_POSITION && positionCard != NOT_POSITION) {
                 val card =
                     (requireActivity().application as DataApplication).data[positionProblem][positionCard]
@@ -242,12 +252,12 @@ class CardFragment : Fragment(), OnBackPressedListener {
      */
     private fun processingAppearanceOfElementsDependingOnAvailabilityOfPoints(points: List<Point>) {
         if (points.isEmpty()) {
-            seekBarVariants.progress = 5
-            confirmButton.visibility = GONE
-            makeNewScoreButton.setText(R.string.makeScoreButton)
+            binding.layoutVariants.seekBarVariants.progress = 5
+            binding.confirmButton.visibility = GONE
+            binding.makeNewScoreButton.setText(R.string.makeScoreButton)
         } else {
-            confirmButton.visibility = VISIBLE
-            makeNewScoreButton.setText(R.string.makeNewScoreButton)
+            binding.confirmButton.visibility = VISIBLE
+            binding.makeNewScoreButton.setText(R.string.makeNewScoreButton)
         }
     }
 }

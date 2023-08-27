@@ -8,12 +8,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.fragment_problem_new.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.data.dto.Problem
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
+import ru.crazypeppers.problemsassistant.databinding.FragmentProblemNewBinding
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 import ru.crazypeppers.problemsassistant.util.HideInputMode
 
@@ -21,12 +21,16 @@ import ru.crazypeppers.problemsassistant.util.HideInputMode
  * Фрагмент, отвечающий за добавление новой проблемы
  */
 class ProblemNewFragment : Fragment(), OnBackPressedListener, HideInputMode {
+    private var _binding: FragmentProblemNewBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_problem_new, container, false)
+    ): View {
+        _binding = FragmentProblemNewBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,15 +46,15 @@ class ProblemNewFragment : Fragment(), OnBackPressedListener, HideInputMode {
             activity.title = getString(R.string.problem_new_fragment_label)
         }
 
-        cancelButton.setOnClickListener {
+        binding.cancelButton.setOnClickListener {
             hideInputMode(activity)
             findNavController().popBackStack()
         }
 
-        saveButton.setOnClickListener {
+        binding.saveButton.setOnClickListener {
             hideInputMode(activity)
             val application = activity?.application as DataApplication
-            val newName = problemName.text.toString()
+            val newName = binding.problemName.text.toString()
 
             val adb: AlertDialog.Builder = AlertDialog.Builder(activity)
             adb.setTitle(R.string.problemNameBusyTitle)
@@ -71,7 +75,7 @@ class ProblemNewFragment : Fragment(), OnBackPressedListener, HideInputMode {
                 application.data.add(
                     Problem(
                         newName,
-                        if (problemTypeSpinner.selectedItemPosition == 0)
+                        if (binding.problemTypeSpinner.selectedItemPosition == 0)
                             ProblemType.LINE
                         else
                             ProblemType.DESCARTES_SQUARED

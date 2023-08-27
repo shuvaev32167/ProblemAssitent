@@ -11,10 +11,6 @@ import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.fragment_card_new.*
-import kotlinx.android.synthetic.main.fragment_card_new.cardDescription
-import kotlinx.android.synthetic.main.fragment_card_new.cardName
-import kotlinx.android.synthetic.main.layout_variants.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
@@ -25,6 +21,7 @@ import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
+import ru.crazypeppers.problemsassistant.databinding.FragmentCardNewBinding
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 import ru.crazypeppers.problemsassistant.util.HideInputMode
 
@@ -34,12 +31,21 @@ import ru.crazypeppers.problemsassistant.util.HideInputMode
 class CardNewFragment : Fragment(), OnBackPressedListener, HideInputMode {
     private var positionProblem = NOT_POSITION
 
+    private var _binding: FragmentCardNewBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card_new, container, false)
+    ): View {
+        _binding = FragmentCardNewBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,38 +68,38 @@ class CardNewFragment : Fragment(), OnBackPressedListener, HideInputMode {
 
         if (problem.type == ProblemType.LINE) {
             activity.title = getString(R.string.advantage_disadvantageNewLabel)
-            layoutVariants.visibility = VISIBLE
-            checkScoreNow.visibility = VISIBLE
+            binding.layoutVariants.layoutVariants.visibility = VISIBLE
+            binding.checkScoreNow.visibility = VISIBLE
         } else if (problem.type == ProblemType.DESCARTES_SQUARED) {
             activity.title = getString(R.string.cardNewLabel)
-            layoutVariants.visibility = GONE
-            checkScoreNow.visibility = GONE
-            descartesSquaredLayout.visibility = VISIBLE
+            binding.layoutVariants.layoutVariants.visibility = GONE
+            binding.checkScoreNow.visibility = GONE
+            binding.descartesSquaredLayout.visibility = VISIBLE
         }
 
 
-        checkScoreNow.setOnCheckedChangeListener { _, isChecked ->
+        binding.checkScoreNow.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                layoutVariants.visibility = GONE
+                binding.layoutVariants.layoutVariants.visibility = GONE
                 activity.title = getString(R.string.advantage_disadvantageNewLabel)
             } else {
-                layoutVariants.visibility = VISIBLE
-                setActivityTitle(seekBarVariants.progress - 5)
+                binding.layoutVariants.layoutVariants.visibility = VISIBLE
+                setActivityTitle(binding.layoutVariants.seekBarVariants.progress - 5)
             }
         }
 
-        cancelButton.setOnClickListener {
+        binding.cancelButton.setOnClickListener {
             hideInputMode(activity)
             findNavController().popBackStack()
         }
 
-        saveButton.setOnClickListener {
+        binding.saveButton.setOnClickListener {
             hideInputMode(activity)
             if (positionProblem == NOT_POSITION) {
                 findNavController().popBackStack()
                 return@setOnClickListener
             }
-            val newName = cardName.text.toString()
+            val newName = binding.cardName.text.toString()
 
             val adb: AlertDialog.Builder = AlertDialog.Builder(activity)
             val titleId: Int
@@ -101,14 +107,16 @@ class CardNewFragment : Fragment(), OnBackPressedListener, HideInputMode {
 
             if (problem.type == ProblemType.LINE) {
                 when {
-                    seekBarVariants.progress > 5 -> {
+                    binding.layoutVariants.seekBarVariants.progress > 5 -> {
                         titleId = R.string.cardAdvantageNameBusyTitle
                         messageId = R.string.cardAdvantageNameBusyMessage
                     }
-                    seekBarVariants.progress < 5 -> {
+
+                    binding.layoutVariants.seekBarVariants.progress < 5 -> {
                         titleId = R.string.cardDisadvantageNameBusyTitle
                         messageId = R.string.cardDisadvantageNameBusyMessage
                     }
+
                     else -> {
                         titleId = R.string.cardAdvantage_DisadvantageNameBusyTitle
                         messageId = R.string.cardAdvantage_DisadvantageNameBusyMessage
@@ -135,17 +143,17 @@ class CardNewFragment : Fragment(), OnBackPressedListener, HideInputMode {
                 return@setOnClickListener
             } else {
                 if (problem.type == ProblemType.LINE) {
-                    if (checkScoreNow.isChecked) {
-                        problem.add(LinearCard(newName, cardDescription.text.toString()))
+                    if (binding.checkScoreNow.isChecked) {
+                        problem.add(LinearCard(newName, binding.cardDescription.text.toString()))
                     } else {
                         problem.add(
                             LinearCard(
                                 cardName = newName,
-                                cardDescription = cardDescription.text.toString(),
+                                cardDescription = binding.cardDescription.text.toString(),
                                 parent = problem,
                                 points = mutableListOf(
                                     Point(
-                                        seekBarVariants.progress - 5
+                                        binding.layoutVariants.seekBarVariants.progress - 5
                                     )
                                 )
                             )
@@ -155,7 +163,7 @@ class CardNewFragment : Fragment(), OnBackPressedListener, HideInputMode {
                     problem.add(
                         DescartesSquaredCard(
                             cardName = newName,
-                            cardDescription = cardDescription.text.toString(),
+                            cardDescription = binding.cardDescription.text.toString(),
                             cardType = getCardTypeFromSpinner()
                         )
                     )
@@ -166,11 +174,12 @@ class CardNewFragment : Fragment(), OnBackPressedListener, HideInputMode {
             findNavController().popBackStack()
         }
 
-        seekBarVariants.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.layoutVariants.seekBarVariants.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val score = progress - 5
                 setActivityTitle(score)
-                scoreSeekBar.text = score.toString()
+                binding.layoutVariants.scoreSeekBar.text = score.toString()
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -200,7 +209,7 @@ class CardNewFragment : Fragment(), OnBackPressedListener, HideInputMode {
      * @return Тип карты
      */
     private fun getCardTypeFromSpinner(): CardType {
-        return when (descartesSquaredQuarterSpinner.selectedItemPosition) {
+        return when (binding.descartesSquaredQuarterSpinner.selectedItemPosition) {
             0 -> CardType.SQUARE_DO_HAPPEN
             1 -> CardType.SQUARE_NOT_DO_HAPPEN
             2 -> CardType.SQUARE_DO_NOT_HAPPEN

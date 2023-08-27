@@ -10,7 +10,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.fragment_card_edit.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
@@ -21,6 +20,7 @@ import ru.crazypeppers.problemsassistant.data.dto.BaseCard
 import ru.crazypeppers.problemsassistant.data.dto.Problem
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
+import ru.crazypeppers.problemsassistant.databinding.FragmentCardEditBinding
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 import ru.crazypeppers.problemsassistant.util.HideInputMode
 
@@ -33,12 +33,21 @@ class CardEditFragment : Fragment(), OnBackPressedListener, HideInputMode {
     private lateinit var card: BaseCard
     private lateinit var problem: Problem
 
+    private var _binding: FragmentCardEditBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card_edit, container, false)
+    ): View {
+        _binding = FragmentCardEditBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,31 +67,31 @@ class CardEditFragment : Fragment(), OnBackPressedListener, HideInputMode {
             positionCard = arg.getInt(CARD_POSITION_TEXT, NOT_POSITION)
             problem = application.data[positionProblem]
             card = application.data[positionProblem][positionCard]
-            cardName.setText(card.name)
-            cardName.setSelection(card.name.length)
-            cardDescription.setText(card.description)
+            binding.cardName.setText(card.name)
+            binding.cardName.setSelection(card.name.length)
+            binding.cardDescription.setText(card.description)
 
             if (problem.type == ProblemType.LINE) {
-                descartesSquaredLayout.visibility = GONE
+                binding.descartesSquaredLayout.visibility = GONE
             } else if (problem.type == ProblemType.DESCARTES_SQUARED) {
-                descartesSquaredLayout.visibility = VISIBLE
+                binding.descartesSquaredLayout.visibility = VISIBLE
             }
         }
 
         setActivityTitle(card)
 
-        cancelButton.setOnClickListener {
+        binding.cancelButton.setOnClickListener {
             hideInputMode(activity)
             findNavController().popBackStack()
         }
 
-        saveButton.setOnClickListener {
+        binding.saveButton.setOnClickListener {
             hideInputMode(activity)
             if (positionProblem == NOT_POSITION) {
                 findNavController().popBackStack()
                 return@setOnClickListener
             }
-            val newName = cardName.text.toString()
+            val newName = binding.cardName.text.toString()
 
             val problem = application.data[positionProblem]
             if (problem.hasCardWithName(newName, card)) {
@@ -121,7 +130,7 @@ class CardEditFragment : Fragment(), OnBackPressedListener, HideInputMode {
                 return@setOnClickListener
             } else {
                 card.name = newName
-                card.description = cardDescription.text.toString()
+                card.description = binding.cardDescription.text.toString()
                 if (problem.type == ProblemType.DESCARTES_SQUARED) {
                     card.type = getCardTypeFromSpinner()
                 }
@@ -151,7 +160,7 @@ class CardEditFragment : Fragment(), OnBackPressedListener, HideInputMode {
      * @return Тип карты
      */
     private fun getCardTypeFromSpinner(): CardType {
-        return when (descartesSquaredQuarterSpinner.selectedItemPosition) {
+        return when (binding.descartesSquaredQuarterSpinner.selectedItemPosition) {
             0 -> CardType.SQUARE_DO_HAPPEN
             1 -> CardType.SQUARE_NOT_DO_HAPPEN
             2 -> CardType.SQUARE_DO_NOT_HAPPEN

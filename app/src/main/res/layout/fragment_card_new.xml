@@ -93,7 +93,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/checkScoreNow">
 
-            <include layout="@layout/layout_variants" />
+            <include
+                android:id="@+id/layoutVariants"
+                layout="@layout/layout_variants" />
         </FrameLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

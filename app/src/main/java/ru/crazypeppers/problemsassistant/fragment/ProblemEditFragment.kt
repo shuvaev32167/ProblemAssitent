@@ -8,12 +8,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.fragment_problem_edit.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.data.NOT_POSITION
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
+import ru.crazypeppers.problemsassistant.databinding.FragmentProblemEditBinding
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 import ru.crazypeppers.problemsassistant.util.HideInputMode
 
@@ -23,12 +23,21 @@ import ru.crazypeppers.problemsassistant.util.HideInputMode
 class ProblemEditFragment : Fragment(), OnBackPressedListener, HideInputMode {
     private var positionProblem = NOT_POSITION
 
+    private var _binding: FragmentProblemEditBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_problem_edit, container, false)
+    ): View {
+        _binding = FragmentProblemEditBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,23 +56,23 @@ class ProblemEditFragment : Fragment(), OnBackPressedListener, HideInputMode {
                 if (positionProblem != NOT_POSITION) {
                     val name =
                         (activity.application as DataApplication).data[positionProblem].name
-                    problemName.setText(name)
-                    problemName.setSelection(name.length)
+                    binding.problemName.setText(name)
+                    binding.problemName.setSelection(name.length)
                 }
             }
 
             activity.title = getString(R.string.problem_edit_fragment_label)
         }
 
-        cancelButton.setOnClickListener {
+        binding.cancelButton.setOnClickListener {
             hideInputMode(activity)
             findNavController().popBackStack()
         }
 
-        saveButton.setOnClickListener {
+        binding.saveButton.setOnClickListener {
             hideInputMode(activity)
             val application = activity?.application as DataApplication
-            val newName = problemName.text.toString()
+            val newName = binding.problemName.text.toString()
 
             val adb: AlertDialog.Builder = AlertDialog.Builder(activity)
             adb.setTitle(R.string.problemNameBusyTitle)

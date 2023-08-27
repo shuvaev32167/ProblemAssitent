@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.fragment_import.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
+import ru.crazypeppers.problemsassistant.databinding.FragmentImportBinding
 import ru.crazypeppers.problemsassistant.enumiration.ImportType
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 import ru.crazypeppers.problemsassistant.util.readDataFromBufferedReader
@@ -19,13 +19,21 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 
 class ImportFragment : Fragment(), OnBackPressedListener {
+    private var _binding: FragmentImportBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_import, container, false)
+    ): View {
+        _binding = FragmentImportBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,14 +46,16 @@ class ImportFragment : Fragment(), OnBackPressedListener {
         activity.title = getString(R.string.importFragmentLabel)
         val uri = requireArguments().getParcelable<Uri>("Uri")!!
 
-        importButton.setOnClickListener {
+        binding.importButton.setOnClickListener {
             val importType: ImportType = when {
-                fullReplaceRadioButton.isChecked -> {
+                binding.fullReplaceRadioButton.isChecked -> {
                     ImportType.FULL_REPLACE
                 }
-                enrichmentRadioButton.isChecked -> {
+
+                binding.enrichmentRadioButton.isChecked -> {
                     ImportType.ENRICHMENT
                 }
+
                 else -> {
                     ImportType.ONLY_NEW
                 }

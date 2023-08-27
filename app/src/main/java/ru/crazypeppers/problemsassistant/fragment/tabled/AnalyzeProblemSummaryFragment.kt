@@ -7,7 +7,6 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_analyze_problem_summery.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
@@ -18,21 +17,30 @@ import ru.crazypeppers.problemsassistant.data.dto.DescartesSquaredCard
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.enumiration.CardType
 import ru.crazypeppers.problemsassistant.data.enumiration.ProblemType
+import ru.crazypeppers.problemsassistant.databinding.FragmentAnalyzeProblemSummeryBinding
 import ru.crazypeppers.problemsassistant.extension.toStringRound
 import ru.crazypeppers.problemsassistant.util.fromHtml
 
 /**
  * Фрагмент отвечающий за общую инфвормацию в анализе проблемы
  */
-class
-AnalyzeProblemSummaryFragment : Fragment() {
+class AnalyzeProblemSummaryFragment : Fragment() {
+
+    private var _binding: FragmentAnalyzeProblemSummeryBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_analyze_problem_summery, container, false)
+    ): View {
+        _binding = FragmentAnalyzeProblemSummeryBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,29 +52,29 @@ AnalyzeProblemSummaryFragment : Fragment() {
             val positionProblem = arg.getInt(PROBLEM_POSITION_TEXT, NOT_POSITION)
             val problem = (activity.application as DataApplication).data[positionProblem]
             if (problem.type == ProblemType.LINE) {
-                linearProblemLayout.visibility = VISIBLE
-                descartesSquaredProblemLayout.visibility = GONE
+                binding.linearProblemLayout.visibility = VISIBLE
+                binding.descartesSquaredProblemLayout.visibility = GONE
 
                 val cards = problem.cards.filterIsInstance<LinearCard>()
 
                 val avgPoint = problem.calculateScoreProblem()
 
-                summeryInformation.text = String.format(
+                binding.summeryInformation.text = String.format(
                     getString(R.string.avgPointsLabel), problem.name,
                     if (avgPoint.isNaN()) "0.00" else avgPoint.toStringRound(2)
                 )
 
-                countMotivation.text = String.format(
+                binding.countMotivation.text = String.format(
                     getString(R.string.countMotivationLabel),
                     cards.filter { it.type == CardType.LINEAR_ADVANTAGE }.count()
                 )
 
-                countAnchor.text = String.format(
+                binding.countAnchor.text = String.format(
                     getString(R.string.countAnchorLabel),
                     cards.filter { it.type == CardType.LINEAR_DISADVANTAGE }.count()
                 )
 
-                summeryCountCard.text = String.format(
+                binding.summeryCountCard.text = String.format(
                     getString(R.string.summaryCountCardLabel), cards.count()
                 )
 
@@ -74,27 +82,27 @@ AnalyzeProblemSummaryFragment : Fragment() {
                     .sortedBy { it.cdate }
 
                 if (assessments.isNotEmpty()) {
-                    dateOfFirstProblemAssessment.text = String.format(
+                    binding.dateOfFirstProblemAssessment.text = String.format(
                         getString(R.string.dateOfFirstProblemAssessmentLabel),
                         DATE_FORMAT.format(assessments.first().cdate.time)
                     )
 
-                    dateOfLastProblemAssessment.text = String.format(
+                    binding.dateOfLastProblemAssessment.text = String.format(
                         getString(R.string.dateOfLastProblemAssessmentLabel),
                         DATE_FORMAT.format(assessments.last().cdate.time)
                     )
                 } else {
-                    dateOfFirstProblemAssessment.visibility = GONE
-                    dateOfLastProblemAssessment.visibility = GONE
+                    binding.dateOfFirstProblemAssessment.visibility = GONE
+                    binding.dateOfLastProblemAssessment.visibility = GONE
                 }
             } else if (problem.type == ProblemType.DESCARTES_SQUARED) {
-                linearProblemLayout.visibility = GONE
-                descartesSquaredProblemLayout.visibility = VISIBLE
+                binding.linearProblemLayout.visibility = GONE
+                binding.descartesSquaredProblemLayout.visibility = VISIBLE
 
                 val cards = problem.cards.filterIsInstance<DescartesSquaredCard>()
                     .sortedBy { it.createCardDate }
 
-                descartesSquaredCountIGroup.text =
+                binding.descartesSquaredCountIGroup.text =
                     fromHtml(
                         getString(R.string.descartesSquaredGroupCardCountLabel,
                             getString(R.string.descartesSquaredIQuarterFotGetString),
@@ -102,7 +110,7 @@ AnalyzeProblemSummaryFragment : Fragment() {
                         )
                     )
 
-                descartesSquaredCountIIGroup.text =
+                binding.descartesSquaredCountIIGroup.text =
                     fromHtml(
                         getString(R.string.descartesSquaredGroupCardCountLabel,
                             getString(R.string.descartesSquaredIIQuarterFotGetString),
@@ -110,7 +118,7 @@ AnalyzeProblemSummaryFragment : Fragment() {
                         )
                     )
 
-                descartesSquaredCountIIIGroup.text =
+                binding.descartesSquaredCountIIIGroup.text =
                     fromHtml(
                         getString(R.string.descartesSquaredGroupCardCountLabel,
                             getString(R.string.descartesSquaredIIIQuarterFotGetString),
@@ -118,7 +126,7 @@ AnalyzeProblemSummaryFragment : Fragment() {
                         )
                     )
 
-                descartesSquaredCountIVGroup.text =
+                binding.descartesSquaredCountIVGroup.text =
                     fromHtml(
                         getString(R.string.descartesSquaredGroupCardCountLabel,
                             getString(R.string.descartesSquaredIVQuarterFotGetString),
@@ -126,25 +134,25 @@ AnalyzeProblemSummaryFragment : Fragment() {
                         )
                     )
 
-                descartesSquaredSummeryCountCard.text =
+                binding.descartesSquaredSummeryCountCard.text =
                     getString(R.string.summaryCountCardLabel, cards.count())
 
                 if (cards.isNotEmpty()) {
-                    descartesSquaredDateOfFistCardCreate.visibility = VISIBLE
-                    descartesSquaredDateOfLastCardCreate.visibility = VISIBLE
+                    binding.descartesSquaredDateOfFistCardCreate.visibility = VISIBLE
+                    binding.descartesSquaredDateOfLastCardCreate.visibility = VISIBLE
 
-                    descartesSquaredDateOfFistCardCreate.text = getString(
+                    binding.descartesSquaredDateOfFistCardCreate.text = getString(
                         R.string.descartesSquaredDateOfFistCardCreateLabel,
                         DATE_FORMAT.format(cards.first().createCardDate.time)
                     )
 
-                    descartesSquaredDateOfLastCardCreate.text = getString(
+                    binding.descartesSquaredDateOfLastCardCreate.text = getString(
                         R.string.descartesSquaredDateOfLastCardCreateLabel,
                         DATE_FORMAT.format(cards.last().createCardDate.time)
                     )
                 } else {
-                    descartesSquaredDateOfFistCardCreate.visibility = GONE
-                    descartesSquaredDateOfLastCardCreate.visibility = GONE
+                    binding.descartesSquaredDateOfFistCardCreate.visibility = GONE
+                    binding.descartesSquaredDateOfLastCardCreate.visibility = GONE
                 }
             }
         }

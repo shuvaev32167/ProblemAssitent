@@ -17,7 +17,6 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.fragment_analyse_card.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
@@ -28,6 +27,7 @@ import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
 import ru.crazypeppers.problemsassistant.data.dto.BaseCard
 import ru.crazypeppers.problemsassistant.data.dto.LinearCard
 import ru.crazypeppers.problemsassistant.data.dto.Point
+import ru.crazypeppers.problemsassistant.databinding.FragmentAnalyseCardBinding
 import ru.crazypeppers.problemsassistant.extension.addDayAsNewInstance
 import ru.crazypeppers.problemsassistant.extension.diffDay
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
@@ -38,11 +38,21 @@ import ru.crazypeppers.problemsassistant.view.ChartGraphMarkerView
  */
 class AnalyseCardFragment : Fragment(), OnBackPressedListener {
 
+    private var _binding: FragmentAnalyseCardBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_analyse_card, container, false)
+    ): View {
+        _binding = FragmentAnalyseCardBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,12 +76,12 @@ class AnalyseCardFragment : Fragment(), OnBackPressedListener {
 
         if (positionProblem != NOT_POSITION && positionCard != NOT_POSITION) {
             val card = application.data[positionProblem][positionCard]
-            graphLabel.text =
+            binding.graphLabel.text =
                 String.format(getString(R.string.analyzeCardFragmentGraphLabel), card.name)
             if (card.isHideChart()) {
-                lineChart.visibility = GONE
+                binding.lineChart.visibility = GONE
             } else if (card is LinearCard) {
-                lineChart.visibility = VISIBLE
+                binding.lineChart.visibility = VISIBLE
                 val values = ArrayList<Entry>(card.points.size)
                 val firstDay = card.points.last().cdate
                 card.points.forEach {
@@ -97,11 +107,11 @@ class AnalyseCardFragment : Fragment(), OnBackPressedListener {
                 val data = LineData(dataSets)
                 data.setDrawValues(false)
 
-                lineChart.axisRight.isEnabled = false
-                val axisLeft = lineChart.axisLeft
+                binding.lineChart.axisRight.isEnabled = false
+                val axisLeft = binding.lineChart.axisLeft
                 axisLeft.granularity = 1f
                 axisLeft.gridColor = GRAY
-                val xAxis = lineChart.xAxis
+                val xAxis = binding.lineChart.xAxis
                 xAxis.position = XAxisPosition.BOTTOM
                 xAxis.granularity = 1f
                 xAxis.gridColor = GRAY
@@ -128,12 +138,12 @@ class AnalyseCardFragment : Fragment(), OnBackPressedListener {
                 }
 
                 val chartGraphMarker = ChartGraphMarkerView(activity)
-                chartGraphMarker.chartView = lineChart
-                lineChart.marker = chartGraphMarker
+                chartGraphMarker.chartView = binding.lineChart
+                binding.lineChart.marker = chartGraphMarker
 
-                lineChart.data = data
-                lineChart.legend.isEnabled = false
-                lineChart.setPinchZoom(true)
+                binding.lineChart.data = data
+                binding.lineChart.legend.isEnabled = false
+                binding.lineChart.setPinchZoom(true)
             }
         }
     }

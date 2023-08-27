@@ -9,9 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
 import ru.crazypeppers.problemsassistant.R
+import ru.crazypeppers.problemsassistant.databinding.ActivityMainBinding
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 import ru.crazypeppers.problemsassistant.util.HideInputMode
 
@@ -33,15 +32,21 @@ class MainActivity : AppCompatActivity(), HideInputMode {
      */
     private lateinit var menu: Menu
 
+    private lateinit var binding: ActivityMainBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        setSupportActionBar(binding.toolbar)
 
         val display: Display = windowManager.defaultDisplay
         display.getSize(windowSize)
 
-        inputAdd.setOnClickListener {
+        binding.inputAdd.setOnClickListener {
             Snackbar.make(it, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
@@ -53,7 +58,7 @@ class MainActivity : AppCompatActivity(), HideInputMode {
         val data = intent.data
         if (data != null) {
             intent.data = null
-            nav_host_fragment.findNavController()
+            binding.content.navHostFragment.findNavController()
                 .navigate(R.id.ImportFragment, bundleOf("Uri" to data))
         }
     }
@@ -81,7 +86,7 @@ class MainActivity : AppCompatActivity(), HideInputMode {
         return when (item.itemId) {
             R.id.action_settings -> {
                 item.isVisible = false
-                nav_host_fragment.findNavController().navigate(R.id.SettingsFragment)
+                binding.content.navHostFragment.findNavController().navigate(R.id.SettingsFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)

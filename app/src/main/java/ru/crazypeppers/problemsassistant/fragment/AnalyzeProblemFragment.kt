@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.fragment_analyze_problem.*
 import ru.crazypeppers.problemsassistant.DataApplication
 import ru.crazypeppers.problemsassistant.R
 import ru.crazypeppers.problemsassistant.activity.MainActivity
 import ru.crazypeppers.problemsassistant.data.PROBLEM_POSITION_TEXT
+import ru.crazypeppers.problemsassistant.databinding.FragmentAnalyzeProblemBinding
 import ru.crazypeppers.problemsassistant.fragment.tabled.AnalyzeProblemSectionsPagerAdapter
 import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
 
@@ -20,12 +20,21 @@ import ru.crazypeppers.problemsassistant.listener.OnBackPressedListener
  */
 class AnalyzeProblemFragment : Fragment(), OnBackPressedListener {
 
+    private var _binding: FragmentAnalyzeProblemBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_analyze_problem, container, false)
+    ): View {
+        _binding = FragmentAnalyzeProblemBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +47,7 @@ class AnalyzeProblemFragment : Fragment(), OnBackPressedListener {
         val inputAdd = activity.findViewById<FloatingActionButton>(R.id.inputAdd)
         inputAdd.hide()
 
-        viewPager.adapter =
+        binding.viewPager.adapter =
             AnalyzeProblemSectionsPagerAdapter(
                 childFragmentManager,
                 activity,
@@ -49,6 +58,6 @@ class AnalyzeProblemFragment : Fragment(), OnBackPressedListener {
                 )]
             )
 
-        tabLayout.setupWithViewPager(viewPager)
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
     }
 }
